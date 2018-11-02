@@ -61,3 +61,11 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.iml
+mvnw.cmd
+.idea/encodings.xml
+.idea/modules.xml
+.mvn/wrapper/maven-wrapper.properties
+mvnw
+.idea/misc.xml
+.idea/workspace.xml
