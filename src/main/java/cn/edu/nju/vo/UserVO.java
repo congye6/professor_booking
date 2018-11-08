@@ -1,5 +1,7 @@
 package cn.edu.nju.vo;
 
+import cn.edu.nju.enumeration.UserType;
+
 import java.io.Serializable;
 
 public class UserVO implements Serializable {
@@ -18,6 +20,25 @@ public class UserVO implements Serializable {
     private String company;
 
     private String email;
+
+    /**
+     * 专家职位
+     */
+    private String position;
+
+    /**
+     * 专家简介
+     */
+    private String introduction;
+
+    /**
+     * 用户类型
+     */
+    private UserType userType;
+
+    private String school;
+
+    private String researchInterest;
 
     private static final long serialVersionUID = 1L;
 
@@ -83,5 +104,45 @@ public class UserVO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getResearchInterest() {
+        return researchInterest;
+    }
+
+    public void setResearchInterest(String researchInterest) {
+        this.researchInterest = researchInterest;
     }
 }

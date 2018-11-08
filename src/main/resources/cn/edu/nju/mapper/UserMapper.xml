@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nju.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.nju.vo.UserVO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="wechat_id" jdbcType="VARCHAR" property="wechatId" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="user_type" jdbcType="CHAR" property="userType" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="research_interest" jdbcType="VARCHAR" property="researchInterest" />
+  </resultMap>
+
+  <select id="selectUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * from `user` where wechat_id=#{wechatId}
+  </select>
+
+  <select id="selectUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * from `user` where `name` like concat('%',#{name},'%')
+  </select>
+
+  <select id="selectUserBySchool" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * from `user` where school = #{school}
+  </select>
+
+  <select id="selectUserByInterest" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT * from `user` where research_interest = #{interest}
+  </select>
+
+  <delete id="delete" parameterType="java.lang.String">
+    delete from user
+    where wechat_id = #{wechatId,jdbcType=INTEGER}
+  </delete>
   <insert id="insertSelective" parameterType="cn.edu.nju.vo.UserVO">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="wechatId != null">
         wechat_id,
       </if>
@@ -28,11 +61,23 @@
       <if test="email != null">
         email,
       </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="researchInterest != null">
+        research_interest,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="wechatId != null">
         #{wechatId,jdbcType=VARCHAR},
       </if>
@@ -54,6 +99,62 @@
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=CHAR},
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="researchInterest != null">
+        researchInterest,
+      </if>
     </trim>
   </insert>
+  <update id="updateSelective" parameterType="cn.edu.nju.vo.UserVO">
+    update user
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="iconUrl != null">
+        icon_url = #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="researchInterest != null">
+        research_interest = #{researchInterest,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where wechat_id = #{wechatId}
+  </update>
+
+  <update id="updateType">
+    update `user` set user_type=#{userType} where wechat_id=#{wechatId}
+  </update>
+
 </mapper>
