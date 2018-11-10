@@ -21,6 +21,10 @@
     SELECT * from `user` where wechat_id=#{wechatId}
   </select>
 
+  <select id="selectUserByType" resultMap="BaseResultMap" parameterType="cn.edu.nju.enumeration.UserType">
+    SELECT * FROM `user` WHERE user_type=#{userType}
+  </select>
+
   <select id="selectUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
     SELECT * from `user` where `name` like concat('%',#{name},'%')
   </select>

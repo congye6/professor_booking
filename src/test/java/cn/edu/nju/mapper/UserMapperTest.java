@@ -60,6 +60,11 @@ public class UserMapperTest {
         System.out.println(JSONObject.toJSONString(userMapper.selectUserBySchool("2")));
     }
 
+    @Test
+    public void selectAudit(){
+        System.out.println(JSONObject.toJSONString(userMapper.selectUserByType(UserType.PROFESSOR_AUDIT)));
+    }
+
 
 
 }

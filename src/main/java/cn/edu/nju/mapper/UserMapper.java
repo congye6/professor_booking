@@ -20,6 +20,8 @@ public interface UserMapper {
 
     void updateType(@Param("wechatId") String wechatId,@Param("userType") UserType userType);
 
+    List<UserVO> selectUserByType(@Param("userType") UserType userType);
+
     List<UserVO> selectUserByName(String name);
 
     List<UserVO> selectUserBySchool(String school);

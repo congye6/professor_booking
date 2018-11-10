@@ -34,6 +34,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public ResponseVO deleteUser(String wechatId) {
+        userMapper.delete(wechatId);
+        return ResponseVO.buildSuccess();
+    }
+
+    @Override
     public ResponseVO searchUserByName(String name) {
         return ResponseVO.buildSuccess(userMapper.selectUserByName(name));
     }

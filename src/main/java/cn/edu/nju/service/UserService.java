@@ -23,6 +23,13 @@ public interface UserService {
     public ResponseVO updateUser(UserVO userVO);
 
     /**
+     * 删除用户
+     * @param wechatId
+     * @return
+     */
+    public ResponseVO deleteUser(String wechatId);
+
+    /**
      * 根据姓名模糊搜索
      * @param name
      * @return

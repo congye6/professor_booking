@@ -40,5 +40,10 @@ public class UserController {
         return userService.searchUserByInterest(interest);
     }
 
+    @RequestMapping(value = "/user/delete/{wechatId}",method = RequestMethod.POST)
+    public ResponseVO deleteUser(@PathVariable String wechatId){
+        return userService.deleteUser(wechatId);
+    }
+
 
 }
