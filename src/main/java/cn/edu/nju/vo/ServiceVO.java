@@ -15,6 +15,8 @@ public class ServiceVO {
     private String reserveAddress;
     private Timestamp reserveTime;
     private Timestamp deadline;
+    private Integer majorTypeId;
+    private Integer serviceTypeId;
 
     public Integer getId() {
         return id;
@@ -64,6 +66,22 @@ public class ServiceVO {
         this.deadline = deadline;
     }
 
+    public Integer getMajorTypeId() {
+        return majorTypeId;
+    }
+
+    public void setMajorTypeId(Integer majorTypeId) {
+        this.majorTypeId = majorTypeId;
+    }
+
+    public Integer getServiceTypeId() {
+        return serviceTypeId;
+    }
+
+    public void setServiceTypeId(Integer serviceTypeId) {
+        this.serviceTypeId = serviceTypeId;
+    }
+
     @Override
     public String toString() {
         return "ServiceVO{" +
@@ -73,6 +91,8 @@ public class ServiceVO {
                 ", reserveAddress='" + reserveAddress + '\'' +
                 ", reserveTime=" + reserveTime +
                 ", deadline=" + deadline +
+                ", majorTypeId=" + majorTypeId +
+                ", serviceTypeId=" + serviceTypeId +
                 '}';
     }
 }

@@ -31,14 +31,6 @@ public interface ServiceService {
     ResponseVO serviceSearchByServiceName(String serviceName);
 
     /**
-     * 1.3
-     * 系统所提供的所有服务分类（签证/面试/选校/备考等）
-     * 系统所提供的所有专业分类（法学/商学/计算机等）
-     * @return
-     */
-    ResponseVO serviceClassify();
-
-    /**
      * 1.4
      * 专家头像，姓名，职称，服务简介，地址，预约
      * @param startPos 起始服务记录位置

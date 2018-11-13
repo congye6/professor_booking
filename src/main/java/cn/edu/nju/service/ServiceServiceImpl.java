@@ -50,11 +50,6 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public ResponseVO serviceClassify() {
-        return null;
-    }
-
-    @Override
     public ResponseVO serviceList(int startPos, int number) {
         if(startPos < 0){
             return ResponseVO.buildFailure("服务记录起始位置不能为负");
@@ -85,6 +80,8 @@ public class ServiceServiceImpl implements ServiceService {
         String reserveAddress = vo.getReserveAddress();
         Timestamp reserveTime = vo.getReserveTime();
         Timestamp deadline = vo.getDeadline();
+        Integer serviceTypeId = vo.getServiceTypeId();
+        Integer majorTypeId = vo.getMajorTypeId();
 
         if(null == professorId){
             return ResponseVO.buildFailure("专家编号不能为空");
@@ -96,9 +93,13 @@ public class ServiceServiceImpl implements ServiceService {
             return ResponseVO.buildFailure("预约时间不能为空");
         }else if(null == deadline){
             return ResponseVO.buildFailure("截止时间不能为空");
+        }else if(null == serviceTypeId){
+            return ResponseVO.buildFailure("服务类型Id不能为空");
+        }else if(null == majorTypeId){
+            return ResponseVO.buildFailure("专业类型Id不能为空");
         }
 
-        serviceMapper.insertService(professorId, title, reserveAddress, reserveTime, deadline);
+        serviceMapper.insertService(professorId, title, reserveAddress, reserveTime, deadline, serviceTypeId, majorTypeId);
         return ResponseVO.buildSuccess(true);
     }
 
