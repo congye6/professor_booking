@@ -32,5 +32,12 @@ public interface ServiceMapper {
      * @param num
      * @return
      */
-    List<ServiceVO> getService(@Param("startPos") int startPos, @Param("num") int num);
+    List<ServiceVO> getServiceList(@Param("startPos") int startPos, @Param("num") int num);
+
+    /**
+     * 根据服务Id获取服务信息
+     * @param serviceId
+     * @return
+     */
+    ServiceVO getServiceById(@Param("serviceId") int serviceId);
 }

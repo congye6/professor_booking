@@ -53,17 +53,24 @@ public class ServiceServiceImpl implements ServiceService {
             return ResponseVO.buildFailure("服务的数量应为正数");
         }
 
-        List<ServiceVO> serviceVOList = serviceMapper.getService(startPos, number);
+        // TODO 服务列表信息要包含专家信息，UserMapper那边需要有根据id查User的方法
+        List<ServiceVO> serviceVOList = serviceMapper.getServiceList(startPos, number);
         return ResponseVO.buildSuccess(serviceVOList);
     }
 
     @Override
-    public ResponseVO serviceDetail() {
-        return null;
+    public ResponseVO serviceDetail(int serviceId) {
+        // TODO 服务列表信息要包含专家信息，UserMapper那边需要有根据id查User的方法
+        ServiceVO serviceVO = serviceMapper.getServiceById(serviceId);
+        if(null == serviceVO){
+            return ResponseVO.buildFailure("该服务Id对应的服务不存在");
+        }
+        return ResponseVO.buildSuccess(serviceVO);
     }
 
     @Override
     public ResponseVO serviceCreate(ServiceVO vo) {
+        // TODO 在创建服务时是否需要指定服务分类和专业分类
         Integer professorId = vo.getProfessorId();
         String title = vo.getTitle();
         String reserveAddress = vo.getReserveAddress();

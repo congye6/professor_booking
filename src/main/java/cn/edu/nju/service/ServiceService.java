@@ -50,9 +50,10 @@ public interface ServiceService {
     /**
      * 2.3
      * 专家头像、姓名、职位、地址、简介、专家所持有服务
+     * @param serviceId
      * @return
      */
-    ResponseVO serviceDetail();
+    ResponseVO serviceDetail(int serviceId);
 
     /**
      * E1.4

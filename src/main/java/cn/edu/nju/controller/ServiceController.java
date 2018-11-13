@@ -29,9 +29,14 @@ public class ServiceController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseVO getService(@RequestParam("startPos")int startPos,
+    public ResponseVO getServiceList(@RequestParam("startPos")int startPos,
                                  @RequestParam("number")int number){
         return serviceService.serviceList(startPos, number);
+    }
+
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public ResponseVO getServiceDetail(@RequestParam("serviceId")int serviceId){
+        return serviceService.serviceDetail(serviceId);
     }
 
 

@@ -16,6 +16,14 @@ public class ServiceVO {
     private Timestamp reserveTime;
     private Timestamp deadline;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getProfessorId() {
         return professorId;
     }
@@ -59,7 +67,8 @@ public class ServiceVO {
     @Override
     public String toString() {
         return "ServiceVO{" +
-                "professorId=" + professorId +
+                "id=" + id +
+                ", professorId=" + professorId +
                 ", title='" + title + '\'' +
                 ", reserveAddress='" + reserveAddress + '\'' +
                 ", reserveTime=" + reserveTime +
