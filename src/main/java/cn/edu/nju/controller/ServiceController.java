@@ -28,7 +28,7 @@ public class ServiceController {
         return serviceService.serviceCreate(serviceCreateVO);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ResponseVO getServiceList(@RequestParam("startPos")int startPos,
                                  @RequestParam("number")int number){
         return serviceService.serviceList(startPos, number);

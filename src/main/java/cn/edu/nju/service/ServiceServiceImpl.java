@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author 刘兴
@@ -57,26 +58,47 @@ public class ServiceServiceImpl implements ServiceService {
             return ResponseVO.buildFailure("服务的数量应为正数");
         }
 
-        // TODO 服务列表信息要包含专家信息，UserMapper那边需要有根据id查User的方法
         List<ServiceVO> serviceVOList = serviceMapper.getServiceList(startPos, number);
-        return ResponseVO.buildSuccess(serviceVOList);
+        List<ServiceBriefVO> serviceBriefVOList = serviceVOList.stream().map(serviceVO -> {
+            int professorId = serviceVO.getProfessorId();
+            UserVO userVO = userMapper.selectUserById(professorId);
+            ServiceBriefVO serviceBriefVO = new ServiceBriefVO();
+            serviceBriefVO.setServiceVO(serviceVO);
+            serviceBriefVO.setProfessorId(userVO.getId());
+            serviceBriefVO.setProfessorName(userVO.getName());
+            serviceBriefVO.setIconUrl(userVO.getIconUrl());
+            serviceBriefVO.setPosition(userVO.getPosition());
+            return serviceBriefVO;
+        }).collect(Collectors.toList());
+
+        return ResponseVO.buildSuccess(serviceBriefVOList);
     }
 
     @Override
     public ResponseVO serviceDetail(int serviceId) {
-        // TODO 服务列表信息要包含专家信息，UserMapper那边需要有根据id查User的方法
         ServiceVO serviceVO = serviceMapper.getServiceById(serviceId);
         if(null == serviceVO){
             return ResponseVO.buildFailure("该服务Id对应的服务不存在");
         }
-        return ResponseVO.buildSuccess(serviceVO);
+
+        int professorId = serviceVO.getProfessorId();
+        UserVO professor = userMapper.selectUserById(professorId);
+        if(null == professor){
+            return ResponseVO.buildFailure("该服务Id对应的专家不存在");
+        }
+
+        ServiceDetailVO serviceDetailVO = new ServiceDetailVO();
+        serviceDetailVO.setUserVO(professor);
+        serviceDetailVO.setServiceVO(serviceVO);
+
+        return ResponseVO.buildSuccess(serviceDetailVO);
     }
 
     @Override
     public ResponseVO serviceCreate(ServiceVO vo) {
-        // TODO 在创建服务时是否需要指定服务分类和专业分类
         Integer professorId = vo.getProfessorId();
         String title = vo.getTitle();
+        String content = vo.getContent();
         String reserveAddress = vo.getReserveAddress();
         Timestamp reserveTime = vo.getReserveTime();
         Timestamp deadline = vo.getDeadline();
@@ -87,6 +109,8 @@ public class ServiceServiceImpl implements ServiceService {
             return ResponseVO.buildFailure("专家编号不能为空");
         }else if(StringUtils.isEmpty(title)){
             return ResponseVO.buildFailure("标题不能为空");
+        }else if (StringUtils.isEmpty(content)){
+            return ResponseVO.buildFailure("正文不能为空");
         }else if(StringUtils.isEmpty(reserveAddress)){
             return ResponseVO.buildFailure("预约地址不能为空");
         }else if(null == reserveTime){
@@ -99,7 +123,7 @@ public class ServiceServiceImpl implements ServiceService {
             return ResponseVO.buildFailure("专业类型Id不能为空");
         }
 
-        serviceMapper.insertService(professorId, title, reserveAddress, reserveTime, deadline, serviceTypeId, majorTypeId);
+        serviceMapper.insertService(professorId, title, content, reserveAddress, reserveTime, deadline, serviceTypeId, majorTypeId);
         return ResponseVO.buildSuccess(true);
     }
 

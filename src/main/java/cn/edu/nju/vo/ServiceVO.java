@@ -12,6 +12,7 @@ public class ServiceVO {
     private Integer id;
     private Integer professorId;
     private String title;
+    private String content;
     private String reserveAddress;
     private Timestamp reserveTime;
     private Timestamp deadline;
@@ -40,6 +41,14 @@ public class ServiceVO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getReserveAddress() {
@@ -88,6 +97,7 @@ public class ServiceVO {
                 "id=" + id +
                 ", professorId=" + professorId +
                 ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
                 ", reserveAddress='" + reserveAddress + '\'' +
                 ", reserveTime=" + reserveTime +
                 ", deadline=" + deadline +

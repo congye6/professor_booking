@@ -19,16 +19,16 @@ public interface ServiceMapper {
      * 新增服务记录
      * @param professorId
      * @param title
+     * @param content
      * @param reserveAddress
      * @param reserveTime
      * @param deadline
      * @param serviceTypeId
      * @param majorTypeId
      */
-    void insertService(@Param("professorId") Integer professorId, @Param("title") String title,
-                       @Param("reserveAddress") String reserveAddress, @Param("reserveTime") Timestamp reserveTime,
-                       @Param("deadline") Timestamp deadline, @Param("serviceTypeId")int serviceTypeId,
-                       @Param("majorTypeId")int majorTypeId);
+    void insertService(@Param("professorId") Integer professorId, @Param("title") String title, @Param("content")String content,
+                       @Param("reserveAddress") String reserveAddress, @Param("reserveTime") Timestamp reserveTime, @Param("deadline") Timestamp deadline,
+                       @Param("serviceTypeId")int serviceTypeId, @Param("majorTypeId")int majorTypeId);
 
     /**
      * 获取服务列表

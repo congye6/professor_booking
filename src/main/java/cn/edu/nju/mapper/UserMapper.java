@@ -27,4 +27,11 @@ public interface UserMapper {
     List<UserVO> selectUserBySchool(String school);
 
     List<UserVO> selectUserByInterest(String interest);
+
+    /**
+     * 按照用户Id查找用户
+     * @param id
+     * @return
+     */
+    UserVO selectUserById(int id);
 }

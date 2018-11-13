@@ -5,15 +5,18 @@
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="professor_id" jdbcType="INTEGER" property="professorId" />
         <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="reserve_address" jdbcType="VARCHAR" property="reserveAddress" />
         <result column="reserve_time" jdbcType="TIMESTAMP" property="reserveTime" />
         <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+        <result column="service_type_id" jdbcType="INTEGER" property="serviceTypeId" />
+        <result column="major_type_id" jdbcType="INTEGER" property="majorTypeId" />
     </resultMap>
 
     <insert id="insertService">
-        insert into service (professor_id, title, reserve_address,
+        insert into service (professor_id, title, content, reserve_address,
         reserve_time, deadline, service_type_id, major_type_id)
-        values (#{professorId}, #{title}, #{reserveAddress},
+        values (#{professorId}, #{title}, #{content}, #{reserveAddress},
         #{reserveTime}, #{deadline}, #{serviceTypeId}, #{majorTypeId})
     </insert>
 
