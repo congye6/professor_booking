@@ -39,7 +39,15 @@ public class ServiceController {
         return serviceService.serviceDetail(serviceId);
     }
 
+    @RequestMapping(value = "/major_type", method = RequestMethod.GET)
+    public ResponseVO getAllMajorType(){
+        return serviceService.getAllMajorType();
+    }
 
+    @RequestMapping(value = "/service_type", method = RequestMethod.GET)
+    public ResponseVO getAllServiceType(){
+        return serviceService.getAllServiceType();
+    }
 
 
 }

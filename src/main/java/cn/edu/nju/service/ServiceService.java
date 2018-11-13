@@ -63,4 +63,16 @@ public interface ServiceService {
      */
     ResponseVO serviceCreate(ServiceVO serviceCreateVO);
 
+    /**
+     * 获取所有专业类别
+     * @return
+     */
+    ResponseVO getAllMajorType();
+
+    /**
+     * 获取所有服务类别
+     * @return
+     */
+    ResponseVO getAllServiceType();
+
 }

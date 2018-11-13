@@ -1,11 +1,10 @@
 package cn.edu.nju.service;
 
+import cn.edu.nju.mapper.MajorTypeMapper;
 import cn.edu.nju.mapper.ServiceMapper;
-import cn.edu.nju.vo.ServiceVO;
+import cn.edu.nju.mapper.ServiceTypeMapper;
+import cn.edu.nju.vo.*;
 import cn.edu.nju.mapper.UserMapper;
-import cn.edu.nju.vo.ResponseVO;
-import cn.edu.nju.vo.UserVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -20,11 +19,21 @@ import java.util.List;
 @Service
 public class ServiceServiceImpl implements ServiceService {
 
-    @Autowired
     private UserMapper userMapper;
 
-    @Autowired
     private ServiceMapper serviceMapper;
+
+    private MajorTypeMapper majorTypeMapper;
+
+    private ServiceTypeMapper serviceTypeMapper;
+
+    public ServiceServiceImpl(UserMapper userMapper, ServiceMapper serviceMapper,
+                              MajorTypeMapper majorTypeMapper, ServiceTypeMapper serviceTypeMapper){
+        this.userMapper = userMapper;
+        this.serviceMapper = serviceMapper;
+        this.majorTypeMapper = majorTypeMapper;
+        this.serviceTypeMapper = serviceTypeMapper;
+    }
 
     @Override
     public ResponseVO serviceSearchByProfessorName(String professorName) {
@@ -93,4 +102,15 @@ public class ServiceServiceImpl implements ServiceService {
         return ResponseVO.buildSuccess(true);
     }
 
+    @Override
+    public ResponseVO getAllMajorType() {
+        List<MajorTypeVO> majorTypeVOList = majorTypeMapper.getAllMajorType();
+        return ResponseVO.buildSuccess(majorTypeVOList);
+    }
+
+    @Override
+    public ResponseVO getAllServiceType() {
+        List<ServiceTypeVO> serviceTypeVOList = serviceTypeMapper.getAllServiceType();
+        return ResponseVO.buildSuccess(serviceTypeVOList);
+    }
 }
