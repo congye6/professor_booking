@@ -24,8 +24,12 @@
         SELECT * from `service` LIMIT #{startPos},#{num}
     </select>
 
-    <select id="getServiceById" resultMap="BaseResultMap">
-        SELECT * from `service` WHERE id=#{serviceId}
+    <select id="getServiceListByTitle" resultMap="BaseResultMap">
+        SELECT * from `service` WHERE `title` like concat('%',#{title},'%')
+    </select>
+
+    <select id="getServiceListByContent" resultMap="BaseResultMap">
+        SELECT * from `service` WHERE `content` like concat('%',#{content},'%')
     </select>
 
 

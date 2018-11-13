@@ -18,14 +18,14 @@ public class ServiceController {
     @Autowired
     private ServiceService serviceService;
 
-    @RequestMapping(value = "/professor/{professorName}", method = RequestMethod.GET)
-    public ResponseVO getUser(@PathVariable String professorName){
-        return serviceService.serviceSearchByProfessorName(professorName);
-    }
-
     @RequestMapping(method = RequestMethod.POST)
     public ResponseVO createService(@RequestBody ServiceVO serviceCreateVO){
         return serviceService.serviceCreate(serviceCreateVO);
+    }
+
+    @RequestMapping(value = "/search/{content}", method = RequestMethod.GET)
+    public ResponseVO getUser(@PathVariable String content){
+        return serviceService.serviceSearch(content);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

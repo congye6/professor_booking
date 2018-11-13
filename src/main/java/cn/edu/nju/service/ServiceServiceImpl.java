@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -37,17 +40,33 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public ResponseVO serviceSearchByProfessorName(String professorName) {
-        if(StringUtils.isEmpty(professorName)) {
-            return ResponseVO.buildFailure("专家姓名不能为空");
+    public ResponseVO serviceSearch(String content) {
+        if(StringUtils.isEmpty(content)) {
+            return ResponseVO.buildFailure("搜索内容不能为空");
         }
-        List<UserVO> professorList =  userMapper.selectUserByName(professorName);
-        return ResponseVO.buildSuccess(professorList);
-    }
+        List<UserVO> professorList =  userMapper.selectUserByName(content);
 
-    @Override
-    public ResponseVO serviceSearchByServiceName(String serviceName) {
-        return null;
+        List<ServiceVO> titleServiceVOList = serviceMapper.getServiceListByTitle(content);
+        List<ServiceVO> contentServiceVOList = serviceMapper.getServiceListByContent(content);
+        List<ServiceVO> allServiceList = new ArrayList<>();
+
+        List<ServiceVO> serviceVOList = new ArrayList<>();
+        Set<Integer> containedProfessorIdSet = new HashSet<>();
+        titleServiceVOList.addAll(contentServiceVOList);
+        titleServiceVOList.forEach(serviceVO -> {
+            int id = serviceVO.getProfessorId();
+            if(!containedProfessorIdSet.contains(id)){
+                serviceVOList.add(serviceVO);
+                containedProfessorIdSet.add(id);
+                allServiceList.add(serviceVO);
+            }
+        });
+
+        ServiceSearchVO serviceSearchVO = new ServiceSearchVO();
+        serviceSearchVO.setProfessorList(professorList);
+        serviceSearchVO.setServiceList(allServiceList);
+
+        return ResponseVO.buildSuccess(serviceSearchVO);
     }
 
     @Override

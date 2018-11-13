@@ -11,24 +11,11 @@ import cn.edu.nju.vo.ResponseVO;
 public interface ServiceService {
 
     /**
-     * 1.1
-     * 可通过模糊查询查找（专家姓名)
-     * 可以根据已有（学校、专业、研究方向）进行筛选
-     * （结果按学校、专业排序显示）
-     * @param professorName 教授姓名
+     * 搜索教授名、服务标题、服务正文匹配的记录
+     * @param content
      * @return
      */
-    ResponseVO serviceSearchByProfessorName(String professorName);
-
-    /**
-     * 1.1
-     * 可通过模糊查询查找（服务分类名)
-     * 可以根据已有（学校、专业、研究方向）进行筛选
-     * （结果按学校、专业排序显示）
-     * @param serviceName 服务名
-     * @return
-     */
-    ResponseVO serviceSearchByServiceName(String serviceName);
+    ResponseVO serviceSearch(String content);
 
     /**
      * 1.4

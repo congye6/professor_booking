@@ -44,4 +44,18 @@ public interface ServiceMapper {
      * @return
      */
     ServiceVO getServiceById(@Param("serviceId") int serviceId);
+
+    /**
+     * 通过对服务标题的模糊匹配获取服务
+     * @param title
+     * @return
+     */
+    List<ServiceVO> getServiceListByTitle(@Param("title") String title);
+
+    /**
+     * 通过对服务正文的模糊匹配获取服务
+     * @param content
+     * @return
+     */
+    List<ServiceVO> getServiceListByContent(@Param("content") String content);
 }
