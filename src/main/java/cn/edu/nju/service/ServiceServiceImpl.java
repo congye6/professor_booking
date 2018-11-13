@@ -31,7 +31,7 @@ public class ServiceServiceImpl implements ServiceService {
         if(StringUtils.isEmpty(professorName)) {
             return ResponseVO.buildFailure("专家姓名不能为空");
         }
-        List<UserVO> professorList =  userMapper.selectUserByName("cc");
+        List<UserVO> professorList =  userMapper.selectUserByName(professorName);
         return ResponseVO.buildSuccess(professorList);
     }
 
@@ -46,8 +46,15 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public ResponseVO serviceList() {
-        return null;
+    public ResponseVO serviceList(int startPos, int number) {
+        if(startPos < 0){
+            return ResponseVO.buildFailure("服务记录起始位置不能为负");
+        }else if(number <=0){
+            return ResponseVO.buildFailure("服务的数量应为正数");
+        }
+
+        List<ServiceVO> serviceVOList = serviceMapper.getService(startPos, number);
+        return ResponseVO.buildSuccess(serviceVOList);
     }
 
     @Override

@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.nju.mapper.ServiceMapper">
+    <resultMap id="BaseResultMap" type="cn.edu.nju.vo.ServiceVO">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="professor_id" jdbcType="INTEGER" property="professorId" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="reserve_address" jdbcType="VARCHAR" property="reserveAddress" />
+        <result column="reserve_time" jdbcType="TIMESTAMP" property="reserveTime" />
+        <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    </resultMap>
 
     <insert id="insertService">
-        insert into service (professorId, title, reserve_address, reserve_time, deadline)
+        insert into service (professor_id, title, reserve_address, reserve_time, deadline)
         values (#{professorId}, #{title}, #{reserveAddress}, #{reserveTime}, #{deadline})
     </insert>
+
+    <select id="getService" resultMap="BaseResultMap">
+        SELECT * from `service` LIMIT #{startPos},#{num}
+    </select>
 
 </mapper>

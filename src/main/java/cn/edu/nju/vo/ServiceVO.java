@@ -9,6 +9,7 @@ import java.sql.Timestamp;
  */
 public class ServiceVO {
 
+    private Integer id;
     private Integer professorId;
     private String title;
     private String reserveAddress;

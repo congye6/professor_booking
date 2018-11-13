@@ -41,9 +41,11 @@ public interface ServiceService {
     /**
      * 1.4
      * 专家头像，姓名，职称，服务简介，地址，预约
+     * @param startPos 起始服务记录位置
+     * @param number 服务数量
      * @return
      */
-    ResponseVO serviceList();
+    ResponseVO serviceList(int startPos, int number);
 
     /**
      * 2.3

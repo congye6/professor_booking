@@ -28,6 +28,13 @@ public class ServiceController {
         return serviceService.serviceCreate(serviceCreateVO);
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseVO getService(@RequestParam("startPos")int startPos,
+                                 @RequestParam("number")int number){
+        return serviceService.serviceList(startPos, number);
+    }
+
+
 
 
 }
