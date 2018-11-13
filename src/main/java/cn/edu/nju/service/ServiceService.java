@@ -15,7 +15,7 @@ public interface ServiceService {
      * 可通过模糊查询查找（专家姓名)
      * 可以根据已有（学校、专业、研究方向）进行筛选
      * （结果按学校、专业排序显示）
-     * @param professorName
+     * @param professorName 教授姓名
      * @return
      */
     ResponseVO serviceSearchByProfessorName(String professorName);
@@ -25,7 +25,7 @@ public interface ServiceService {
      * 可通过模糊查询查找（服务分类名)
      * 可以根据已有（学校、专业、研究方向）进行筛选
      * （结果按学校、专业排序显示）
-     * @param serviceName
+     * @param serviceName 服务名
      * @return
      */
     ResponseVO serviceSearchByServiceName(String serviceName);
@@ -50,7 +50,7 @@ public interface ServiceService {
     /**
      * 2.3
      * 专家头像、姓名、职位、地址、简介、专家所持有服务
-     * @param serviceId
+     * @param serviceId 服务Id
      * @return
      */
     ResponseVO serviceDetail(int serviceId);
@@ -58,7 +58,7 @@ public interface ServiceService {
     /**
      * E1.4
      * 包括标题、正文、预约地址、预约时间、截止时间
-     * @param serviceCreateVO
+     * @param serviceCreateVO 创建服务的信息
      * @return
      */
     ResponseVO serviceCreate(ServiceVO serviceCreateVO);
