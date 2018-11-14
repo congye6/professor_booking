@@ -1,23 +1,13 @@
 package cn.edu.nju.vo;
 
-import cn.edu.nju.enumeration.UserType;
-
 import java.io.Serializable;
 
 public class UserVO implements Serializable {
     private Integer id;
 
-    private String wechatId;
-
-    private String phone;
-
-    private String iconUrl;
-
     private String name;
 
     private String telephone;
-
-    private String company;
 
     private String email;
 
@@ -31,14 +21,11 @@ public class UserVO implements Serializable {
      */
     private String introduction;
 
-    /**
-     * 用户类型
-     */
-    private UserType userType;
-
     private String school;
 
     private String researchInterest;
+
+    private String iconUrl;
 
     private static final long serialVersionUID = 1L;
 
@@ -50,28 +37,12 @@ public class UserVO implements Serializable {
         this.id = id;
     }
 
-    public String getWechatId() {
-        return wechatId;
-    }
-
-    public void setWechatId(String wechatId) {
-        this.wechatId = wechatId == null ? null : wechatId.trim();
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
-
     public String getIconUrl() {
         return iconUrl;
     }
 
     public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl == null ? null : iconUrl.trim();
+        this.iconUrl = iconUrl;
     }
 
     public String getName() {
@@ -88,14 +59,6 @@ public class UserVO implements Serializable {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone == null ? null : telephone.trim();
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company == null ? null : company.trim();
     }
 
     public String getEmail() {
@@ -120,14 +83,6 @@ public class UserVO implements Serializable {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
-    }
-
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
     }
 
     public String getSchool() {

@@ -13,7 +13,7 @@ public interface UserService {
      * @param wechatId
      * @return
      */
-    public ResponseVO getUser(String wechatId);
+    public ResponseVO getUser(int id);
 
     /**
      * 修改用户信息
@@ -27,7 +27,7 @@ public interface UserService {
      * @param wechatId
      * @return
      */
-    public ResponseVO deleteUser(String wechatId);
+    public ResponseVO deleteUser(int id);
 
     /**
      * 根据姓名模糊搜索

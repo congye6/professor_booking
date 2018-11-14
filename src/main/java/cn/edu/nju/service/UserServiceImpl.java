@@ -17,16 +17,14 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
 
     @Override
-    public ResponseVO getUser(String wechatId) {
-        if(StringUtils.isEmpty(wechatId))
-            return ResponseVO.buildFailure("微信id不能为空");
-        UserVO userVO=userMapper.selectUser(wechatId);
+    public ResponseVO getUser(int id) {
+        UserVO userVO=userMapper.selectUserById(id);
         return ResponseVO.buildSuccess(userVO);
     }
 
     @Override
     public ResponseVO updateUser(UserVO userVO) {
-        UserVO userInDb=userMapper.selectUser(userVO.getWechatId());
+        UserVO userInDb=userMapper.selectUserById(userVO.getId());
         if(userInDb==null)
             return ResponseVO.buildFailure("用户不存在");
         userMapper.updateSelective(userVO);
@@ -34,8 +32,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ResponseVO deleteUser(String wechatId) {
-        userMapper.delete(wechatId);
+    public ResponseVO deleteUser(int id) {
+        userMapper.delete(id);
         return ResponseVO.buildSuccess();
     }
 
