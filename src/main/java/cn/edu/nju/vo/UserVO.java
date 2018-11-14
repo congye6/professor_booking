@@ -25,6 +25,8 @@ public class UserVO implements Serializable {
 
     private String researchInterest;
 
+    private String website;
+
     private String iconUrl;
 
     private static final long serialVersionUID = 1L;
@@ -35,6 +37,14 @@ public class UserVO implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public String getIconUrl() {

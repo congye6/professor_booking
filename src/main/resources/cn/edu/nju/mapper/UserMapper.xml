@@ -60,6 +60,9 @@
       <if test="iconUrl != null">
         icon_url,
       </if>
+      <if test="website != null">
+        website,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -85,6 +88,9 @@
       </if>
       <if test="iconUrl != null">
         #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null">
+        #{website},
       </if>
     </trim>
   </insert>
@@ -113,7 +119,10 @@
         research_interest = #{researchInterest,jdbcType=VARCHAR},
       </if>
       <if test="iconUrl!=null">
-        icon_url=#{iconUrl}
+        icon_url=#{iconUrl},
+      </if>
+      <if test="website != null">
+        website=#{website},
       </if>
     </set>
     where id = #{id}

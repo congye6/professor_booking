@@ -28,6 +28,7 @@ public class UserMapperTest {
         userVO.setPosition("Professor");
         userVO.setResearchInterest("sddd");
         userVO.setSchool("sassd");
+        userVO.setWebsite("http://localhost");
         userMapper.insertSelective(userVO);
     }
 
