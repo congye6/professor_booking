@@ -15,6 +15,8 @@ public interface UserMapper {
 
     void delete(int id);
 
+    List<UserVO> selectUser(@Param("start") int start,@Param("pageSize") int pageSize);
+
     List<UserVO> selectUserByName(String name);
 
     List<UserVO> selectUserBySchool(String school);

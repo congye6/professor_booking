@@ -59,6 +59,11 @@ public class UserMapperTest {
         System.out.println(JSONObject.toJSONString(userMapper.selectUserBySchool("2")));
     }
 
+    @Test
+    public void selectByPage(){
+        System.out.println(JSONObject.toJSONString(userMapper.selectUser(50,5)));
+    }
+
 
 
 

@@ -13,6 +13,10 @@
     <result column="research_interest" jdbcType="VARCHAR" property="researchInterest" />
   </resultMap>
 
+  <select id="selectUser" resultMap="BaseResultMap">
+    SELECT * FROM `user` ORDER by id limit #{start},#{pageSize}
+  </select>
+
   <select id="selectUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
     SELECT * from `user` where `name` like concat('%',#{name},'%')
   </select>

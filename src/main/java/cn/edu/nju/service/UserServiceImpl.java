@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+
 /**
  * Created by cong on 2018-11-08.
  */
@@ -20,6 +22,14 @@ public class UserServiceImpl implements UserService{
     public ResponseVO getUser(int id) {
         UserVO userVO=userMapper.selectUserById(id);
         return ResponseVO.buildSuccess(userVO);
+    }
+
+    @Override
+    public ResponseVO getUserByPage(int pageIndex, int pageSize) {
+        if(pageIndex<0||pageSize<1)
+            return ResponseVO.buildFailure("参数错误");
+        List<UserVO> professors=userMapper.selectUser(pageIndex*pageSize,pageSize);
+        return ResponseVO.buildSuccess(professors);
     }
 
     @Override

@@ -17,6 +17,17 @@ public class UserController {
     private UserService userService;
 
     /**
+     * 分页获取用户数据
+     * @param pageIndex 获取第几页的数据，从0开始
+     * @param pageSize  一页有多少条数据
+     * @return
+     */
+    @RequestMapping(value = "/user/page/{pageIndex}/size/{pageSize}",method = RequestMethod.GET)
+    public ResponseVO getUserByPage(@PathVariable Integer pageIndex,@PathVariable Integer pageSize){
+        return userService.getUserByPage(pageIndex,pageSize);
+    }
+
+    /**
      *根据id获取专家信息
      * @param id
      * @return

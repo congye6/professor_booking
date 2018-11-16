@@ -9,11 +9,19 @@ import cn.edu.nju.vo.UserVO;
 public interface UserService {
 
     /**
-     * 根据微信id获取用户信息
+     * 根据id获取用户信息
      * @param wechatId
      * @return
      */
     public ResponseVO getUser(int id);
+
+    /**
+     * 分页获取用户数据
+     * @param pageIndex 获取第几页的数据，从0开始
+     * @param pageSize  一页有多少条数据
+     * @return
+     */
+    public ResponseVO getUserByPage(int pageIndex,int pageSize);
 
     /**
      * 修改用户信息
