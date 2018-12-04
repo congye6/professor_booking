@@ -34,9 +34,9 @@ public class ImportUtil {
         System.out.println(schoolName + " data size:" + list.size());
         for (UserVO userVO : list) {
             //避免研究领域字段过长
-            String interest = userVO.getResearchInterest();
+            String interest = userVO.getMajor();
             if (interest != null && interest.length() > 50)
-                userVO.setResearchInterest(interest.substring(0, 50));
+                userVO.setMajor(interest.substring(0, 50));
 
             String name = userVO.getName();
             if (!StringUtils.isEmpty(name))

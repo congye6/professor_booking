@@ -26,23 +26,25 @@ public class UserMapperTest {
         userVO.setName("cc");
         userVO.setIntroduction("jshdjddsdsd");
         userVO.setPosition("Professor");
-        userVO.setResearchInterest("sddd");
+        userVO.setMajor("sddd");
         userVO.setSchool("sassd");
         userVO.setWebsite("http://localhost");
+        userVO.setCountry("中国");
         userMapper.insertSelective(userVO);
     }
 
     @Test
     public void update(){
         UserVO userVO=new UserVO();
-        userVO.setId(5);
+        userVO.setId(2026);
         userVO.setEmail("222@qq.com");
         userVO.setSchool("233");
-        userVO.setResearchInterest("update");
+        userVO.setMajor("update");
         userVO.setPosition("pro");
         userVO.setIntroduction("44444");
         userVO.setName("222222");
         userVO.setTelephone("222222");
+        userVO.setCountry("美国");
         userMapper.updateSelective(userVO);
     }
 
@@ -53,10 +55,8 @@ public class UserMapperTest {
 
     @Test
     public void select(){
-        System.out.println(JSONObject.toJSONString(userMapper.selectUserById(1)));
-        System.out.println(JSONObject.toJSONString(userMapper.selectUserByName("c")));
-        System.out.println(JSONObject.toJSONString(userMapper.selectUserByInterest("1")));
-        System.out.println(JSONObject.toJSONString(userMapper.selectUserBySchool("2")));
+        System.out.println(JSONObject.toJSONString(userMapper.selectUserById(2026)));
+
     }
 
     @Test

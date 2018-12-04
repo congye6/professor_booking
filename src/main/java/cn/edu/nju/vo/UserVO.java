@@ -22,12 +22,19 @@ public class UserVO implements Serializable {
     private String introduction;
 
     private String school;
-
-    private String researchInterest;
+    /**
+     * 专业
+     */
+    private String major;
 
     private String website;
 
     private String iconUrl;
+
+    /**
+     * 国家
+     */
+    private String country;
 
     private static final long serialVersionUID = 1L;
 
@@ -103,11 +110,19 @@ public class UserVO implements Serializable {
         this.school = school;
     }
 
-    public String getResearchInterest() {
-        return researchInterest;
+    public String getMajor() {
+        return major;
     }
 
-    public void setResearchInterest(String researchInterest) {
-        this.researchInterest = researchInterest;
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

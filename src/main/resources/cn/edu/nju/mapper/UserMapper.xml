@@ -10,7 +10,6 @@
     <result column="introduction" jdbcType="VARCHAR" property="introduction" />
     <result column="school" jdbcType="VARCHAR" property="school" />
     <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
-    <result column="research_interest" jdbcType="VARCHAR" property="researchInterest" />
   </resultMap>
 
   <select id="selectUser" resultMap="BaseResultMap">
@@ -58,14 +57,17 @@
       <if test="school != null">
         school,
       </if>
-      <if test="researchInterest != null">
-        research_interest,
+      <if test="major != null">
+        major,
       </if>
       <if test="iconUrl != null">
         icon_url,
       </if>
       <if test="website != null">
         website,
+      </if>
+      <if test="country != null">
+        country,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -87,8 +89,8 @@
       <if test="school != null">
         #{school},
       </if>
-      <if test="researchInterest != null">
-        #{researchInterest},
+      <if test="major != null">
+        #{major},
       </if>
       <if test="iconUrl != null">
         #{iconUrl,jdbcType=VARCHAR},
@@ -96,6 +98,9 @@
       <if test="website != null">
         #{website},
       </if>
+      <if test="country != null">
+      #{country},
+    </if>
     </trim>
   </insert>
   <update id="updateSelective" parameterType="cn.edu.nju.vo.UserVO">
@@ -119,14 +124,17 @@
       <if test="school != null">
         school = #{school,jdbcType=VARCHAR},
       </if>
-      <if test="researchInterest != null">
-        research_interest = #{researchInterest,jdbcType=VARCHAR},
+      <if test="major != null">
+        major = #{major,jdbcType=VARCHAR},
       </if>
       <if test="iconUrl!=null">
         icon_url=#{iconUrl},
       </if>
       <if test="website != null">
         website=#{website},
+      </if>
+      <if test="country != null">
+        country=#{country},
       </if>
     </set>
     where id = #{id}
