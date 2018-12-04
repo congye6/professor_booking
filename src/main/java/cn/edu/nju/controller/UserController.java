@@ -28,6 +28,15 @@ public class UserController {
     }
 
     /**
+     * 获取用户总数
+     * @return
+     */
+    @RequestMapping(value = "/user/count",method = RequestMethod.GET)
+    public ResponseVO getUserCount(){
+        return userService.getUserCount();
+    }
+
+    /**
      *根据id获取专家信息
      * @param id
      * @return

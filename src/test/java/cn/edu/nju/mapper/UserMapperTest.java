@@ -64,6 +64,13 @@ public class UserMapperTest {
         System.out.println(JSONObject.toJSONString(userMapper.selectUser(50,5)));
     }
 
+    @Test
+    public void selectCount(){
+        long begin=System.currentTimeMillis();
+        System.out.println(userMapper.selectCount());
+        long end=System.currentTimeMillis();
+        System.out.println(end-begin);
+    }
 
 
 

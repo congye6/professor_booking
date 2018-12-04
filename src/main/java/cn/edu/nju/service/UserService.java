@@ -24,6 +24,12 @@ public interface UserService {
     public ResponseVO getUserByPage(int pageIndex,int pageSize);
 
     /**
+     * 获取用户总数
+     * @return
+     */
+    public ResponseVO getUserCount();
+
+    /**
      * 修改用户信息
      * @param userVO
      * @return

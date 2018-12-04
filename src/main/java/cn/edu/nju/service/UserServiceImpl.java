@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public ResponseVO getUserCount() {
+        return ResponseVO.buildSuccess(userMapper.selectCount());
+    }
+
+    @Override
     public ResponseVO updateUser(UserVO userVO) {
         UserVO userInDb=userMapper.selectUserById(userVO.getId());
         if(userInDb==null)

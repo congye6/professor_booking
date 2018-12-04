@@ -29,4 +29,10 @@ public interface UserMapper {
      * @return
      */
     UserVO selectUserById(int id);
+
+    /**
+     * 总共有多少条数据
+     * @return
+     */
+    int selectCount();
 }

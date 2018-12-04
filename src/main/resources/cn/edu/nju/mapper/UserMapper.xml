@@ -16,6 +16,10 @@
     SELECT * FROM `user` ORDER by id limit #{start},#{pageSize}
   </select>
 
+  <select id="selectCount" resultType="java.lang.Integer">
+    SELECT count(*) FROM `user`
+  </select>
+
   <select id="selectUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
     SELECT * from `user` where `name` like concat('%',#{name},'%')
   </select>
