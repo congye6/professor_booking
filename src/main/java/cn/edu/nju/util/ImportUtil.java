@@ -1,6 +1,8 @@
 package cn.edu.nju.util;
 
+import cn.edu.nju.mapper.RankMapper;
 import cn.edu.nju.mapper.UserMapper;
+import cn.edu.nju.vo.RankVO;
 import cn.edu.nju.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,21 @@ public class ImportUtil {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RankMapper rankMapper;
+
+    @Transactional
+    public void importRank(String filePath){
+        List<RankVO> list=excelUtil.readRankToJson(filePath, RankVO.class);
+        for(RankVO rankVO:list){
+            try{
+                rankMapper.insert(rankVO);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Transactional
     public void importData(String filePath) {

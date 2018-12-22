@@ -55,7 +55,7 @@ public class UserMapperTest {
 
     @Test
     public void select(){
-        System.out.println(JSONObject.toJSONString(userMapper.selectUserById(2026)));
+        System.out.println(JSONObject.toJSONString(userMapper.selectUserById(1555)));
 
     }
 

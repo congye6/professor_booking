@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nju.mapper.TeacherMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.nju.vo.TeacherVO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="wechat_id" jdbcType="VARCHAR" property="wechatId" />
+    <result column="wechat_icon_url" jdbcType="VARCHAR" property="wechatIconUrl" />
+    <result column="info_id" jdbcType="INTEGER" property="infoId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, wechat_id, wechat_icon_url, info_id
+  </sql>
+
+  <select id="selectByWechatId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM teacher WHERE wechat_id=#{wechatId}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="cn.edu.nju.vo.TeacherVO">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wechatId != null">
+        wechat_id,
+      </if>
+      <if test="wechatIconUrl != null">
+        wechat_icon_url,
+      </if>
+      <if test="infoId != null">
+        info_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wechatId != null">
+        #{wechatId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatIconUrl != null">
+        #{wechatIconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoId != null">
+        #{infoId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nju.vo.TeacherVO">
+    update teacher
+    <set>
+      <if test="wechatId != null">
+        wechat_id = #{wechatId,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatIconUrl != null">
+        wechat_icon_url = #{wechatIconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoId != null">
+        info_id = #{infoId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

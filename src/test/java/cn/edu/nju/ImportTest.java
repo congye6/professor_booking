@@ -30,5 +30,10 @@ public class ImportTest {
         }
     }
 
+    @Test
+    public void importRank(){
+        importUtil.importRank("excel/rank.xlsx");
+    }
+
 
 }

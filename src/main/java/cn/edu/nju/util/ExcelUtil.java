@@ -27,9 +27,36 @@ public class ExcelUtil {
         for (int i = 1; i < xlsList.size(); i++) {
             JSONObject jsonObject = new JSONObject(true);
             for (int j = 0; j < subjectList.size(); j++){
-                jsonObject.put(subjectList.get(j), xlsList.get(i).get(j));
+                if(xlsList.get(i).size()<=j)//最后几行为空
+                    jsonObject.put(subjectList.get(j),"");
+                else
+                    jsonObject.put(subjectList.get(j), xlsList.get(i).get(j));
 //                System.out.println(jsonObject.toString());
             }
+            result.add(JSONObject.parseObject(jsonObject.toString(),clazz));
+        }
+
+        return result;
+    }
+
+    public <T> List<T> readRankToJson(String path,Class<T> clazz)  {
+        List<List<String>> xlsList = readXls(path);
+
+        List<T> result= new ArrayList<>();
+        List<String> subjectList = xlsList.get(0);
+
+        for (int i = 1; i < xlsList.size(); i++) {
+            JSONObject jsonObject = new JSONObject(true);
+
+            jsonObject.put("institude",xlsList.get(i).get(0));
+
+            String num=xlsList.get(i).get(1);
+            if(num.contains("-")){
+                num=num.split("-")[0];
+            }
+            jsonObject.put("rank", Integer.parseInt(num));
+//                System.out.println(jsonObject.toString());
+
             result.add(JSONObject.parseObject(jsonObject.toString(),clazz));
         }
 
