@@ -36,6 +36,17 @@ public class UserVO implements Serializable {
      */
     private String country;
 
+    private String researchInterest;
+
+    private String firstName;
+
+    private String familyName;
+
+    /**
+     * 大学排名
+     */
+    private Integer institudeRank;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -44,6 +55,38 @@ public class UserVO implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getInstitudeRank() {
+        return institudeRank;
+    }
+
+    public void setInstitudeRank(Integer institudeRank) {
+        this.institudeRank = institudeRank;
+    }
+
+    public String getResearchInterest() {
+        return researchInterest;
+    }
+
+    public void setResearchInterest(String researchInterest) {
+        this.researchInterest = researchInterest;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getFamilyName() {
+        return familyName;
+    }
+
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
     }
 
     public String getWebsite() {

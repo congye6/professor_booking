@@ -30,21 +30,22 @@ public class UserMapperTest {
         userVO.setSchool("sassd");
         userVO.setWebsite("http://localhost");
         userVO.setCountry("中国");
+        userVO.setResearchInterest("22");
+        userVO.setFirstName("ccc");
+        userVO.setFamilyName("ccccc");
+        userVO.setInstitudeRank(1);
         userMapper.insertSelective(userVO);
     }
 
     @Test
     public void update(){
         UserVO userVO=new UserVO();
-        userVO.setId(2026);
-        userVO.setEmail("222@qq.com");
-        userVO.setSchool("233");
-        userVO.setMajor("update");
-        userVO.setPosition("pro");
-        userVO.setIntroduction("44444");
-        userVO.setName("222222");
-        userVO.setTelephone("222222");
-        userVO.setCountry("美国");
+        userVO.setId(2410);
+
+        userVO.setFamilyName("111");
+        userVO.setInstitudeRank(2);
+        userVO.setFirstName("111111");
+        userVO.setResearchInterest("ssssssssss");
         userMapper.updateSelective(userVO);
     }
 

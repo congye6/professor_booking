@@ -10,6 +10,10 @@
     <result column="introduction" jdbcType="VARCHAR" property="introduction" />
     <result column="school" jdbcType="VARCHAR" property="school" />
     <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
+    <result column="research_interest" property="researchInterest"/>
+    <result column="first_name" property="firstName"/>
+    <result column="family_name" property="familyName"/>
+    <result column="institude_rank" property="institudeRank"/>
   </resultMap>
 
   <select id="selectUser" resultMap="BaseResultMap">
@@ -71,7 +75,19 @@
         website,
       </if>
       <if test="country != null">
-        country,
+      country,
+    </if>
+      <if test="researchInterest != null">
+        research_interest,
+      </if>
+      <if test="firstName != null">
+      first_name,
+    </if>
+      <if test="familyName != null">
+        family_name,
+      </if>
+      <if test="institudeRank != null">
+        institude_rank,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -105,6 +121,18 @@
       <if test="country != null">
       #{country},
     </if>
+      <if test="researchInterest != null">
+        #{researchInterest},
+      </if>
+      <if test="firstName != null">
+        #{firstName},
+      </if>
+      <if test="familyName != null">
+        #{familyName},
+      </if>
+      <if test="institudeRank != null">
+        #{institudeRank},
+      </if>
     </trim>
   </insert>
   <update id="updateSelective" parameterType="cn.edu.nju.vo.UserVO">
@@ -139,6 +167,18 @@
       </if>
       <if test="country != null">
         country=#{country},
+      </if>
+      <if test="researchInterest != null">
+        research_interest=#{researchInterest},
+      </if>
+      <if test="firstName != null">
+        first_name=#{firstName},
+      </if>
+      <if test="familyName != null">
+        family_name=#{familyName},
+      </if>
+      <if test="institudeRank != null">
+        institude_rank=#{institudeRank},
       </if>
     </set>
     where id = #{id}
