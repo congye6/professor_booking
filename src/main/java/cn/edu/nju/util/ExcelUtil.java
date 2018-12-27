@@ -1,8 +1,10 @@
 package cn.edu.nju.util;
 
+import cn.edu.nju.vo.MajorRankVO;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -60,6 +62,31 @@ public class ExcelUtil {
             result.add(JSONObject.parseObject(jsonObject.toString(),clazz));
         }
 
+        return result;
+    }
+
+    public List<MajorRankVO> readMajorRank(String path){
+        List<List<String>> xlsList = readXls(path);
+        List<MajorRankVO> result=new ArrayList<>();
+        List<String> majors=xlsList.get(0);
+        for(int i=1;i<xlsList.size();i++){
+            List<String> line=xlsList.get(i);
+            for(int j=1;j<majors.size();j++){
+                String rank=line.get(j);
+                rank=rank.trim();
+                if(StringUtils.isEmpty(rank))
+                    continue;
+                MajorRankVO majorRankVO=new MajorRankVO();
+                majorRankVO.setInstitude(line.get(0));
+                majorRankVO.setMajor(majors.get(j));
+
+                if(rank.contains("-")){
+                    rank=rank.split("-")[0];
+                }
+                majorRankVO.setRank(Integer.parseInt(rank));
+                result.add(majorRankVO);
+            }
+        }
         return result;
     }
 

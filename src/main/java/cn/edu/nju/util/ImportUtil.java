@@ -1,7 +1,9 @@
 package cn.edu.nju.util;
 
+import cn.edu.nju.mapper.MajorRankMapper;
 import cn.edu.nju.mapper.RankMapper;
 import cn.edu.nju.mapper.UserMapper;
+import cn.edu.nju.vo.MajorRankVO;
 import cn.edu.nju.vo.RankVO;
 import cn.edu.nju.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +31,27 @@ public class ImportUtil {
     @Autowired
     private RankMapper rankMapper;
 
+    @Autowired
+    private MajorRankMapper majorRankMapper;
+
     @Transactional
     public void importRank(String filePath){
         List<RankVO> list=excelUtil.readRankToJson(filePath, RankVO.class);
         for(RankVO rankVO:list){
             try{
                 rankMapper.insert(rankVO);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Transactional
+    public void importMajorRank(String filePath){
+        List<MajorRankVO> list=excelUtil.readMajorRank(filePath);
+        for(MajorRankVO rankVO:list){
+            try{
+                majorRankMapper.insert(rankVO);
             }catch (Exception e){
                 e.printStackTrace();
             }
