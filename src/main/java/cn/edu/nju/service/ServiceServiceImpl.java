@@ -57,6 +57,9 @@ public class ServiceServiceImpl implements ServiceService {
             return ResponseVO.buildFailure("服务搜索输入信息为空");
         }
 
+        serviceType = serviceType == null ? 0:serviceType;
+        majorType = majorType == null ? 0:majorType;
+
         List<ServiceExpertVO> serviceExpertVOList = serviceExpertMapper.getSearchExpertInfo(serviceName, nation,
                 position, school, serviceType, majorType);
         return ResponseVO.buildSuccess(serviceExpertVOList);
