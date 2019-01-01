@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nju.mapper.ServiceExpertMapper">
+
+    <resultMap id="BaseResultMap" type="cn.edu.nju.vo.ServiceExpertVO">
+        <id column="id" jdbcType="INTEGER" property="serviceId" />
+        <result column="professor_id" jdbcType="INTEGER" property="professorId" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="reserve_address" jdbcType="VARCHAR" property="reserveAddress" />
+        <result column="reserve_time" jdbcType="TIMESTAMP" property="reserveTime" />
+        <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+        <result column="service_type_id" jdbcType="INTEGER" property="serviceTypeId" />
+        <result column="major_type_id" jdbcType="INTEGER" property="majorTypeId" />
+
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="position" jdbcType="VARCHAR" property="position"/>
+        <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
+        <result column="school" jdbcType="VARCHAR" property="school"/>
+        <result column="major" jdbcType="VARCHAR" property="major"/>
+        <result column="website" jdbcType="VARCHAR" property="website"/>
+        <result column="icon_url" jdbcType="VARCHAR" property="iconUrl"/>
+        <result column="country" jdbcType="VARCHAR" property="country"/>
+        <result column="research_interest" jdbcType="VARCHAR" property="researchInterest"/>
+        <result column="first_name" jdbcType="VARCHAR" property="firstName"/>
+        <result column="family_name" jdbcType="VARCHAR" property="familyName"/>
+        <result column="institude_rank" jdbcType="INTEGER" property="institudeRank"/>
+    </resultMap>
+
+    <select id="getSearchExpertInfo" resultMap="BaseResultMap">
+        SELECT * from `service` JOIN `user` WHERE service.professor_id = user.id
+        <if test=" serviceName != '' ">
+            AND service.title LIKE concat('%',#{serviceName},'%')
+        </if>
+        <if test=" serviceType != 0 ">
+            AND service.service_type_id = #{serviceType}
+        </if>
+        <if test=" majorType != 0 ">
+            AND service.major_type_id = #{majorType}
+        </if>
+        <if test=" nation != ''">
+            AND user.country = #{nation}
+        </if>
+        <if test=" position != ''">
+            AND user.position LIKE concat('%',#{position},'%')
+        </if>
+        <if test=" school != ''">
+            AND user.school LIKE concat('%',#{school},'%')
+        </if>
+
+    </select>
+
+
+</mapper>

@@ -1,9 +1,6 @@
 package cn.edu.nju.service;
 
-import cn.edu.nju.mapper.MajorTypeMapper;
-import cn.edu.nju.mapper.ServiceMapper;
-import cn.edu.nju.mapper.ServiceTypeMapper;
-import cn.edu.nju.mapper.UserMapper;
+import cn.edu.nju.mapper.*;
 import cn.edu.nju.vo.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -28,12 +25,16 @@ public class ServiceServiceImpl implements ServiceService {
 
     private ServiceTypeMapper serviceTypeMapper;
 
+    private ServiceExpertMapper serviceExpertMapper;
+
     public ServiceServiceImpl(UserMapper userMapper, ServiceMapper serviceMapper,
-                              MajorTypeMapper majorTypeMapper, ServiceTypeMapper serviceTypeMapper){
+                              MajorTypeMapper majorTypeMapper, ServiceTypeMapper serviceTypeMapper,
+                              ServiceExpertMapper serviceExpertMapper){
         this.userMapper = userMapper;
         this.serviceMapper = serviceMapper;
         this.majorTypeMapper = majorTypeMapper;
         this.serviceTypeMapper = serviceTypeMapper;
+        this.serviceExpertMapper = serviceExpertMapper;
     }
 
     @Override
@@ -50,8 +51,15 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public ResponseVO serviceSearch(String serviceName, String nation, String position,
                                     String school, int serviceType, int majorType) {
-        // TODO
-        return null;
+        if(StringUtils.isEmpty(serviceName) && StringUtils.isEmpty(nation) &&
+                StringUtils.isEmpty(position) && StringUtils.isEmpty(school) &&
+                serviceType == 0 && majorType == 0){
+            return ResponseVO.buildFailure("服务搜索输入信息为空");
+        }
+
+        List<ServiceExpertVO> serviceExpertVOList = serviceExpertMapper.getSearchExpertInfo(serviceName, nation,
+                position, school, serviceType, majorType);
+        return ResponseVO.buildSuccess(serviceExpertVOList);
     }
 
     @Override
