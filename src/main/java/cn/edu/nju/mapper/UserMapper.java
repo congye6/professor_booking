@@ -35,4 +35,15 @@ public interface UserMapper {
      * @return
      */
     int selectCount();
+
+    /**
+     * 通过专家姓名、国家、职位、学校查找
+     * @param expert
+     * @param nation
+     * @param position
+     * @param school
+     * @return
+     */
+    List<UserVO> selectUserByInfo(@Param("name") String expert, @Param("nation") String nation,
+                                  @Param("position") String position, @Param("school") String school);
 }

@@ -7,30 +7,30 @@ package cn.edu.nju.vo;
  */
 public class ServiceDetailVO {
 
-    private ServiceVO serviceVO;
-    private UserVO userVO;
+    private ServiceVO service;
+    private UserVO user;
 
     public ServiceVO getServiceVO() {
-        return serviceVO;
+        return service;
     }
 
     public void setServiceVO(ServiceVO serviceVO) {
-        this.serviceVO = serviceVO;
+        this.service = serviceVO;
     }
 
     public UserVO getUserVO() {
-        return userVO;
+        return user;
     }
 
     public void setUserVO(UserVO userVO) {
-        this.userVO = userVO;
+        this.user = userVO;
     }
 
     @Override
     public String toString() {
         return "ServiceDetailVO{" +
-                "serviceVO=" + serviceVO +
-                ", userVO=" + userVO +
+                "serviceVO=" + service +
+                ", userVO=" + user +
                 '}';
     }
 }

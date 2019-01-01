@@ -11,11 +11,34 @@ import cn.edu.nju.vo.ResponseVO;
 public interface ServiceService {
 
     /**
-     * 搜索教授名、服务标题、服务正文匹配的记录
-     * @param content
+     * 搜索专家信息
+     * @param expert 专家姓名
+     * @param nation 国家
+     * @param position 职位
+     * @param school 学校
      * @return
      */
-    ResponseVO serviceSearch(String content);
+    ResponseVO expertSearch(String expert, String nation, String position, String school);
+
+    /**
+     * 搜索服务信息
+     * @param serviceName 服务名称
+     * @param nation 国家
+     * @param position 职位
+     * @param school 学校
+     * @param serviceType 服务类型
+     * @param majorType 专业类型
+     * @return
+     */
+    ResponseVO serviceSearch(String serviceName, String nation, String position,
+                             String school, int serviceType, int majorType);
+
+    /**
+     * 通过专家id获取专家和其持有的服务信息
+     * @param expertId 专家id
+     * @return
+     */
+    ResponseVO getServiceByExpertId(int expertId);
 
     /**
      * 1.4

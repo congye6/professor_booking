@@ -3,16 +3,13 @@ package cn.edu.nju.service;
 import cn.edu.nju.mapper.MajorTypeMapper;
 import cn.edu.nju.mapper.ServiceMapper;
 import cn.edu.nju.mapper.ServiceTypeMapper;
-import cn.edu.nju.vo.*;
 import cn.edu.nju.mapper.UserMapper;
+import cn.edu.nju.vo.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -40,33 +37,32 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public ResponseVO serviceSearch(String content) {
-        if(StringUtils.isEmpty(content)) {
-            return ResponseVO.buildFailure("搜索内容不能为空");
+    public ResponseVO expertSearch(String expert, String nation, String position, String school) {
+        if(StringUtils.isEmpty(expert) && StringUtils.isEmpty(nation) &&
+                StringUtils.isEmpty(position) && StringUtils.isEmpty(school)){
+            return ResponseVO.buildFailure("专家搜索输入信息为空");
         }
-        List<UserVO> professorList =  userMapper.selectUserByName(content);
 
-        List<ServiceVO> titleServiceVOList = serviceMapper.getServiceListByTitle(content);
-        List<ServiceVO> contentServiceVOList = serviceMapper.getServiceListByContent(content);
-        List<ServiceVO> allServiceList = new ArrayList<>();
+        List<UserVO> searchExpertList = userMapper.selectUserByInfo(expert, nation, position, school);
+        return ResponseVO.buildSuccess(searchExpertList);
+    }
 
-        List<ServiceVO> serviceVOList = new ArrayList<>();
-        Set<Integer> containedProfessorIdSet = new HashSet<>();
-        titleServiceVOList.addAll(contentServiceVOList);
-        titleServiceVOList.forEach(serviceVO -> {
-            int id = serviceVO.getProfessorId();
-            if(!containedProfessorIdSet.contains(id)){
-                serviceVOList.add(serviceVO);
-                containedProfessorIdSet.add(id);
-                allServiceList.add(serviceVO);
-            }
-        });
+    @Override
+    public ResponseVO serviceSearch(String serviceName, String nation, String position,
+                                    String school, int serviceType, int majorType) {
+        // TODO
+        return null;
+    }
 
-        ServiceSearchVO serviceSearchVO = new ServiceSearchVO();
-        serviceSearchVO.setProfessorList(professorList);
-        serviceSearchVO.setServiceList(allServiceList);
+    @Override
+    public ResponseVO getServiceByExpertId(int expertId) {
+        UserVO expert = userMapper.selectUserById(expertId);
+        List<ServiceVO> serviceVOList = serviceMapper.getServiceListByExpertId(expertId);
+        ExpertServiceVO expertServiceVO = new ExpertServiceVO();
+        expertServiceVO.setExpert(expert);
+        expertServiceVO.setServiceList(serviceVOList);
 
-        return ResponseVO.buildSuccess(serviceSearchVO);
+        return ResponseVO.buildSuccess(expertServiceVO);
     }
 
     @Override

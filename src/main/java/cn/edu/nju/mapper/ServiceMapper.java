@@ -46,6 +46,13 @@ public interface ServiceMapper {
     ServiceVO getServiceById(@Param("serviceId") int serviceId);
 
     /**
+     * 通过专家id获取服务列表
+     * @param expertId 专家id
+     * @return
+     */
+    List<ServiceVO> getServiceListByExpertId(@Param("expertId")int expertId);
+
+    /**
      * 通过对服务标题的模糊匹配获取服务
      * @param title
      * @return

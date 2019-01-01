@@ -40,10 +40,29 @@
     SELECT * from `user` where id = #{id}
   </select>
 
+  <select id="selectUserByInfo" resultMap="BaseResultMap">
+    SELECT * from `user`
+    <where>
+      <if test="name != '' ">
+        name LIKE concat('%',#{name},'%')
+      </if>
+      <if test="nation != '' ">
+        AND country = #{nation}
+      </if>
+      <if test="school != '' ">
+        AND school LIKE concat('%',#{school},'%')
+      </if>
+      <if test="position != '' ">
+        AND position LIKE concat('%',#{position},'%')
+      </if>
+    </where>
+  </select>
+
   <delete id="delete" parameterType="java.lang.Integer">
     delete from user
     where id = #{id}
   </delete>
+
   <insert id="insertSelective" parameterType="cn.edu.nju.vo.UserVO">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
