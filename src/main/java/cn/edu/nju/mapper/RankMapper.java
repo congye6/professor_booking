@@ -16,5 +16,5 @@ public interface RankMapper {
 
     List<RankVO> selectAll();
 
-    int updateByPrimaryKeySelective(RankVO record);
+    int updateByInstitude(RankVO record);
 }

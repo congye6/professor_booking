@@ -35,9 +35,9 @@ public class RankMapperTest {
     @Test
     public void update(){
         RankVO rankVO=new RankVO();
-        rankVO.setRank(2);
-        rankVO.setId(446);
-        mapper.updateByPrimaryKeySelective(rankVO);
+        rankVO.setRank(1);
+        rankVO.setInstitude("Harvard University");
+        mapper.updateByInstitude(rankVO);
     }
 
 }

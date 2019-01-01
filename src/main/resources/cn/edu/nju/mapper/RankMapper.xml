@@ -29,17 +29,14 @@
     insert into institude_rank (institude, rank)
     values (#{institude,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER})
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nju.vo.RankVO">
+  <update id="updateByInstitude" parameterType="cn.edu.nju.vo.RankVO">
     update institude_rank
     <set>
-      <if test="institude != null">
-        institude = #{institude,jdbcType=VARCHAR},
-      </if>
       <if test="rank != null">
         rank = #{rank,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where institude = #{institude,jdbcType=INTEGER}
   </update>
 
 </mapper>
