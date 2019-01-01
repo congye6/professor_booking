@@ -50,10 +50,10 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public ResponseVO serviceSearch(String serviceName, String nation, String position,
-                                    String school, int serviceType, int majorType) {
+                                    String school, Integer serviceType, Integer majorType) {
         if(StringUtils.isEmpty(serviceName) && StringUtils.isEmpty(nation) &&
                 StringUtils.isEmpty(position) && StringUtils.isEmpty(school) &&
-                serviceType == 0 && majorType == 0){
+                serviceType == null && majorType == null){
             return ResponseVO.buildFailure("服务搜索输入信息为空");
         }
 
@@ -63,7 +63,7 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public ResponseVO getServiceByExpertId(int expertId) {
+    public ResponseVO getServiceByExpertId(Integer expertId) {
         UserVO expert = userMapper.selectUserById(expertId);
         List<ServiceVO> serviceVOList = serviceMapper.getServiceListByExpertId(expertId);
         ExpertServiceVO expertServiceVO = new ExpertServiceVO();
@@ -74,7 +74,7 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public ResponseVO serviceList(int startPos, int number) {
+    public ResponseVO serviceList(Integer startPos, Integer number) {
         if(startPos < 0){
             return ResponseVO.buildFailure("服务记录起始位置不能为负");
         }else if(number <=0){
@@ -98,7 +98,7 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public ResponseVO serviceDetail(int serviceId) {
+    public ResponseVO serviceDetail(Integer serviceId) {
         ServiceVO serviceVO = serviceMapper.getServiceById(serviceId);
         if(null == serviceVO){
             return ResponseVO.buildFailure("该服务Id对应的服务不存在");

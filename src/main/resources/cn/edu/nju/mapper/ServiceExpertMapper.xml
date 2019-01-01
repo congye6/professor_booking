@@ -34,10 +34,10 @@
         <if test=" serviceName != '' ">
             AND service.title LIKE concat('%',#{serviceName},'%')
         </if>
-        <if test=" serviceType != 0 ">
+        <if test=" serviceType != '' ">
             AND service.service_type_id = #{serviceType}
         </if>
-        <if test=" majorType != 0 ">
+        <if test=" majorType != '' ">
             AND service.major_type_id = #{majorType}
         </if>
         <if test=" nation != ''">

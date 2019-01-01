@@ -32,18 +32,18 @@ public class ServiceController {
     @RequestMapping(value = "/search/service", method = RequestMethod.GET)
     public ResponseVO searchService(@RequestParam("serviceName")String serviceName,
                                     @RequestParam("nation")String nation, @RequestParam("position")String position,
-                                    @RequestParam("school")String school, @RequestParam("serviceType")int serviceType,
-                                    @RequestParam("majorType")int majorType){
+                                    @RequestParam("school")String school, @RequestParam("serviceType")Integer serviceType,
+                                    @RequestParam("majorType")Integer majorType){
         return serviceService.serviceSearch(serviceName, nation, position, school, serviceType, majorType);
     }
 
     @RequestMapping(value = "/expert", method = RequestMethod.GET)
-    public ResponseVO getExpertServiceInfo(@RequestParam("expertId")int expertId){
+    public ResponseVO getExpertServiceInfo(@RequestParam("expertId")Integer expertId){
         return serviceService.getServiceByExpertId(expertId);
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
-    public ResponseVO getServiceDetail(@RequestParam("serviceId")int serviceId){
+    public ResponseVO getServiceDetail(@RequestParam("serviceId")Integer serviceId){
         return serviceService.serviceDetail(serviceId);
     }
 
@@ -58,8 +58,8 @@ public class ServiceController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ResponseVO getServiceList(@RequestParam("startPos")int startPos,
-                                     @RequestParam("number")int number){
+    public ResponseVO getServiceList(@RequestParam("startPos")Integer startPos,
+                                     @RequestParam("number")Integer number){
         return serviceService.serviceList(startPos, number);
     }
 

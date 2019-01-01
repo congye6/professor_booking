@@ -31,14 +31,14 @@ public interface ServiceService {
      * @return
      */
     ResponseVO serviceSearch(String serviceName, String nation, String position,
-                             String school, int serviceType, int majorType);
+                             String school, Integer serviceType, Integer majorType);
 
     /**
      * 通过专家id获取专家和其持有的服务信息
      * @param expertId 专家id
      * @return
      */
-    ResponseVO getServiceByExpertId(int expertId);
+    ResponseVO getServiceByExpertId(Integer expertId);
 
     /**
      * 1.4
@@ -47,7 +47,7 @@ public interface ServiceService {
      * @param number 服务数量
      * @return
      */
-    ResponseVO serviceList(int startPos, int number);
+    ResponseVO serviceList(Integer startPos, Integer number);
 
     /**
      * 2.3
@@ -55,7 +55,7 @@ public interface ServiceService {
      * @param serviceId 服务Id
      * @return
      */
-    ResponseVO serviceDetail(int serviceId);
+    ResponseVO serviceDetail(Integer serviceId);
 
     /**
      * E1.4
