@@ -5,14 +5,12 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface StudentMapper {
-    int deleteByPrimaryKey(Integer id);
-
     int insertSelective(StudentVO record);
 
     StudentVO selectByPrimaryKey(Integer id);
 
     StudentVO selectByWechatId(String wechatId);
 
-    int updateByPrimaryKeySelective(StudentVO record);
+    void update(StudentVO studentVO);
 
 }

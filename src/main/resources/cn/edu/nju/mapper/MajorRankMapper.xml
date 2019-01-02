@@ -19,6 +19,10 @@
     SELECT * FROM major_rank WHERE institude=#{institude}
   </select>
 
+  <select id="selectRank" resultType="java.lang.Integer">
+    SELECT * FROM major_rank WHERE institude=#{institude} and major=#{major}
+  </select>
+
   <insert id="insert" parameterType="cn.edu.nju.vo.MajorRankVO">
     insert into major_rank (institude, major,
       rank)
@@ -26,20 +30,14 @@
       #{rank,jdbcType=INTEGER})
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nju.vo.MajorRankVO">
+  <update id="update" parameterType="cn.edu.nju.vo.MajorRankVO">
     update major_rank
     <set>
-      <if test="institude != null">
-        institude = #{institude,jdbcType=VARCHAR},
-      </if>
-      <if test="major != null">
-        major = #{major,jdbcType=VARCHAR},
-      </if>
       <if test="rank != null">
         rank = #{rank,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where institude = #{institude,jdbcType=VARCHAR} AND major = #{major,jdbcType=VARCHAR}
   </update>
 
 </mapper>
