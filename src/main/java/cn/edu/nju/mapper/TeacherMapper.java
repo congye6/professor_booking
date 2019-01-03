@@ -14,4 +14,6 @@ public interface TeacherMapper {
     TeacherVO selectByWechatId(String wechatId);
 
     int updateByPrimaryKeySelective(TeacherVO record);
+
+    int updateByWechatId(TeacherVO record);
 }
