@@ -47,23 +47,19 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public ResponseVO getAllCountry() {
+        return ResponseVO.buildSuccess(userMapper.selectCountry());
+    }
+
+    @Override
+    public ResponseVO getAllPosition() {
+        return ResponseVO.buildSuccess(userMapper.selectPosition());
+    }
+
+    @Override
     public ResponseVO deleteUser(int id) {
         userMapper.delete(id);
         return ResponseVO.buildSuccess();
     }
 
-    @Override
-    public ResponseVO searchUserByName(String name) {
-        return ResponseVO.buildSuccess(userMapper.selectUserByName(name));
-    }
-
-    @Override
-    public ResponseVO searchUserBySchool(String school) {
-        return ResponseVO.buildSuccess(userMapper.selectUserBySchool(school));
-    }
-
-    @Override
-    public ResponseVO searchUserByInterest(String interest) {
-        return ResponseVO.buildSuccess(userMapper.selectUserByInterest(interest));
-    }
 }

@@ -17,12 +17,6 @@ public interface UserMapper {
 
     List<UserVO> selectUser(@Param("start") int start,@Param("pageSize") int pageSize);
 
-    List<UserVO> selectUserByName(String name);
-
-    List<UserVO> selectUserBySchool(String school);
-
-    List<UserVO> selectUserByInterest(String interest);
-
     /**
      * 按照用户Id查找用户
      * @param id
@@ -35,6 +29,10 @@ public interface UserMapper {
      * @return
      */
     int selectCount();
+
+    List<String> selectCountry();
+
+    List<String> selectPosition();
 
     /**
      * 通过专家姓名、国家、职位、学校查找

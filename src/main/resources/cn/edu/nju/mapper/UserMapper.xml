@@ -24,16 +24,12 @@
     SELECT count(*) FROM `user`
   </select>
 
-  <select id="selectUserByName" resultMap="BaseResultMap" parameterType="java.lang.String">
-    SELECT * from `user` where `name` like concat('%',#{name},'%')
+  <select id="selectCountry" resultType="java.lang.String">
+    SELECT DISTINCT country FROM `user`
   </select>
 
-  <select id="selectUserBySchool" resultMap="BaseResultMap" parameterType="java.lang.String">
-    SELECT * from `user` where school = #{school}
-  </select>
-
-  <select id="selectUserByInterest" resultMap="BaseResultMap" parameterType="java.lang.String">
-    SELECT * from `user` where research_interest = #{interest}
+  <select id="selectPosition" resultType="java.lang.String">
+    SELECT DISTINCT `position` FROM `user`
   </select>
 
   <select id="selectUserById" resultMap="BaseResultMap">

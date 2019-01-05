@@ -67,10 +67,8 @@ public class UserMapperTest {
 
     @Test
     public void selectCount(){
-        long begin=System.currentTimeMillis();
-        System.out.println(userMapper.selectCount());
-        long end=System.currentTimeMillis();
-        System.out.println(end-begin);
+        System.out.println(userMapper.selectCountry());
+        System.out.println(userMapper.selectPosition());
     }
 
 

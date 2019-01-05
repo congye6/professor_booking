@@ -58,35 +58,6 @@ public class UserController {
         return userService.updateUser(userVO);
     }
 
-    /**
-     * 根据名称模糊搜索
-     * @param name
-     * @return
-     */
-    @RequestMapping(value = "/user/name/{name}",method = RequestMethod.GET)
-    public ResponseVO searchUserByName(@PathVariable String name){
-        return userService.searchUserByName(name);
-    }
-
-    /**
-     * 根据学校搜索
-     * @param school
-     * @return
-     */
-    @RequestMapping(value = "/user/school/{school}",method = RequestMethod.GET)
-    public ResponseVO searchUserBySchool(@PathVariable String school){
-        return userService.searchUserBySchool(school);
-    }
-
-    /**
-     * 根据研究方向搜索
-     * @param interest
-     * @return
-     */
-    @RequestMapping(value = "/user/interest/{interest}",method = RequestMethod.GET)
-    public ResponseVO searchUserByInterest(@PathVariable String interest){
-        return userService.searchUserByInterest(interest);
-    }
 
     /**
      * 删除专家信息
@@ -99,6 +70,18 @@ public class UserController {
             return ResponseVO.buildFailure("id不能为空");
         return userService.deleteUser(id);
     }
+
+    @RequestMapping(value = "/user/country",method = RequestMethod.GET)
+    public ResponseVO getAllCountry(){
+        return userService.getAllCountry();
+    }
+
+    @RequestMapping(value = "/user/position",method = RequestMethod.GET)
+    public ResponseVO getAllPosition(){
+        return userService.getAllPosition();
+    }
+
+
 
 
 }

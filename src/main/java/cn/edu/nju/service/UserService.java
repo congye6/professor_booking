@@ -37,21 +37,22 @@ public interface UserService {
     public ResponseVO updateUser(UserVO userVO);
 
     /**
+     * 获取所有的国家
+     * @return
+     */
+    public ResponseVO getAllCountry();
+
+    /**
+     * 获取所有的职称
+     * @return
+     */
+    public ResponseVO getAllPosition();
+
+    /**
      * 删除用户
      * @param wechatId
      * @return
      */
     public ResponseVO deleteUser(int id);
-
-    /**
-     * 根据姓名模糊搜索
-     * @param name
-     * @return
-     */
-    public ResponseVO searchUserByName(String name);
-
-    public ResponseVO searchUserBySchool(String school);
-
-    public ResponseVO searchUserByInterest(String interest);
 
 }
