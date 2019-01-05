@@ -15,10 +15,10 @@ public interface ServiceService {
      * @param expert 专家姓名
      * @param nation 国家
      * @param position 职位
-     * @param school 学校
+     * @param major 专业
      * @return
      */
-    ResponseVO expertSearch(String expert, String nation, String position, String school);
+    ResponseVO expertSearch(String expert, String nation, String position, String major);
 
     /**
      * 搜索服务信息

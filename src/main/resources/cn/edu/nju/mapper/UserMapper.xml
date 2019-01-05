@@ -49,8 +49,8 @@
       <if test="nation != '' ">
         AND country = #{nation}
       </if>
-      <if test="school != '' ">
-        AND school LIKE concat('%',#{school},'%')
+      <if test="major != '' ">
+        AND major LIKE concat('%',#{major},'%')
       </if>
       <if test="position != '' ">
         AND position LIKE concat('%',#{position},'%')

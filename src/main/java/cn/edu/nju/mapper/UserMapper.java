@@ -41,9 +41,9 @@ public interface UserMapper {
      * @param expert
      * @param nation
      * @param position
-     * @param school
+     * @param major
      * @return
      */
     List<UserVO> selectUserByInfo(@Param("name") String expert, @Param("nation") String nation,
-                                  @Param("position") String position, @Param("school") String school);
+                                  @Param("position") String position, @Param("major") String major);
 }
