@@ -25,10 +25,6 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from student
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
 
   <insert id="insertSelective" parameterType="cn.edu.nju.vo.StudentVO">
     insert into student
@@ -75,12 +71,9 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nju.vo.StudentVO">
+  <update id="update" parameterType="cn.edu.nju.vo.StudentVO">
     update student
     <set>
-      <if test="wechatId != null">
-        wechat_id = #{wechatId,jdbcType=VARCHAR},
-      </if>
       <if test="wechatIconUrl != null">
         wechat_icon_url = #{wechatIconUrl,jdbcType=VARCHAR},
       </if>
@@ -97,7 +90,7 @@
         company = #{company,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where wechat_id = #{wechatId,jdbcType=INTEGER}
   </update>
 
 </mapper>

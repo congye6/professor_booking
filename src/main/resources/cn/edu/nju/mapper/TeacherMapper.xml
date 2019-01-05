@@ -34,9 +34,7 @@
       <if test="wechatIconUrl != null">
         wechat_icon_url,
       </if>
-      <if test="infoId != null">
-        info_id,
-      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="wechatId != null">
@@ -45,9 +43,7 @@
       <if test="wechatIconUrl != null">
         #{wechatIconUrl,jdbcType=VARCHAR},
       </if>
-      <if test="infoId != null">
-        #{infoId,jdbcType=INTEGER},
-      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nju.vo.TeacherVO">
@@ -64,5 +60,18 @@
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByWechatId" parameterType="cn.edu.nju.vo.TeacherVO">
+    update teacher
+    <set>
+      <if test="wechatIconUrl != null">
+        wechat_icon_url = #{wechatIconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="infoId != null">
+        info_id = #{infoId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where wechat_id = #{wechatId,jdbcType=VARCHAR}
   </update>
 </mapper>
