@@ -41,4 +41,9 @@ public class StudentController {
         return studentService.updateStudent(studentVO);
     }
 
+    @RequestMapping(value = "/student/orders",method = RequestMethod.GET)
+    public ResponseVO getOrders(@RequestParam("wid") String wechatId){
+        return studentService.getOrders(wechatId);
+    }
+
 }

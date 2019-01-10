@@ -32,4 +32,12 @@ public interface StudentService {
      */
     public ResponseVO updateStudent(StudentVO studentVO);
 
+
+    /**
+     * 获取我的预约列表
+     * @param wechatId
+     * @return
+     */
+    public ResponseVO getOrders(String wechatId);
+
 }
