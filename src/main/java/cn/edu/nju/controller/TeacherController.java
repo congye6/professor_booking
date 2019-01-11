@@ -41,8 +41,13 @@ public class TeacherController {
      * @return
      */
     @RequestMapping(value = "/teacher/update",method = RequestMethod.POST)
-    public ResponseVO updateStudent(@RequestBody TeacherVO teacherVO){
-        return teacherService.updateStudent(teacherVO);
+    public ResponseVO updateTeacher(@RequestBody TeacherVO teacherVO){
+        return teacherService.updateTeacher(teacherVO);
+    }
+
+    @RequestMapping(value = "/teacher/student/orders",method = RequestMethod.GET)
+    public ResponseVO getOrders(@RequestParam("wid") String wechatId){
+        return teacherService.getOrders(wechatId);
     }
 
 

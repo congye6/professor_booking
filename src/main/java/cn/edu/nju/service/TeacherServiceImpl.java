@@ -1,14 +1,13 @@
 package cn.edu.nju.service;
 
-import cn.edu.nju.mapper.TeacherMapper;
-import cn.edu.nju.mapper.UserMapper;
-import cn.edu.nju.vo.ResponseVO;
-import cn.edu.nju.vo.TeacherDetailVO;
-import cn.edu.nju.vo.TeacherVO;
-import cn.edu.nju.vo.UserVO;
+import cn.edu.nju.mapper.*;
+import cn.edu.nju.vo.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cong on 2019-01-03.
@@ -21,6 +20,15 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ServiceMapper serviceMapper;
+
+    @Autowired
+    private StudentMapper studentMapper;
+
+    @Autowired
+    private OrderMapper orderMapper;
 
     @Override
     public ResponseVO login(String wechatId, String wechatIconUrl) {
@@ -51,8 +59,28 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
-    public ResponseVO updateStudent(TeacherVO teacherVO) {
+    public ResponseVO updateTeacher(TeacherVO teacherVO) {
         teacherMapper.updateByWechatId(teacherVO);
         return ResponseVO.buildSuccess();
+    }
+
+    @Override
+    public ResponseVO getOrders(String wechatId) {
+        TeacherVO teacher=teacherMapper.selectByWechatId(wechatId);
+        if(teacher==null||teacher.getInfoId()==-1)
+            return ResponseVO.buildFailure("教师用户："+wechatId+" 不存在");
+        List<ServiceVO> services=serviceMapper.getServiceListByExpertId(teacher.getInfoId());//教师发布的所有服务
+        List<TeacherOrderVO> orders=new ArrayList<>();
+        for(ServiceVO service:services){
+            List<Integer> orderUsers=orderMapper.getOrderUsers(service.getId());//查询预约服务的所有用户
+            for(Integer userId:orderUsers){
+                StudentVO studentVO=studentMapper.selectByPrimaryKey(userId);
+                if(studentVO!=null){
+                    TeacherOrderVO order=new TeacherOrderVO(service,studentVO);
+                    orders.add(order);
+                }
+            }
+        }
+        return ResponseVO.buildSuccess(orders);
     }
 }

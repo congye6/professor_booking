@@ -31,6 +31,13 @@ public interface TeacherService {
      * @param
      * @return
      */
-    public ResponseVO updateStudent(TeacherVO teacherVO);
+    public ResponseVO updateTeacher(TeacherVO teacherVO);
+
+    /**
+     * 获取我的预约
+     * @param wechatId
+     * @return
+     */
+    public ResponseVO getOrders(String wechatId);
 
 }

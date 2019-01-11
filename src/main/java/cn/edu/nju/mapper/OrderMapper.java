@@ -1,6 +1,7 @@
 package cn.edu.nju.mapper;
 
 import cn.edu.nju.vo.OrderVO;
+import cn.edu.nju.vo.ServiceVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,4 +30,9 @@ public interface OrderMapper {
      */
     List<OrderVO> getOrderList(@Param("userId")int userId);
 
+    /**
+     * 获取预约某服务的所有用户
+     * @return
+     */
+    List<Integer> getOrderUsers(int serviceId);
 }
