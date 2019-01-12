@@ -1,6 +1,7 @@
 package cn.edu.nju;
 
 import cn.edu.nju.util.ImportUtil;
+import cn.edu.nju.vo.UserVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,24 @@ public class ImportTest {
         importUtil.importMajorRank("excel/rank.xlsx");
     }
 
+
+    @Test
+    public void processName(){
+        UserVO userVO=new UserVO();
+        userVO.setName("Zuckerman Sivan Ezra W.");
+        importUtil.processName(userVO);
+        System.out.println(userVO.getFirstName()+":"+userVO.getFamilyName());
+        userVO.setName("wwww s");
+        importUtil.processName(userVO);
+        System.out.println(userVO.getFirstName()+":"+userVO.getFamilyName());
+        userVO.setName("www,eee,rrr,eeeee");
+        importUtil.processName(userVO);
+        System.out.println(userVO.getFirstName()+":"+userVO.getFamilyName());
+    }
+
+    @Test
+    public void getMajor(){
+        System.out.println(importUtil.getMajorFromPosition("Deputy Dean for Academic Programs and Professor in the Practice of Management"));
+        System.out.println(importUtil.getMajorFromPosition("Associate Professor of Organizational Behavior"));
+    }
 }
