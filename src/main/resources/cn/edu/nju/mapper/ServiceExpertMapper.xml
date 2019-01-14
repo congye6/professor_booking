@@ -44,7 +44,7 @@
             AND user.country = #{nation}
         </if>
         <if test=" position != ''">
-            AND user.position LIKE concat('%',#{position},'%')
+            AND user.position = #{position}
         </if>
         <if test=" school != ''">
             AND user.school LIKE concat('%',#{school},'%')
