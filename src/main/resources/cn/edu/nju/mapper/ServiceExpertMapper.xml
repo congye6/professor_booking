@@ -49,7 +49,9 @@
         <if test=" school != ''">
             AND user.school LIKE concat('%',#{school},'%')
         </if>
-
+        <![CDATA[
+                LIMIT #{startPos},#{num}
+            ]]>
     </select>
 
 

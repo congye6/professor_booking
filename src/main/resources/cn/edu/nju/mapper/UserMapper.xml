@@ -52,6 +52,9 @@
         AND position LIKE concat('%',#{position},'%')
       </if>
     </where>
+    <![CDATA[
+                LIMIT #{startPos},#{num}
+            ]]>
   </select>
 
   <delete id="delete" parameterType="java.lang.Integer">

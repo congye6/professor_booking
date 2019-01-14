@@ -40,8 +40,11 @@ public interface UserMapper {
      * @param nation
      * @param position
      * @param major
+     * @param startPos
+     * @param num
      * @return
      */
     List<UserVO> selectUserByInfo(@Param("name") String expert, @Param("nation") String nation,
-                                  @Param("position") String position, @Param("major") String major);
+                                  @Param("position") String position, @Param("major") String major,
+                                  @Param("startPos") int startPos, @Param("num") int num);
 }

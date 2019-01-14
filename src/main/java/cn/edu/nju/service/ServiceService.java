@@ -16,9 +16,12 @@ public interface ServiceService {
      * @param nation 国家
      * @param position 职位
      * @param major 专业
+     * @param startPos 开始位置
+     * @param num 数量
      * @return
      */
-    ResponseVO expertSearch(String expert, String nation, String position, String major);
+    ResponseVO expertSearch(String expert, String nation, String position,
+                            String major, Integer startPos, Integer num);
 
     /**
      * 搜索服务信息
@@ -28,10 +31,12 @@ public interface ServiceService {
      * @param school 学校
      * @param serviceType 服务类型
      * @param majorType 专业类型
+     * @param startPos 开始位置
+     * @param num 数量
      * @return
      */
-    ResponseVO serviceSearch(String serviceName, String nation, String position,
-                             String school, Integer serviceType, Integer majorType);
+    ResponseVO serviceSearch(String serviceName, String nation, String position, String school,
+                             Integer serviceType, Integer majorType, Integer startPos, Integer num);
 
     /**
      * 通过专家id获取专家和其持有的服务信息

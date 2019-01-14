@@ -25,16 +25,19 @@ public class ServiceController {
 
     @RequestMapping(value = "/search/expert", method = RequestMethod.GET)
     public ResponseVO searchExpert(@RequestParam("expert")String expert, @RequestParam("nation")String nation,
-                                   @RequestParam("position")String position, @RequestParam("major")String major){
-        return serviceService.expertSearch(expert, nation, position, major);
+                                   @RequestParam("position")String position, @RequestParam("major")String major,
+                                   @RequestParam("startPos")Integer startPos, @RequestParam("number")Integer number){
+        return serviceService.expertSearch(expert, nation, position, major, startPos, number);
     }
 
     @RequestMapping(value = "/search/service", method = RequestMethod.GET)
     public ResponseVO searchService(@RequestParam("serviceName")String serviceName,
                                     @RequestParam("nation")String nation, @RequestParam("position")String position,
                                     @RequestParam("school")String school, @RequestParam("serviceType")Integer serviceType,
-                                    @RequestParam("majorType")Integer majorType){
-        return serviceService.serviceSearch(serviceName, nation, position, school, serviceType, majorType);
+                                    @RequestParam("majorType")Integer majorType, @RequestParam("startPos")Integer startPos,
+                                    @RequestParam("number")Integer number){
+        return serviceService.serviceSearch(serviceName, nation, position, school, serviceType,
+                majorType, startPos, number);
     }
 
     @RequestMapping(value = "/expert", method = RequestMethod.GET)
@@ -58,8 +61,7 @@ public class ServiceController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ResponseVO getServiceList(@RequestParam("startPos")Integer startPos,
-                                     @RequestParam("number")Integer number){
+    public ResponseVO getServiceList(@RequestParam("startPos")Integer startPos, @RequestParam("number")Integer number){
         return serviceService.serviceList(startPos, number);
     }
 

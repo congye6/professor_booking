@@ -22,10 +22,13 @@ public interface ServiceExpertMapper {
      * @param school 学校
      * @param serviceType 服务类型
      * @param majorType 专业类型
+     * @param startPos 开始位置
+     * @param num 数量
      * @return
      */
     List<ServiceExpertVO> getSearchExpertInfo(@Param("serviceName") String serviceName, @Param("nation") String nation,
                                               @Param("position") String position, @Param("school") String school,
-                                              @Param("serviceType") int serviceType, @Param("majorType") int majorType);
+                                              @Param("serviceType") int serviceType, @Param("majorType") int majorType,
+                                              @Param("startPos") Integer startPos, @Param("num") Integer num);
 
 }

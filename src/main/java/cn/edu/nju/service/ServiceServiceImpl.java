@@ -38,25 +38,47 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public ResponseVO expertSearch(String expert, String nation, String position, String major) {
-        List<UserVO> searchExpertList = userMapper.selectUserByInfo(expert, nation, position, major);
+    public ResponseVO expertSearch(String expert, String nation, String position,
+                                   String major,Integer startPos, Integer num) {
+        if(StringUtils.isEmpty(expert) && StringUtils.isEmpty(nation) &&
+                StringUtils.isEmpty(position) && StringUtils.isEmpty(major)){
+            return ResponseVO.buildFailure("专家搜索输入信息为空");
+        }
+
+        if(null == startPos){
+            startPos = 0;
+        }
+
+        if(null == num){
+            num = 50;
+        }
+
+        List<UserVO> searchExpertList = userMapper.selectUserByInfo(expert, nation, position, major, startPos, num);
         return ResponseVO.buildSuccess(searchExpertList);
     }
 
     @Override
-    public ResponseVO serviceSearch(String serviceName, String nation, String position,
-                                    String school, Integer serviceType, Integer majorType) {
+    public ResponseVO serviceSearch(String serviceName, String nation, String position, String school,
+                                    Integer serviceType, Integer majorType, Integer startPos, Integer num) {
         if(StringUtils.isEmpty(serviceName) && StringUtils.isEmpty(nation) &&
                 StringUtils.isEmpty(position) && StringUtils.isEmpty(school) &&
                 serviceType == null && majorType == null){
             return ResponseVO.buildFailure("服务搜索输入信息为空");
         }
 
+        if(null == startPos){
+            startPos = 0;
+        }
+
+        if(null == num){
+            num = 50;
+        }
+
         serviceType = serviceType == null ? 0:serviceType;
         majorType = majorType == null ? 0:majorType;
 
         List<ServiceExpertVO> serviceExpertVOList = serviceExpertMapper.getSearchExpertInfo(serviceName, nation,
-                position, school, serviceType, majorType);
+                position, school, serviceType, majorType, startPos, num);
         return ResponseVO.buildSuccess(serviceExpertVOList);
     }
 
