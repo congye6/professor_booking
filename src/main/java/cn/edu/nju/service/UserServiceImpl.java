@@ -1,6 +1,9 @@
 package cn.edu.nju.service;
 
+import cn.edu.nju.mapper.RankMapper;
 import cn.edu.nju.mapper.UserMapper;
+import cn.edu.nju.util.NameUtil;
+import cn.edu.nju.vo.RankVO;
 import cn.edu.nju.vo.ResponseVO;
 import cn.edu.nju.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RankMapper rankMapper;
 
     @Override
     public ResponseVO getUser(int id) {
@@ -39,9 +45,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ResponseVO updateUser(UserVO userVO) {
-        UserVO userInDb=userMapper.selectUserById(userVO.getId());
-        if(userInDb==null)
-            return ResponseVO.buildFailure("用户不存在");
+        if(!StringUtils.isEmpty(userVO.getSchool())){//更新学校前检查排名
+            RankVO rank=rankMapper.selectByInstitude(userVO.getSchool());
+            if(rank==null)
+                return ResponseVO.buildFailure("学校："+userVO.getSchool()+" 不存在,请先维护改学校排名");
+            userVO.setInstitudeRank(rank.getRank());
+        }
+
         userMapper.updateSelective(userVO);
         return ResponseVO.buildSuccess();
     }
@@ -59,6 +69,21 @@ public class UserServiceImpl implements UserService{
     @Override
     public ResponseVO deleteUser(int id) {
         userMapper.delete(id);
+        return ResponseVO.buildSuccess();
+    }
+
+    @Override
+    public ResponseVO addUser(UserVO userVO) {
+        RankVO rank=rankMapper.selectByInstitude(userVO.getSchool());
+        if(rank==null)
+            return ResponseVO.buildFailure("学校："+userVO.getSchool()+" 不存在,请先维护改学校排名");
+        userVO.setInstitudeRank(rank.getRank());
+
+        if(StringUtils.isEmpty(userVO.getName()))
+            return ResponseVO.buildFailure("姓名不能为空");
+        NameUtil.processName(userVO);
+
+        userMapper.insertSelective(userVO);
         return ResponseVO.buildSuccess();
     }
 
