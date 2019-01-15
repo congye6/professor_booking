@@ -4,11 +4,12 @@
   <resultMap id="BaseResultMap" type="cn.edu.nju.vo.TeacherVO">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="wechat_id" jdbcType="VARCHAR" property="wechatId" />
+    <result column="wechat_name" jdbcType="VARCHAR" property="wechatName" />
     <result column="wechat_icon_url" jdbcType="VARCHAR" property="wechatIconUrl" />
     <result column="info_id" jdbcType="INTEGER" property="infoId" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, wechat_id, wechat_icon_url, info_id
+    id, wechat_id, wechat_icon_url, info_id,wechat_name
   </sql>
 
   <select id="selectByWechatId" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -34,7 +35,9 @@
       <if test="wechatIconUrl != null">
         wechat_icon_url,
       </if>
-
+      <if test="wechatName != null">
+        wechat_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="wechatId != null">
@@ -43,7 +46,9 @@
       <if test="wechatIconUrl != null">
         #{wechatIconUrl,jdbcType=VARCHAR},
       </if>
-
+      <if test="wechatName != null">
+        #{wechatName},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nju.vo.TeacherVO">
@@ -58,6 +63,9 @@
       <if test="infoId != null">
         info_id = #{infoId,jdbcType=INTEGER},
       </if>
+      <if test="wechatId != null">
+        wechat_name = #{wechatName,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -71,7 +79,14 @@
       <if test="infoId != null">
         info_id = #{infoId,jdbcType=INTEGER},
       </if>
+      <if test="wechatId != null">
+        wechat_name = #{wechatName,jdbcType=VARCHAR},
+      </if>
     </set>
     where wechat_id = #{wechatId,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM teacher where wechat_name like concat('%',#{wechatName},'%')
+  </select>
 </mapper>

@@ -50,6 +50,11 @@ public class TeacherController {
         return teacherService.getOrders(wechatId);
     }
 
+    @RequestMapping(value = "/teacher",method = RequestMethod.GET)
+    public ResponseVO searchTeacherByWechatName(@RequestParam("wechatName") String wechatName){
+        return teacherService.searchUserByWechatName(wechatName);
+    }
+
 
 
 }

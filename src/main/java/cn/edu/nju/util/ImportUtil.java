@@ -85,7 +85,7 @@ public class ImportUtil {
             }
             userVO.setPosition(position);
 
-            processName(userVO);
+            NameUtil.processName(userVO);
 
             String introduction=userVO.getIntroduction();
             if(!StringUtils.isEmpty(introduction)&&introduction.length()>5000)
@@ -112,36 +112,7 @@ public class ImportUtil {
         System.out.println(schoolName + " success");
     }
 
-    public void processName(UserVO userVO){
-        String name = userVO.getName();
-        name=name.trim();
-        if (StringUtils.isEmpty(name)){
-            return;
-        }
-        userVO.setName(name);
-        String[] spliters={
-                ","," "
-        };
-        String[] names=null;
-        String spliterSelected="";
-        for(String spliter:spliters){
-            names=name.split(spliter);
-            spliterSelected=spliter;
-            if(names.length!=1)
-                break;
-        }
 
-        if(names.length==1){
-            userVO.setFamilyName(name);
-        }else if(names.length==2){
-            userVO.setFamilyName(names[1].trim());
-            userVO.setFirstName(names[0].trim());
-        }else{
-            userVO.setFamilyName(names[names.length-1].trim());
-            int lastNameIndex=name.lastIndexOf(spliterSelected);
-            userVO.setFirstName(name.substring(0,lastNameIndex));
-        }
-    }
 
     private String processPosition(String str){
         for(String position:POSITIONS){

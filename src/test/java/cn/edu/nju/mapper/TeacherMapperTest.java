@@ -23,22 +23,29 @@ public class TeacherMapperTest {
         TeacherVO teacherVO=new TeacherVO();
         teacherVO.setInfoId(2);
         teacherVO.setWechatIconUrl("http");
-        teacherVO.setWechatId("2222");
+        teacherVO.setWechatId("22322");
+        teacherVO.setWechatName("ccc");
         teacherMapper.insertSelective(teacherVO);
     }
 
     @Test
     public void selectTeacher(){
         System.out.println(JSONObject.toJSONString(teacherMapper.selectByPrimaryKey(1)));
-        System.out.println(JSONObject.toJSONString(teacherMapper.selectByWechatId("2222")));
+        System.out.println(JSONObject.toJSONString(teacherMapper.selectByWechatId("22322")));
     }
 
     @Test
     public void updateTeacher(){
         TeacherVO teacherVO=new TeacherVO();
-        teacherVO.setId(1);
+        teacherVO.setWechatId("22322");
         teacherVO.setInfoId(3);
-        teacherMapper.updateByPrimaryKeySelective(teacherVO);
+        teacherVO.setWechatName("vvvvv");
+        teacherMapper.updateByWechatId(teacherVO);
+    }
+
+    @Test
+    public void selectByName(){
+        System.out.println(JSONObject.toJSONString(teacherMapper.selectByName("cc")));
     }
 
 

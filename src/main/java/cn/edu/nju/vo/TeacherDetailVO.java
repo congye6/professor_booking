@@ -10,6 +10,16 @@ public class TeacherDetailVO extends UserVO{
 
     private String wechatIconUrl;
 
+    private String wechatName;
+
+    public String getWechatName() {
+        return wechatName;
+    }
+
+    public void setWechatName(String wechatName) {
+        this.wechatName = wechatName;
+    }
+
     public String getWechatId() {
         return wechatId;
     }

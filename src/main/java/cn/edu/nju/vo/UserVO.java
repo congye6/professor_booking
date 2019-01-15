@@ -38,12 +38,15 @@ public class UserVO implements Serializable {
 
     private String researchInterest;
 
+    /**
+     * 姓和名，自动根据姓名生成
+     */
     private String firstName;
 
     private String familyName;
 
     /**
-     * 大学排名
+     * 大学排名，自动根据学校名称生成
      */
     private Integer institudeRank;
 

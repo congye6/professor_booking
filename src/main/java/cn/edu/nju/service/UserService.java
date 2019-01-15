@@ -55,5 +55,11 @@ public interface UserService {
      */
     public ResponseVO deleteUser(int id);
 
+    /**
+     * 添加用户
+     * @param userVO
+     * @return
+     */
+    public ResponseVO addUser(UserVO userVO);
 
 }

@@ -17,6 +17,16 @@ public class UserController {
     private UserService userService;
 
     /**
+     * 添加专家信息
+     * @param userVO
+     * @return
+     */
+    @RequestMapping(value = "/user",method = RequestMethod.POST)
+    public ResponseVO addUser(@RequestBody UserVO userVO){
+        return userService.addUser(userVO);
+    }
+
+    /**
      * 分页获取用户数据
      * @param pageIndex 获取第几页的数据，从0开始
      * @param pageSize  一页有多少条数据

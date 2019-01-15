@@ -9,9 +9,19 @@ public class TeacherVO implements Serializable {
 
     private String wechatIconUrl;
 
+    private String wechatName;
+
     private Integer infoId;
 
     private static final long serialVersionUID = 1L;
+
+    public String getWechatName() {
+        return wechatName;
+    }
+
+    public void setWechatName(String wechatName) {
+        this.wechatName = wechatName;
+    }
 
     public Integer getId() {
         return id;
