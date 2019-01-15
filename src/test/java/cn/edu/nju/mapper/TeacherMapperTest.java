@@ -43,5 +43,10 @@ public class TeacherMapperTest {
         teacherMapper.updateByWechatId(teacherVO);
     }
 
+    @Test
+    public void selectByName(){
+        System.out.println(JSONObject.toJSONString(teacherMapper.selectByName("cc")));
+    }
+
 
 }

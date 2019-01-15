@@ -85,4 +85,8 @@
     </set>
     where wechat_id = #{wechatId,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM teacher where wechat_name like concat('%',#{wechatName},'%')
+  </select>
 </mapper>

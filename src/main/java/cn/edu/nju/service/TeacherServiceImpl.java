@@ -83,4 +83,9 @@ public class TeacherServiceImpl implements TeacherService{
         }
         return ResponseVO.buildSuccess(orders);
     }
+
+    @Override
+    public ResponseVO searchUserByWechatName(String wechatName) {
+        return ResponseVO.buildSuccess(teacherMapper.selectByName(wechatName));
+    }
 }

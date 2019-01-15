@@ -40,4 +40,11 @@ public interface TeacherService {
      */
     public ResponseVO getOrders(String wechatId);
 
+    /**
+     * 根据wechat昵称模糊查找
+     * @param wechatName
+     * @return
+     */
+    public ResponseVO searchUserByWechatName(String wechatName);
+
 }
