@@ -15,10 +15,14 @@
 
     <insert id="insertService">
         insert into service (professor_id, title, content, reserve_address,
-        reserve_time, deadline, service_type_id, major_type_id)
+        reserve_time, deadline, service_type_id, major_type_id, price)
         values (#{professorId}, #{title}, #{content}, #{reserveAddress},
-        #{reserveTime}, #{deadline}, #{serviceTypeId}, #{majorTypeId})
+        #{reserveTime}, #{deadline}, #{serviceTypeId}, #{majorTypeId}, #{price})
     </insert>
+
+    <delete id="deleteService">
+        DELETE FROM service WHERE id = #{serviceId}
+    </delete>
 
     <select id="getServiceList" resultMap="BaseResultMap">
         SELECT * from `service` LIMIT #{startPos},#{num}

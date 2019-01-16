@@ -25,10 +25,18 @@ public interface ServiceMapper {
      * @param deadline
      * @param serviceTypeId
      * @param majorTypeId
+     * @param
      */
     void insertService(@Param("professorId") Integer professorId, @Param("title") String title, @Param("content")String content,
-                       @Param("reserveAddress") String reserveAddress, @Param("reserveTime") Timestamp reserveTime, @Param("deadline") Timestamp deadline,
-                       @Param("serviceTypeId")int serviceTypeId, @Param("majorTypeId")int majorTypeId);
+                       @Param("reserveAddress") String reserveAddress, @Param("reserveTime") Timestamp reserveTime,
+                       @Param("deadline") Timestamp deadline, @Param("serviceTypeId")int serviceTypeId,
+                       @Param("majorTypeId")int majorTypeId, @Param("price")int price);
+
+    /**
+     * 删除服务
+     * @param serviceId
+     */
+    void deleteService(int serviceId);
 
     /**
      * 获取服务列表

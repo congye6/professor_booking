@@ -18,6 +18,7 @@ public class ServiceVO {
     private Timestamp deadline;
     private Integer majorTypeId;
     private Integer serviceTypeId;
+    private Integer price;
 
     public Integer getId() {
         return id;
@@ -91,6 +92,14 @@ public class ServiceVO {
         this.serviceTypeId = serviceTypeId;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "ServiceVO{" +
@@ -103,6 +112,7 @@ public class ServiceVO {
                 ", deadline=" + deadline +
                 ", majorTypeId=" + majorTypeId +
                 ", serviceTypeId=" + serviceTypeId +
+                ", price=" + price +
                 '}';
     }
 }

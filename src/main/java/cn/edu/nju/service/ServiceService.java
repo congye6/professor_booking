@@ -71,6 +71,13 @@ public interface ServiceService {
     ResponseVO serviceCreate(ServiceVO serviceCreateVO);
 
     /**
+     * 删除服务
+     * @param serviceId
+     * @return
+     */
+    ResponseVO deleteService(Integer serviceId);
+
+    /**
      * 获取所有专业类别
      * @return
      */

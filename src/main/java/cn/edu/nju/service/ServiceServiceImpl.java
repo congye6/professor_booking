@@ -147,6 +147,7 @@ public class ServiceServiceImpl implements ServiceService {
         Timestamp deadline = vo.getDeadline();
         Integer serviceTypeId = vo.getServiceTypeId();
         Integer majorTypeId = vo.getMajorTypeId();
+        Integer price = vo.getPrice();
 
         if(null == professorId){
             return ResponseVO.buildFailure("专家编号不能为空");
@@ -164,10 +165,21 @@ public class ServiceServiceImpl implements ServiceService {
             return ResponseVO.buildFailure("服务类型Id不能为空");
         }else if(null == majorTypeId){
             return ResponseVO.buildFailure("专业类型Id不能为空");
+        }else if(null == price){
+            return ResponseVO.buildFailure("价格不能为空");
         }
 
-        serviceMapper.insertService(professorId, title, content, reserveAddress, reserveTime, deadline, serviceTypeId, majorTypeId);
+        serviceMapper.insertService(professorId, title, content, reserveAddress, reserveTime, deadline, serviceTypeId, majorTypeId, price);
         return ResponseVO.buildSuccess(true);
+    }
+
+    @Override
+    public ResponseVO deleteService(Integer serviceId) {
+        if(null == serviceId){
+            return ResponseVO.buildFailure("服务id为空");
+        }
+        serviceMapper.deleteService(serviceId);
+        return ResponseVO.buildSuccess();
     }
 
     @Override

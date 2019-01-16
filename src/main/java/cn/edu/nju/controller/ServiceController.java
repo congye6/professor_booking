@@ -23,6 +23,11 @@ public class ServiceController {
         return serviceService.serviceCreate(serviceCreateVO);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseVO deleteService(@RequestParam Integer serviceId){
+        return serviceService.deleteService(serviceId);
+    }
+
     @RequestMapping(value = "/search/expert", method = RequestMethod.GET)
     public ResponseVO searchExpert(@RequestParam("expert")String expert, @RequestParam("nation")String nation,
                                    @RequestParam("position")String position, @RequestParam("major")String major,
