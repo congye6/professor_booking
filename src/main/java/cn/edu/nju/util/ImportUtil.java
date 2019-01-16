@@ -23,7 +23,7 @@ import java.util.List;
 public class ImportUtil {
 
     private static final String[] POSITIONS={
-            "Associate Professor","Assistant Professor","Professor Emeritus","Professor"
+            "Associate Professor","Assistant Professor","Professor Emeritus","Professor","Lecture"
     };
 
     @Autowired
@@ -83,6 +83,10 @@ public class ImportUtil {
                 System.out.println(userVO.getPosition()+" invalid");
                 continue;
             }
+            /*boolean moreTacher=position.equals("讲师")||position.equals("讲座教授");
+            if(!moreTacher)
+                continue;
+            System.out.println("添加讲师");*/
             userVO.setPosition(position);
 
             NameUtil.processName(userVO);
@@ -103,6 +107,8 @@ public class ImportUtil {
             if(interest==null||interest.length()>1000)
                 userVO.setResearchInterest("");
 
+            userVO.setCountry(TranslateUtil.translateCountry(userVO.getCountry()));
+
             userVO.setSchool(schoolName);
             RankVO rank=rankMapper.selectByInstitude(schoolName);
             userVO.setInstitudeRank(rank.getRank());
@@ -113,11 +119,10 @@ public class ImportUtil {
     }
 
 
-
     private String processPosition(String str){
         for(String position:POSITIONS){
             if(str.contains(position))
-                return position;
+                return TranslateUtil.translatePosition(position);
         }
         return null;
     }

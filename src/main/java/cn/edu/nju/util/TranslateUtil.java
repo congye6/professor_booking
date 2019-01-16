@@ -32,6 +32,8 @@ public class TranslateUtil {
         POSITION_MAP.put("Associate Professor","副教授");
         POSITION_MAP.put("Assistant Professor","助理教授");
         POSITION_MAP.put("Professor Emeritus","名誉教授");
+        POSITION_MAP.put("Lecture","讲师");
+        POSITION_MAP.put("Chair Professor","讲座教授");
     }
 
     public void translate(){
@@ -48,4 +50,14 @@ public class TranslateUtil {
         }
     }
 
+    public static String translatePosition(String position){
+        return POSITION_MAP.get(position);
+    }
+
+    public static String translateCountry(String country){
+        String translate=COUNTRY_MAP.get(country);
+        if(translate==null)
+            return country;
+        return translate;
+    }
 }
