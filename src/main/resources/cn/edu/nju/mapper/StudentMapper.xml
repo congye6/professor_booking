@@ -9,13 +9,18 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="is_audited" property="isAudited"/>
   </resultMap>
   <sql id="Base_Column_List">
-    id, wechat_id, wechat_icon_url, name, phone, email, company
+    id, wechat_id, wechat_icon_url, name, phone, email, company,is_audited
   </sql>
 
   <select id="selectByWechatId" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT * from student where wechat_id=#{wechatId}
+  </select>
+
+  <select id="select" resultMap="BaseResultMap">
+    SELECT * FROM student limit #{start},#{pageSize}
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -25,6 +30,9 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByAudit" resultMap="BaseResultMap">
+    SELECT * FROM student WHERE is_audited=#{isAudited} limit #{start},#{pageSize}
+  </select>
 
   <insert id="insertSelective" parameterType="cn.edu.nju.vo.StudentVO">
     insert into student
@@ -88,6 +96,9 @@
       </if>
       <if test="company != null">
         company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="isAudited!=null">
+        is_audited=#{isAudited},
       </if>
     </set>
     where wechat_id = #{wechatId,jdbcType=INTEGER}

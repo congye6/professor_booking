@@ -55,6 +55,18 @@ public class TeacherController {
         return teacherService.searchUserByWechatName(wechatName);
     }
 
+    /**
+     * 分页获取教师信息
+     * @param page      第几页，从0开始
+     * @param pageSize  一页有多少条
+     * @return
+     */
+    @RequestMapping(value = "/teachers",method = RequestMethod.GET)
+    public ResponseVO getTeachers(@RequestParam Integer page,@RequestParam Integer pageSize){
+        return teacherService.getTeachers(page,pageSize);
+    }
+
+
 
 
 }
