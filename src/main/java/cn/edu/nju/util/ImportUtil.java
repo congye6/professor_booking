@@ -23,11 +23,15 @@ import java.util.List;
 public class ImportUtil {
 
     private static final String[] POSITIONS={
-            "Associate Professor","Assistant Professor","Professor Emeritus","Professor","Lecture"
+            "associate professor","assistant professor","professor emeritus","professor","lecture","chair professor"
+            ,"教授","副教授","助理教授","名誉教授","讲师","讲座教授"
     };
 
     @Autowired
     private ExcelUtil excelUtil;
+
+    @Autowired
+    private ExcelProcessUtil excelProcessUtil;
 
     @Autowired
     private UserMapper userMapper;
@@ -66,7 +70,17 @@ public class ImportUtil {
     @Transactional
     public void importData(String filePath) {
         String schoolName = getSchoolName(filePath);
-        List<UserVO> list = excelUtil.readXlsToJson(filePath, UserVO.class);
+        RankVO rank=rankMapper.selectByInstitude(schoolName);
+        if(rank==null){
+            System.out.println("************************");
+            System.out.println("************************");
+            System.out.println("invalid school:"+schoolName);
+            System.out.println("************************");
+            System.out.println("************************");
+            return;
+        }
+
+        List<UserVO> list = excelProcessUtil.readUsers(filePath);
         if (CollectionUtils.isEmpty(list)) {
             System.out.println("no data");
         }
@@ -74,19 +88,11 @@ public class ImportUtil {
         for (UserVO userVO : list) {
             String position = userVO.getPosition();
 
-            if(schoolName.equals("Yale University")){
-                userVO.setMajor(getMajorFromPosition(userVO.getPosition()));
-            }
-
             position=processPosition(position);
-            if(position==null){
+            if(position==null&&!StringUtils.isEmpty(userVO.getPosition())){
                 System.out.println(userVO.getPosition()+" invalid");
                 continue;
             }
-            /*boolean moreTacher=position.equals("讲师")||position.equals("讲座教授");
-            if(!moreTacher)
-                continue;
-            System.out.println("添加讲师");*/
             userVO.setPosition(position);
 
             NameUtil.processName(userVO);
@@ -104,13 +110,16 @@ public class ImportUtil {
                 userVO.setTelephone("");
 
             String interest=userVO.getResearchInterest();
-            if(interest==null||interest.length()>1000)
-                userVO.setResearchInterest("");
+            if(interest!=null&&interest.length()>1000)
+                userVO.setResearchInterest(interest.substring(0,990));
 
             userVO.setCountry(TranslateUtil.translateCountry(userVO.getCountry()));
 
+            String major=userVO.getMajor();
+            if(major!=null&&major.length()>300)
+                userVO.setMajor(major.substring(0,290));
+
             userVO.setSchool(schoolName);
-            RankVO rank=rankMapper.selectByInstitude(schoolName);
             userVO.setInstitudeRank(rank.getRank());
             userMapper.insertSelective(userVO);
 
@@ -120,6 +129,9 @@ public class ImportUtil {
 
 
     private String processPosition(String str){
+        if(StringUtils.isEmpty(str))
+            return null;
+        str=str.toLowerCase();
         for(String position:POSITIONS){
             if(str.contains(position))
                 return TranslateUtil.translatePosition(position);
@@ -136,7 +148,21 @@ public class ImportUtil {
 
     private String getSchoolName(String path) {
         String[] strs = path.split("\\.");
-        return strs[0].substring(6);
+        String school=strs[0].substring(6);
+        int start=0;
+        for(;start<school.length();start++){
+            if(isValid(school.charAt(start)))
+                break;
+        }
+        return school.substring(start,school.length());
+    }
+
+    private boolean isValid(char c){
+        if(c>='a'&&c<='z')
+            return true;
+        if(c>='A'&&c<='Z')
+            return true;
+        return false;
     }
 
 
