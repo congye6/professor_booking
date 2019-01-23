@@ -78,6 +78,12 @@ public interface ServiceService {
     ResponseVO deleteService(Integer serviceId);
 
     /**
+     * 获取服务数量
+     * @return
+     */
+    ResponseVO getServiceCount();
+
+    /**
      * 获取所有专业类别
      * @return
      */

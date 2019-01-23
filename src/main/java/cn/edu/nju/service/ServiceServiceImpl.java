@@ -183,6 +183,12 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
+    public ResponseVO getServiceCount() {
+        int serviceNum = serviceMapper.getCount();
+        return ResponseVO.buildSuccess(serviceNum);
+    }
+
+    @Override
     public ResponseVO getAllMajorType() {
         List<MajorTypeVO> majorTypeVOList = majorTypeMapper.getAllMajorType();
         return ResponseVO.buildSuccess(majorTypeVOList);

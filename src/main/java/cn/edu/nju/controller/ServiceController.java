@@ -70,5 +70,10 @@ public class ServiceController {
         return serviceService.serviceList(startPos, number);
     }
 
+    @RequestMapping(value = "/count", method = RequestMethod.GET)
+    public ResponseVO count(){
+        return serviceService.getServiceCount();
+    }
+
 
 }

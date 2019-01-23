@@ -73,4 +73,10 @@ public interface ServiceMapper {
      * @return
      */
     List<ServiceVO> getServiceListByContent(@Param("content") String content);
+
+    /**
+     * 获取服务数量
+     * @return
+     */
+    int getCount();
 }
