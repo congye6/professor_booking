@@ -35,4 +35,11 @@ public interface OrderMapper {
      * @return
      */
     List<Integer> getOrderUsers(int serviceId);
+
+    /**
+     * 删除订单id
+     * @param orderId
+     * @return
+     */
+    int deleteOrderById(int orderId);
 }

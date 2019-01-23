@@ -25,6 +25,11 @@ public class OrderController {
         return orderService.saveOrder(userId, serviceId);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseVO deleteReserve(@RequestParam("orderId") Integer orderId){
+        return orderService.deleteOrder(orderId);
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseVO getReserveList(@RequestParam("userId") Integer userId){
         return orderService.getOrderList(userId);

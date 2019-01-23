@@ -24,4 +24,11 @@ public interface OrderService {
      */
     ResponseVO getOrderList(Integer userId);
 
+    /**
+     * 删除订单id
+     * @param orderId
+     * @return
+     */
+    ResponseVO deleteOrder(Integer orderId);
+
 }

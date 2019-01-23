@@ -47,4 +47,8 @@
         SELECT user_id FROM `order` where service_id=#{serviceId}
     </select>
 
+    <delete id="deleteOrderById">
+        DELETE FROM `order` WHERE id=#{orderId}
+    </delete>
+
 </mapper>
