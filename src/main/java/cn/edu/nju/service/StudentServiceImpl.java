@@ -53,4 +53,23 @@ public class StudentServiceImpl implements StudentService{
         List<OrderVO> orders=orderMapper.getOrderList(student.getId());
         return ResponseVO.buildSuccess(orders);
     }
+
+    @Override
+    public ResponseVO getStudents(int page, int pageSize) {
+        return ResponseVO.buildSuccess(studentMapper.select(pageSize,page*pageSize));
+    }
+
+    @Override
+    public ResponseVO getToAuditStudents(int page, int pageSize) {
+        return ResponseVO.buildSuccess(studentMapper.selectByAudit(false,pageSize,page*pageSize));
+    }
+
+    @Override
+    public ResponseVO audit(String wechatId) {
+        StudentVO student=new StudentVO();
+        student.setWechatId(wechatId);
+        student.setAudited(true);
+        studentMapper.update(student);
+        return ResponseVO.buildSuccess();
+    }
 }

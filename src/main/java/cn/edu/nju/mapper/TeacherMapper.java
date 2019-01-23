@@ -2,6 +2,7 @@ package cn.edu.nju.mapper;
 
 import cn.edu.nju.vo.TeacherVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ public interface TeacherMapper {
     int deleteByPrimaryKey(Integer id);
 
     List<TeacherVO> selectByName(String wechatName);
+
+    List<TeacherVO> select(@Param("pageSize") int pageSize,@Param("start") int start);
 
     int insertSelective(TeacherVO record);
 

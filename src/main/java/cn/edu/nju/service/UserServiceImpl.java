@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService{
     public ResponseVO addUser(UserVO userVO) {
         RankVO rank=rankMapper.selectByInstitude(userVO.getSchool());
         if(rank==null)
-            return ResponseVO.buildFailure("学校："+userVO.getSchool()+" 不存在,请先维护改学校排名");
+            return ResponseVO.buildFailure("学校："+userVO.getSchool()+" 不存在,请先维护该学校排名");
         userVO.setInstitudeRank(rank.getRank());
 
         if(StringUtils.isEmpty(userVO.getName()))

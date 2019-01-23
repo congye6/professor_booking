@@ -40,4 +40,27 @@ public interface StudentService {
      */
     public ResponseVO getOrders(String wechatId);
 
+    /**
+     * 分页获取学生信息
+     * @param page      第几页，从0开始
+     * @param pageSize  一页有多少条
+     * @return
+     */
+    public ResponseVO getStudents(int page,int pageSize);
+
+    /**
+     * 获取所有未审核学生
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    public ResponseVO getToAuditStudents(int page,int pageSize);
+
+    /**
+     * 学生审核成功
+     * @param wechatId
+     * @return
+     */
+    public ResponseVO audit(String wechatId);
+
 }

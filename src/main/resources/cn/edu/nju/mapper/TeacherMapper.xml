@@ -16,6 +16,10 @@
     SELECT * FROM teacher WHERE wechat_id=#{wechatId}
   </select>
 
+  <select id="select" resultMap="BaseResultMap">
+    SELECT * FROM teacher limit #{start},#{pageSize}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

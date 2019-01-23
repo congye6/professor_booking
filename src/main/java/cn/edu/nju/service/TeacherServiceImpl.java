@@ -47,6 +47,26 @@ public class TeacherServiceImpl implements TeacherService{
         TeacherVO teacherVO=teacherMapper.selectByWechatId(wechatId);
         if(teacherVO==null)
             return ResponseVO.buildFailure("用户不存在");
+
+        return ResponseVO.buildSuccess(getDetail(teacherVO));
+    }
+
+    @Override
+    public ResponseVO getTeachers(int page, int pageSize) {
+        List<TeacherVO> teacherList=teacherMapper.select(pageSize,page*pageSize);
+        List<TeacherDetailVO> detailList=new ArrayList<>();
+        for(TeacherVO teacher:teacherList){
+            detailList.add(getDetail(teacher));
+        }
+        return ResponseVO.buildSuccess(detailList);
+    }
+
+    /**
+     * 查询教师的爬取的信息
+     * @param teacherVO
+     * @return
+     */
+    private TeacherDetailVO getDetail(TeacherVO teacherVO){
         TeacherDetailVO detailVO=new TeacherDetailVO();
         BeanUtils.copyProperties(teacherVO,detailVO);
         UserVO userVO=userMapper.selectUserById(teacherVO.getInfoId());
@@ -55,7 +75,7 @@ public class TeacherServiceImpl implements TeacherService{
         }else{
             detailVO.setId(-1);
         }
-        return ResponseVO.buildSuccess(detailVO);
+        return detailVO;
     }
 
     @Override

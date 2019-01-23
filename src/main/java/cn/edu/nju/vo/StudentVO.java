@@ -17,6 +17,11 @@ public class StudentVO implements Serializable {
 
     private String company;
 
+    /**
+     * 是否已审核
+     */
+    private Boolean isAudited;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -73,5 +78,13 @@ public class StudentVO implements Serializable {
 
     public void setCompany(String company) {
         this.company = company == null ? null : company.trim();
+    }
+
+    public Boolean getAudited() {
+        return isAudited;
+    }
+
+    public void setAudited(Boolean audited) {
+        isAudited = audited;
     }
 }

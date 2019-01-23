@@ -27,6 +27,14 @@ public interface TeacherService {
     public ResponseVO getTeacher(String wechatId);
 
     /**
+     * 分页获取教师信息
+     * @param page      第几页，从0开始
+     * @param pageSize  一页有多少条
+     * @return
+     */
+    public ResponseVO getTeachers(int page,int pageSize);
+
+    /**
      * 更新教师信息
      * @param
      * @return

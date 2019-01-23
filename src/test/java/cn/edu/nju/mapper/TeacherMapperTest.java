@@ -48,5 +48,10 @@ public class TeacherMapperTest {
         System.out.println(JSONObject.toJSONString(teacherMapper.selectByName("cc")));
     }
 
+    @Test
+    public void select(){
+        System.out.println(JSONObject.toJSONString(teacherMapper.select(3,0)));
+    }
+
 
 }
