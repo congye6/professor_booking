@@ -60,8 +60,18 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
+    public ResponseVO getCount() {
+        return ResponseVO.buildSuccess(studentMapper.selectCount());
+    }
+
+    @Override
     public ResponseVO getToAuditStudents(int page, int pageSize) {
         return ResponseVO.buildSuccess(studentMapper.selectByAudit(false,pageSize,page*pageSize));
+    }
+
+    @Override
+    public ResponseVO getAuditCount() {
+        return ResponseVO.buildSuccess(studentMapper.selectAuditCount());
     }
 
     @Override

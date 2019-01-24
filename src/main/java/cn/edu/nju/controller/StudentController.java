@@ -59,6 +59,15 @@ public class StudentController {
     }
 
     /**
+     * 获取所有学生数量
+     * @return
+     */
+    @RequestMapping(value = "/student/count",method = RequestMethod.GET)
+    public ResponseVO getCount(){
+        return studentService.getCount();
+    }
+
+    /**
      * 获取所有未审核学生
      * @param page
      * @param pageSize
@@ -67,6 +76,15 @@ public class StudentController {
     @RequestMapping(value = "/students/audit",method = RequestMethod.GET)
     public ResponseVO getToAuditStudents(@RequestParam int page,@RequestParam int pageSize){
         return studentService.getToAuditStudents(page,pageSize);
+    }
+
+    /**
+     * 获取所有未审核的数量
+     * @return
+     */
+    @RequestMapping(value = "/student/audit/count",method = RequestMethod.GET)
+    public ResponseVO getAuditCount(){
+        return studentService.getAuditCount();
     }
 
     /**

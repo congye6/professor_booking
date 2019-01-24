@@ -61,6 +61,11 @@ public class TeacherServiceImpl implements TeacherService{
         return ResponseVO.buildSuccess(detailList);
     }
 
+    @Override
+    public ResponseVO getCount() {
+        return ResponseVO.buildSuccess(teacherMapper.selectCount());
+    }
+
     /**
      * 查询教师的爬取的信息
      * @param teacherVO

@@ -35,6 +35,12 @@ public interface TeacherService {
     public ResponseVO getTeachers(int page,int pageSize);
 
     /**
+     * 一共有多少教师用户
+     * @return
+     */
+    public ResponseVO getCount();
+
+    /**
      * 更新教师信息
      * @param
      * @return

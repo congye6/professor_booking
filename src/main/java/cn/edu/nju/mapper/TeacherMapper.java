@@ -14,6 +14,8 @@ public interface TeacherMapper {
 
     List<TeacherVO> select(@Param("pageSize") int pageSize,@Param("start") int start);
 
+    int selectCount();
+
     int insertSelective(TeacherVO record);
 
     TeacherVO selectByPrimaryKey(Integer id);

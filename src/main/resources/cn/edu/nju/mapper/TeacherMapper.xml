@@ -20,6 +20,10 @@
     SELECT * FROM teacher limit #{start},#{pageSize}
   </select>
 
+  <select id="selectCount" resultType="java.lang.Integer">
+    SELECT count(*) FROM teacher
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

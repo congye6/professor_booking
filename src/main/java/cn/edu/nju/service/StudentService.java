@@ -49,12 +49,24 @@ public interface StudentService {
     public ResponseVO getStudents(int page,int pageSize);
 
     /**
+     * 获取所有学生数量
+     * @return
+     */
+    public ResponseVO getCount();
+
+    /**
      * 获取所有未审核学生
      * @param page
      * @param pageSize
      * @return
      */
     public ResponseVO getToAuditStudents(int page,int pageSize);
+
+    /**
+     * 获取所有未审核的数量
+     * @return
+     */
+    public ResponseVO getAuditCount();
 
     /**
      * 学生审核成功

@@ -20,4 +20,8 @@ public interface StudentMapper {
 
     List<StudentVO> selectByAudit(@Param("isAudited") boolean isAudited,
                                   @Param("pageSize") int pageSize, @Param("start") int start);
+
+    int selectCount();
+
+    int selectAuditCount();
 }

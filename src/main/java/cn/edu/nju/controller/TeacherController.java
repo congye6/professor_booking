@@ -66,6 +66,14 @@ public class TeacherController {
         return teacherService.getTeachers(page,pageSize);
     }
 
+    /**
+     * 一共有多少教师用户
+     * @return
+     */
+    @RequestMapping(value = "/teacher/count",method = RequestMethod.GET)
+    public ResponseVO getCount(){
+        return teacherService.getCount();
+    }
 
 
 

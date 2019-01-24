@@ -23,6 +23,14 @@
     SELECT * FROM student limit #{start},#{pageSize}
   </select>
 
+  <select id="selectCount" resultType="java.lang.Integer">
+    SELECT count(*) FROM student
+  </select>
+
+  <select id="selectAuditCount" resultType="java.lang.Integer">
+    SELECT count(*) FROM student WHERE is_audited=FALSE
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -33,6 +41,8 @@
   <select id="selectByAudit" resultMap="BaseResultMap">
     SELECT * FROM student WHERE is_audited=#{isAudited} limit #{start},#{pageSize}
   </select>
+
+
 
   <insert id="insertSelective" parameterType="cn.edu.nju.vo.StudentVO">
     insert into student
