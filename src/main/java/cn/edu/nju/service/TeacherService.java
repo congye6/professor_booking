@@ -2,6 +2,7 @@ package cn.edu.nju.service;
 
 import cn.edu.nju.vo.ResponseVO;
 import cn.edu.nju.vo.StudentVO;
+import cn.edu.nju.vo.TeacherDetailVO;
 import cn.edu.nju.vo.TeacherVO;
 
 /**
@@ -24,7 +25,7 @@ public interface TeacherService {
      * @param wechatId
      * @return
      */
-    public ResponseVO getTeacher(String wechatId);
+    public TeacherDetailVO getTeacher(String wechatId);
 
     /**
      * 分页获取教师信息

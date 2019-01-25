@@ -35,8 +35,8 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public ResponseVO getStudent(String wechatId) {
-        return ResponseVO.buildSuccess(studentMapper.selectByWechatId(wechatId));
+    public StudentVO getStudent(String wechatId) {
+        return studentMapper.selectByWechatId(wechatId);
     }
 
     @Override

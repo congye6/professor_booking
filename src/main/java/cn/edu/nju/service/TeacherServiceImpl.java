@@ -43,12 +43,12 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
-    public ResponseVO getTeacher(String wechatId) {
+    public TeacherDetailVO getTeacher(String wechatId) {
         TeacherVO teacherVO=teacherMapper.selectByWechatId(wechatId);
         if(teacherVO==null)
-            return ResponseVO.buildFailure("用户不存在");
+            return null;
 
-        return ResponseVO.buildSuccess(getDetail(teacherVO));
+        return getDetail(teacherVO);
     }
 
     @Override

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nju.mapper.FollowMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.nju.vo.FollowVO">
+    <result column="student_wechat_id" jdbcType="VARCHAR" property="studentWechatId" />
+    <result column="teacher_wechat_id" jdbcType="VARCHAR" property="teacherWechatId" />
+    <result column="teacher_info_id" jdbcType="INTEGER" property="teacherInfoId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    student_wechat_id, teacher_wechat_id, teacher_info_id
+  </sql>
+
+  <select id="select" parameterType="cn.edu.nju.vo.FollowVO" resultType="cn.edu.nju.vo.FollowVO">
+    SELECT <include refid="Base_Column_List"/>
+    FROM follow
+    WHERE student_wechat_id=#{studentWechatId} AND teacher_info_id=#{teacherInfoId}
+  </select>
+
+  <select id="selectByStudent" parameterType="java.lang.String" resultMap="cn.edu.nju.vo.FollowVO">
+    SELECT <include refid="Base_Column_List"/>
+    FROM follow
+    where student_wechat_id=#{studentWechatId}
+  </select>
+
+  <select id="selectByTeacher" parameterType="java.lang.String" resultMap="cn.edu.nju.vo.FollowVO">
+    SELECT <include refid="Base_Column_List"/>
+    FROM follow
+    where teacher_wechat_id=#{teacherWechatId}
+  </select>
+
+  <insert id="insert" parameterType="cn.edu.nju.vo.FollowVO">
+    insert into follow (student_wechat_id, teacher_wechat_id,
+      teacher_info_id)
+    values (#{studentWechatId,jdbcType=VARCHAR}, #{teacherWechatId,jdbcType=VARCHAR},
+      #{teacherInfoId,jdbcType=INTEGER})
+  </insert>
+
+  <delete id="delete" parameterType="cn.edu.nju.vo.FollowVO">
+    DELETE FROM follow WHERE student_wechat_id=#{studentWechatId}
+    AND teacher_info_id=#{teacherInfoId}
+  </delete>
+
+</mapper>

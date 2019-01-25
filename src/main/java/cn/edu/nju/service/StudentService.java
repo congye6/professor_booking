@@ -23,7 +23,7 @@ public interface StudentService {
      * @param wechatId
      * @return
      */
-    public ResponseVO getStudent(String wechatId);
+    public StudentVO getStudent(String wechatId);
 
     /**
      * 更新学生信息

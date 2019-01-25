@@ -26,7 +26,7 @@ public class StudentController {
 
     @RequestMapping(value = "/student",method = RequestMethod.GET)
     public ResponseVO getStudent(@RequestParam("wid") String wechatId){
-        return studentService.getStudent(wechatId);
+        return ResponseVO.buildSuccess(studentService.getStudent(wechatId));
     }
 
     @RequestMapping(value = "/student/update",method = RequestMethod.GET)

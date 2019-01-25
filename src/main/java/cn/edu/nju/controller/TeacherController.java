@@ -2,6 +2,7 @@ package cn.edu.nju.controller;
 
 import cn.edu.nju.service.TeacherService;
 import cn.edu.nju.vo.ResponseVO;
+import cn.edu.nju.vo.TeacherDetailVO;
 import cn.edu.nju.vo.TeacherVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,10 @@ public class TeacherController {
      */
     @RequestMapping(value = "/teacher/{wechatId}",method = RequestMethod.GET)
     public ResponseVO getTeacher(@PathVariable String wechatId){
-        return teacherService.getTeacher(wechatId);
+        TeacherDetailVO detailVO=teacherService.getTeacher(wechatId);
+        if(detailVO==null)
+            return ResponseVO.buildFailure("教师用户未注册");
+        return ResponseVO.buildSuccess(detailVO);
     }
 
     /**
