@@ -3,35 +3,33 @@
 <mapper namespace="cn.edu.nju.mapper.FollowMapper">
   <resultMap id="BaseResultMap" type="cn.edu.nju.vo.FollowVO">
     <result column="student_wechat_id" jdbcType="VARCHAR" property="studentWechatId" />
-    <result column="teacher_wechat_id" jdbcType="VARCHAR" property="teacherWechatId" />
     <result column="teacher_info_id" jdbcType="INTEGER" property="teacherInfoId" />
   </resultMap>
   <sql id="Base_Column_List">
-    student_wechat_id, teacher_wechat_id, teacher_info_id
+    student_wechat_id, teacher_info_id
   </sql>
 
-  <select id="select" parameterType="cn.edu.nju.vo.FollowVO" resultType="cn.edu.nju.vo.FollowVO">
+  <select id="select" parameterType="cn.edu.nju.vo.FollowVO" resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List"/>
     FROM follow
     WHERE student_wechat_id=#{studentWechatId} AND teacher_info_id=#{teacherInfoId}
   </select>
 
-  <select id="selectByStudent" parameterType="java.lang.String" resultMap="cn.edu.nju.vo.FollowVO">
-    SELECT <include refid="Base_Column_List"/>
+  <select id="selectByStudent" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT teacher_info_id
     FROM follow
     where student_wechat_id=#{studentWechatId}
   </select>
 
-  <select id="selectByTeacher" parameterType="java.lang.String" resultMap="cn.edu.nju.vo.FollowVO">
-    SELECT <include refid="Base_Column_List"/>
+  <select id="selectByTeacher" parameterType="java.lang.Integer" resultType="java.lang.String">
+    SELECT student_wechat_id
     FROM follow
-    where teacher_wechat_id=#{teacherWechatId}
+    where teacher_info_id=#{teacherInfoId}
   </select>
 
   <insert id="insert" parameterType="cn.edu.nju.vo.FollowVO">
-    insert into follow (student_wechat_id, teacher_wechat_id,
-      teacher_info_id)
-    values (#{studentWechatId,jdbcType=VARCHAR}, #{teacherWechatId,jdbcType=VARCHAR},
+    insert into follow (student_wechat_id,teacher_info_id)
+    values (#{studentWechatId,jdbcType=VARCHAR},
       #{teacherInfoId,jdbcType=INTEGER})
   </insert>
 

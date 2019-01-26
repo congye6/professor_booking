@@ -13,14 +13,17 @@ public class FollowVO implements Serializable {
     private String studentWechatId;
 
     /**
-     * 教师微信id(系统自动查找)
-     */
-    private String teacherWechatId;
-
-    /**
      * 教师信息id(爬取信息表中的id）
      */
     private Integer teacherInfoId;
+
+    public FollowVO(String studentWechatId, Integer teacherInfoId) {
+        this.studentWechatId = studentWechatId;
+        this.teacherInfoId = teacherInfoId;
+    }
+
+    public FollowVO() {
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -30,14 +33,6 @@ public class FollowVO implements Serializable {
 
     public void setStudentWechatId(String studentWechatId) {
         this.studentWechatId = studentWechatId == null ? null : studentWechatId.trim();
-    }
-
-    public String getTeacherWechatId() {
-        return teacherWechatId;
-    }
-
-    public void setTeacherWechatId(String teacherWechatId) {
-        this.teacherWechatId = teacherWechatId == null ? null : teacherWechatId.trim();
     }
 
     public Integer getTeacherInfoId() {

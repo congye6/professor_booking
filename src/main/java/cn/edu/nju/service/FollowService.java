@@ -32,10 +32,10 @@ public interface FollowService {
 
     /**
      * 关注我的
-     * @param teacherWechatId
+     * @param teacherInfoId
      * @return
      */
-    public ResponseVO followers(String teacherWechatId);
+    public ResponseVO followers(Integer teacherInfoId);
 
 
 }

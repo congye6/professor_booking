@@ -24,11 +24,11 @@ public interface FollowMapper {
      * @param studentWechatId
      * @return
      */
-    List<FollowVO> selectByStudent(String studentWechatId);
+    List<Integer> selectByStudent(String studentWechatId);
 
     /**
      * 查找关注教师的学生
      */
-    List<FollowVO> selectByTeacher(String teacherWechatId);
+    List<String> selectByTeacher(Integer teacherInfoId);
 
 }
