@@ -22,5 +22,10 @@ public class TranslateUtilTest {
         translateUtil.translate();
     }
 
+    @Test
+    public void translatePositionToEnglish(){
+        translateUtil.translateToEnglish();
+    }
+
 
 }

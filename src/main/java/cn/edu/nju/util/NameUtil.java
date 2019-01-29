@@ -10,10 +10,10 @@ public class NameUtil {
 
     public static void processName(UserVO userVO){
         String name = userVO.getName();
-        name=name.trim();
         if (StringUtils.isEmpty(name)){
             return;
         }
+        name=name.trim();
         userVO.setName(name);
         String[] spliters={
                 ","," "

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.*;
 import java.util.List;
 
 
@@ -23,9 +24,25 @@ import java.util.List;
 public class ImportUtil {
 
     private static final String[] POSITIONS={
-            "associate professor","assistant professor","professor emeritus","professor","lecture","chair professor"
-            ,"教授","副教授","助理教授","名誉教授","讲师","讲座教授"
+            "associate professor","assistant professor","professor emeritus","professor","senior lecture","lecture"
+            ,"副教授","助理教授","名誉教授","教授","资深讲师","讲师"
     };
+
+    /**
+     * 职位的映射
+     */
+    private static final Map<String,String> POSITION_MAP=new HashMap<>();
+
+    static {
+        POSITION_MAP.put("lecture","assistant professor");
+        POSITION_MAP.put("senior lecture","associate professor");
+        POSITION_MAP.put("教授","professor");
+        POSITION_MAP.put("副教授","associate professor");
+        POSITION_MAP.put("助理教授","assistant professor");
+        POSITION_MAP.put("名誉教授","professor emeritus");
+        POSITION_MAP.put("资深讲师","associate professor");
+        POSITION_MAP.put("讲师","assistant professor");
+    }
 
     @Autowired
     private ExcelUtil excelUtil;
@@ -96,6 +113,8 @@ public class ImportUtil {
             userVO.setPosition(position);
 
             NameUtil.processName(userVO);
+            if(StringUtils.isEmpty(userVO.getName()))
+                continue;
 
             String introduction=userVO.getIntroduction();
             if(!StringUtils.isEmpty(introduction)&&introduction.length()>5000)
@@ -133,8 +152,13 @@ public class ImportUtil {
             return null;
         str=str.toLowerCase();
         for(String position:POSITIONS){
-            if(str.contains(position))
-                return TranslateUtil.translatePosition(position);
+            if(!str.contains(position))
+                continue;
+            String mappedPosition=POSITION_MAP.get(position);
+            if(mappedPosition!=null)
+                return mappedPosition;
+            else
+                return position;
         }
         return null;
     }
