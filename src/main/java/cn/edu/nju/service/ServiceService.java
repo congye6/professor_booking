@@ -78,6 +78,12 @@ public interface ServiceService {
     ResponseVO deleteService(Integer serviceId);
 
     /**
+     * 修改服务内容
+     * @return
+     */
+    ResponseVO modifyService(ServiceVO serviceVO);
+
+    /**
      * 获取服务数量
      * @return
      */

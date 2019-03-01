@@ -28,6 +28,11 @@ public class ServiceController {
         return serviceService.deleteService(serviceId);
     }
 
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseVO modifyService(@RequestBody ServiceVO serviceVO){
+        return serviceService.modifyService(serviceVO);
+    }
+
     @RequestMapping(value = "/search/expert", method = RequestMethod.GET)
     public ResponseVO searchExpert(@RequestParam("expert")String expert, @RequestParam("nation")String nation,
                                    @RequestParam("position")String position, @RequestParam("major")String major,

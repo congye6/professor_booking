@@ -182,6 +182,22 @@ public class ServiceServiceImpl implements ServiceService {
         return ResponseVO.buildSuccess();
     }
 
+
+    @Override
+    public ResponseVO modifyService(ServiceVO serviceVO) {
+        Integer serviceId = serviceVO.getId();
+        if (null == serviceId){
+            return ResponseVO.buildFailure("待修改的服务Id为空");
+        }
+
+        int count = serviceMapper.updateService(serviceVO);
+        if(count == 1){
+            return ResponseVO.buildSuccess("修改成功");
+        }else {
+            return ResponseVO.buildFailure("未修改成功");
+        }
+    }
+
     @Override
     public ResponseVO getServiceCount() {
         int serviceNum = serviceMapper.getCount();

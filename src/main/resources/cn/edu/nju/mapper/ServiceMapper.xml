@@ -48,4 +48,38 @@
         SELECT COUNT(*) from `service`
     </select>
 
+    <update id="updateService" parameterType="cn.edu.nju.vo.ServiceVO">
+        update `service`
+        <set>
+            <if test="professorId != null">
+                professor_id = #{professorId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="reserveAddress != null">
+                `reserve_address` = #{reserveAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="reserveTime != null">
+                reserve_time = #{reserveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deadline != null">
+                deadline = #{deadline,jdbcType=TIMESTAMP},
+            </if>
+            <if test="majorTypeId != null">
+                major_type_id = #{majorTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="serviceTypeId != null">
+                service_type_id=#{serviceTypeId, jdbcType=INTEGER},
+            </if>
+            <if test="price != null">
+                price=#{price, jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
 </mapper>
