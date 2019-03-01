@@ -1,6 +1,7 @@
 package cn.edu.nju.controller;
 
 import cn.edu.nju.service.OrderService;
+import cn.edu.nju.vo.OrderModifyVO;
 import cn.edu.nju.vo.ResponseVO;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,11 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.DELETE)
     public ResponseVO deleteReserve(@RequestParam("orderId") Integer orderId){
         return orderService.deleteOrder(orderId);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseVO modifyReserve(@RequestBody OrderModifyVO orderVO){
+        return orderService.modifyOrder(orderVO);
     }
 
     @RequestMapping(method = RequestMethod.GET)

@@ -1,5 +1,6 @@
 package cn.edu.nju.service;
 
+import cn.edu.nju.vo.OrderModifyVO;
 import cn.edu.nju.vo.ResponseVO;
 
 /**
@@ -31,4 +32,10 @@ public interface OrderService {
      */
     ResponseVO deleteOrder(Integer orderId);
 
+    /**
+     * 修改订单
+     * @param orderVO
+     * @return
+     */
+    ResponseVO modifyOrder(OrderModifyVO orderVO);
 }

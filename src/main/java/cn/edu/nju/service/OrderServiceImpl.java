@@ -1,6 +1,7 @@
 package cn.edu.nju.service;
 
 import cn.edu.nju.mapper.OrderMapper;
+import cn.edu.nju.vo.OrderModifyVO;
 import cn.edu.nju.vo.OrderVO;
 import cn.edu.nju.vo.ResponseVO;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,20 @@ public class OrderServiceImpl implements OrderService{
     public ResponseVO deleteOrder(Integer orderId) {
         orderMapper.deleteOrderById(orderId);
         return ResponseVO.buildSuccess();
+    }
+
+    @Override
+    public ResponseVO modifyOrder(OrderModifyVO orderVO) {
+        Integer orderId = orderVO.getId();
+        if(null == orderId){
+            return ResponseVO.buildFailure("订单Id为空");
+        }
+
+        int count = orderMapper.updateOrder(orderVO);
+        if(count == 1){
+            return ResponseVO.buildSuccess("修改成功");
+        }else {
+            return ResponseVO.buildFailure("未修改成功");
+        }
     }
 }

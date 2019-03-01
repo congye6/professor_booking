@@ -1,7 +1,7 @@
 package cn.edu.nju.mapper;
 
+import cn.edu.nju.vo.OrderModifyVO;
 import cn.edu.nju.vo.OrderVO;
-import cn.edu.nju.vo.ServiceVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -42,4 +42,11 @@ public interface OrderMapper {
      * @return
      */
     int deleteOrderById(int orderId);
+
+    /**
+     * 修改订单
+     * @param orderVO
+     * @return
+     */
+    int updateOrder(OrderModifyVO orderVO);
 }
