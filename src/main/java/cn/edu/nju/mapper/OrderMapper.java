@@ -31,6 +31,12 @@ public interface OrderMapper {
     List<OrderVO> getOrderList(@Param("userId")int userId);
 
     /**
+     * 获取所有预约信息
+     * @return
+     */
+    List<OrderVO> getAllOrder();
+
+    /**
      * 获取预约某服务的所有用户
      * @return
      */

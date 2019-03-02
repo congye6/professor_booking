@@ -43,6 +43,10 @@
         AND service.professor_id = user.id
     </select>
 
+    <select id="getAllOrder" resultMap="BaseResultMap">
+        SELECT * from `order`, `service`, `user` WHERE  order.service_id = service.id AND service.professor_id = user.id
+    </select>
+
     <select id="getOrderUsers" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         SELECT user_id FROM `order` where service_id=#{serviceId}
     </select>

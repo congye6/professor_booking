@@ -41,4 +41,9 @@ public class OrderController {
         return orderService.getOrderList(userId);
     }
 
+    @RequestMapping(value = "/all",method = RequestMethod.GET)
+    public ResponseVO getAllReserveList(){
+        return orderService.getAllOrder();
+    }
+
 }

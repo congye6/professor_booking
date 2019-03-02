@@ -26,6 +26,12 @@ public interface OrderService {
     ResponseVO getOrderList(Integer userId);
 
     /**
+     * 获取所有预约
+     * @return
+     */
+    ResponseVO getAllOrder();
+
+    /**
      * 删除订单id
      * @param orderId
      * @return

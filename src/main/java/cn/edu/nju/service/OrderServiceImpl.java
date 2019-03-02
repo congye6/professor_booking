@@ -42,6 +42,12 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public ResponseVO getAllOrder() {
+        List<OrderVO> orderVOList = orderMapper.getAllOrder();
+        return ResponseVO.buildSuccess(orderVOList);
+    }
+
+    @Override
     public ResponseVO deleteOrder(Integer orderId) {
         orderMapper.deleteOrderById(orderId);
         return ResponseVO.buildSuccess();
