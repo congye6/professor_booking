@@ -62,4 +62,11 @@ public interface TeacherService {
      */
     public ResponseVO searchUserByWechatName(String wechatName);
 
+    /**
+     * 根据微信id删除教师用户
+     * @param wechatId
+     * @return
+     */
+    public ResponseVO deleteByWechatId(String wechatId);
+
 }

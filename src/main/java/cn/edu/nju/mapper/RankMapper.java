@@ -17,4 +17,6 @@ public interface RankMapper {
     List<RankVO> selectAll();
 
     int updateByInstitude(RankVO record);
+
+    void deleteByInstitude(String name);
 }

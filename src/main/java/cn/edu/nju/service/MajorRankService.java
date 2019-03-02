@@ -37,5 +37,12 @@ public interface MajorRankService {
      */
     public ResponseVO updateRank(MajorRankVO rankVO);
 
+    /**
+     * 删除排名
+     * @param rankVO
+     * @return
+     */
+    public ResponseVO deleteRank(MajorRankVO rankVO);
+
 
 }
