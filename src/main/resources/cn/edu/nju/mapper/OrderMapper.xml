@@ -64,9 +64,6 @@
             <if test="serviceId != null">
                 service_id = #{serviceId,jdbcType=INTEGER},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTMAP},
-            </if>
         </set>
         where id = #{id}
     </update>

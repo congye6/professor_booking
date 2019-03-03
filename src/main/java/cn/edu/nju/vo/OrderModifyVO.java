@@ -12,7 +12,6 @@ public class OrderModifyVO {
     private Integer id;
     private Integer userId;
     private Integer serviceId;
-    private Timestamp createTime;
 
     public Integer getId() {
         return id;
@@ -36,13 +35,5 @@ public class OrderModifyVO {
 
     public void setServiceId(Integer serviceId) {
         this.serviceId = serviceId;
-    }
-
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
     }
 }
