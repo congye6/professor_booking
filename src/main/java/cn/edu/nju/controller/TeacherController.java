@@ -79,6 +79,11 @@ public class TeacherController {
         return teacherService.getCount();
     }
 
+    @RequestMapping(value = "/teacher/delete/{wechatId}",method = RequestMethod.POST)
+    public ResponseVO deleteByWechatId(@PathVariable String wechatId){
+        return teacherService.deleteByWechatId(wechatId);
+    }
+
 
 
 }

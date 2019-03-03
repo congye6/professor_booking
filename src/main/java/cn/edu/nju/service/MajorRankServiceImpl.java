@@ -39,4 +39,10 @@ public class MajorRankServiceImpl implements MajorRankService{
         majorRankMapper.update(rankVO);
         return ResponseVO.buildSuccess();
     }
+
+    @Override
+    public ResponseVO deleteRank(MajorRankVO rankVO) {
+        majorRankMapper.delete(rankVO);
+        return ResponseVO.buildSuccess();
+    }
 }

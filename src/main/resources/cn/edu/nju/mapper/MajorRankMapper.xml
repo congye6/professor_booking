@@ -30,6 +30,11 @@
       #{rank,jdbcType=INTEGER})
   </insert>
 
+  <delete id="delete" parameterType="cn.edu.nju.vo.MajorRankVO">
+    delete from major_rank
+    where institude=#{institude} and major=#{major}
+  </delete>
+
   <update id="update" parameterType="cn.edu.nju.vo.MajorRankVO">
     update major_rank
     <set>

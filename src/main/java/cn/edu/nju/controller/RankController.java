@@ -54,4 +54,13 @@ public class RankController {
         return rankService.updateRank(rankVO);
     }
 
+    /**
+     * 删除排名
+     * @param name
+     * @return
+     */
+    @RequestMapping(value = "/rank/institude/delete/{name}",method = RequestMethod.POST)
+    public ResponseVO deleteRank(@PathVariable String name){
+        return rankService.deleteRank(name);
+    }
 }

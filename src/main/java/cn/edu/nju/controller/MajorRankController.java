@@ -55,4 +55,8 @@ public class MajorRankController {
         return majorRankService.updateRank(rankVO);
     }
 
+    @RequestMapping(value = "/rank/major/delete",method = RequestMethod.POST)
+    public ResponseVO deleteRank(@RequestBody MajorRankVO rankVO){
+        return majorRankService.deleteRank(rankVO);
+    }
 }

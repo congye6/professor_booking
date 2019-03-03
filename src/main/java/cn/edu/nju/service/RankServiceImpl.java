@@ -39,4 +39,10 @@ public class RankServiceImpl implements RankService{
         rankMapper.updateByInstitude(rankVO);
         return ResponseVO.buildSuccess();
     }
+
+    @Override
+    public ResponseVO deleteRank(String name) {
+        rankMapper.deleteByInstitude(name);
+        return ResponseVO.buildSuccess();
+    }
 }

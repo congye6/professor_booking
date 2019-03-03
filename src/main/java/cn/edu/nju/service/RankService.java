@@ -35,4 +35,11 @@ public interface RankService {
      * @return
      */
     public ResponseVO updateRank(RankVO rankVO);
+
+    /**
+     * 删除排名
+     * @param name
+     * @return
+     */
+    public ResponseVO deleteRank(String name);
 }

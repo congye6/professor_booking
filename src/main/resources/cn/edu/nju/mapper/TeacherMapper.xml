@@ -30,9 +30,9 @@
     from teacher
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByWechatId" parameterType="java.lang.String">
     delete from teacher
-    where id = #{id,jdbcType=INTEGER}
+    where wechat_id = #{wechatId}
   </delete>
   <insert id="insertSelective" parameterType="cn.edu.nju.vo.TeacherVO">
     insert into teacher

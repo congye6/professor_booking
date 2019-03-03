@@ -22,4 +22,6 @@ public interface MajorRankMapper {
     Integer selectRank(@Param("institude") String institude,@Param("major") String major);
 
     List<MajorRankVO> selectByInstitude(String institude);
+
+    void delete(MajorRankVO majorRankVO);
 }

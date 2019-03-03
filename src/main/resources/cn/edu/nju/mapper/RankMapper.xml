@@ -25,6 +25,10 @@
     SELECT * FROM institude_rank where institude=#{name}
   </select>
 
+  <delete id="deleteByInstitude" parameterType="java.lang.String">
+    delete from institude_rank where institude=#{name}
+  </delete>
+
   <insert id="insert" parameterType="cn.edu.nju.vo.RankVO">
     insert into institude_rank (institude, rank)
     values (#{institude,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER})
