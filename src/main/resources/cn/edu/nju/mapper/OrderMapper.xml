@@ -25,7 +25,7 @@
 
     <insert id="saveOrder">
         insert into `order` (student_id, service_id)
-        values (#{student_id}, #{serviceId})
+        values (#{studentId}, #{serviceId})
     </insert>
 
     <select id="getOrderList" resultMap="BaseResultMap">

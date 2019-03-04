@@ -17,11 +17,11 @@ public interface OrderMapper {
 
     /**
      * 保存预约
-     * @param userId
+     * @param studentId
      * @param serviceId
      * @return
      */
-    void saveOrder(@Param("userId")int userId, @Param("serviceId")int serviceId);
+    void saveOrder(@Param("studentId")int studentId, @Param("serviceId")int serviceId);
 
     /**
      * 获取我的预约列表
