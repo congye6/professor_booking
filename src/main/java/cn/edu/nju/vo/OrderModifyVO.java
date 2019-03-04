@@ -1,7 +1,5 @@
 package cn.edu.nju.vo;
 
-import java.sql.Timestamp;
-
 /**
  * @author 刘兴
  * @version 1.0

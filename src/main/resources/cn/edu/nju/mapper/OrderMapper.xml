@@ -4,9 +4,14 @@
 
     <resultMap id="BaseResultMap" type="cn.edu.nju.vo.OrderVO">
         <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="student_id" jdbcType="INTEGER" property="userId" />
         <result column="service_id" jdbcType="INTEGER" property="serviceId" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="company" jdbcType="VARCHAR" property="company" />
 
         <result column="title" jdbcType="VARCHAR" property="title" />
         <result column="content" jdbcType="VARCHAR" property="content"/>
@@ -16,39 +21,24 @@
         <result column="service_type_id" jdbcType="INTEGER" property="serviceTypeId" />
         <result column="major_type_id" jdbcType="INTEGER" property="majorTypeId" />
 
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
-        <result column="email" jdbcType="VARCHAR" property="email"/>
-        <result column="position" jdbcType="VARCHAR" property="position"/>
-        <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
-        <result column="school" jdbcType="VARCHAR" property="school"/>
-        <result column="major" jdbcType="VARCHAR" property="major"/>
-        <result column="website" jdbcType="VARCHAR" property="website"/>
-        <result column="icon_url" jdbcType="VARCHAR" property="iconUrl"/>
-        <result column="country" jdbcType="VARCHAR" property="country"/>
-        <result column="research_interest" jdbcType="VARCHAR" property="researchInterest"/>
-        <result column="first_name" jdbcType="VARCHAR" property="firstName"/>
-        <result column="family_name" jdbcType="VARCHAR" property="familyName"/>
-        <result column="institude_rank" jdbcType="INTEGER" property="institudeRank"/>
-
     </resultMap>
 
     <insert id="saveOrder">
-        insert into `order` (user_id, service_id)
-        values (#{userId}, #{serviceId})
+        insert into `order` (student_id, service_id)
+        values (#{student_id}, #{serviceId})
     </insert>
 
     <select id="getOrderList" resultMap="BaseResultMap">
-        SELECT * from `order`, `service`, `user` WHERE order.user_id = #{userId} AND order.service_id = service.id
-        AND service.professor_id = user.id
+        SELECT * from `order`, `service`, `student` WHERE order.student_id = #{userId} AND order.service_id = service.id
+        AND order.student_id = student.id
     </select>
 
     <select id="getAllOrder" resultMap="BaseResultMap">
-        SELECT * from `order`, `service`, `user` WHERE  order.service_id = service.id AND service.professor_id = user.id
+        SELECT * from `order`, `service`, `student` WHERE  order.service_id = service.id AND order.student_id = student.id
     </select>
 
     <select id="getOrderUsers" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-        SELECT user_id FROM `order` where service_id=#{serviceId}
+        SELECT student_id FROM `order` where service_id=#{serviceId}
     </select>
 
     <delete id="deleteOrderById">
@@ -59,7 +49,7 @@
         update `order`
         <set>
             <if test="userId != null">
-                user_id = #{userId,jdbcType=INTEGER},
+                student_id = #{userId,jdbcType=INTEGER},
             </if>
             <if test="serviceId != null">
                 service_id = #{serviceId,jdbcType=INTEGER},
