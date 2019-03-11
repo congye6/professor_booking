@@ -27,6 +27,8 @@ public class OrderVO {
     private Integer majorTypeId;
     private Integer serviceTypeId;
 
+    private String iconUrl;
+
     public Integer getId() {
         return id;
     }
@@ -147,6 +149,14 @@ public class OrderVO {
         this.company = company;
     }
 
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+
     @Override
     public String toString() {
         return "OrderVO{" +
@@ -165,6 +175,7 @@ public class OrderVO {
                 ", deadline=" + deadline +
                 ", majorTypeId=" + majorTypeId +
                 ", serviceTypeId=" + serviceTypeId +
+                ", iconUrl='" + iconUrl + '\'' +
                 '}';
     }
 }
