@@ -19,8 +19,8 @@ public class WeChatController {
     private static final String PROFESSOR_APPID = "wxf0c8176f6d092d15";
     private static final String PROFESSOR_SECRET = "cb36a0b19e7512b9c31c72f583b799a2";
 
-    private static final String STUDENT_APPID = "wxa9de6d401acaf60a";
-    private static final String STUDENT_SECRET = "0964e68df87b345105f7ac6d03b03019";
+    private static final String STUDENT_APPID = "wx3104bba58c0a9ed2";
+    private static final String STUDENT_SECRET = "86869b2a124880e5fa2f80680d2f2fa3";
 
     private WeChatService weChatService;
 
