@@ -40,11 +40,6 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public ResponseVO expertSearch(String expert, String nation, String position,
                                    String major,Integer startPos, Integer num) {
-        if(StringUtils.isEmpty(expert) && StringUtils.isEmpty(nation) &&
-                StringUtils.isEmpty(position) && StringUtils.isEmpty(major)){
-            return ResponseVO.buildFailure("专家搜索输入信息为空");
-        }
-
         if(null == startPos){
             startPos = 0;
         }
