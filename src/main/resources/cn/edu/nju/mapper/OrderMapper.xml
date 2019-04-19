@@ -20,7 +20,11 @@
         <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
         <result column="service_type_id" jdbcType="INTEGER" property="serviceTypeId" />
         <result column="major_type_id" jdbcType="INTEGER" property="majorTypeId" />
+
         <result column="icon_url" jdbcType="VARCHAR" property="iconUrl" />
+        <result column="professor_name" jdbcType="VARCHAR" property="professorName" />
+        <result column="major" jdbcType="VARCHAR" property="professorMajor" />
+        <result column="school" jdbcType="VARCHAR" property="professorSchool" />
 
     </resultMap>
 
@@ -30,8 +34,10 @@
     </insert>
 
     <select id="getOrderList" resultMap="BaseResultMap">
-        SELECT * from `order`, `service`, `student`, `user` WHERE order.student_id = #{userId} AND
-        order.service_id = service.id AND order.student_id = student.id AND service.professor_id = user.id
+        SELECT o.*, ser.*, stu.*, u.icon_url, u.name professor_name, u.major, u.school
+        from `order` o, `service` ser,  `student` stu, `user` u
+        WHERE o.student_id = #{userId} AND o.service_id = ser.id AND o.student_id = stu.id
+        AND ser.professor_id = u.id
     </select>
 
     <select id="getAllOrder" resultMap="BaseResultMap">

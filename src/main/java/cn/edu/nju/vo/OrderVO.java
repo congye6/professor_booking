@@ -27,6 +27,9 @@ public class OrderVO {
     private Integer majorTypeId;
     private Integer serviceTypeId;
 
+    private String professorName;
+    private String professorMajor;
+    private String professorSchool;
     private String iconUrl;
 
     public Integer getId() {
@@ -157,6 +160,30 @@ public class OrderVO {
         this.iconUrl = iconUrl;
     }
 
+    public String getProfessorName() {
+        return professorName;
+    }
+
+    public void setProfessorName(String professorName) {
+        this.professorName = professorName;
+    }
+
+    public String getProfessorMajor() {
+        return professorMajor;
+    }
+
+    public void setProfessorMajor(String professorMajor) {
+        this.professorMajor = professorMajor;
+    }
+
+    public String getProfessorSchool() {
+        return professorSchool;
+    }
+
+    public void setProfessorSchool(String professorSchool) {
+        this.professorSchool = professorSchool;
+    }
+
     @Override
     public String toString() {
         return "OrderVO{" +
@@ -175,6 +202,9 @@ public class OrderVO {
                 ", deadline=" + deadline +
                 ", majorTypeId=" + majorTypeId +
                 ", serviceTypeId=" + serviceTypeId +
+                ", professorName='" + professorName + '\'' +
+                ", professorMajor='" + professorMajor + '\'' +
+                ", professorSchool='" + professorSchool + '\'' +
                 ", iconUrl='" + iconUrl + '\'' +
                 '}';
     }
