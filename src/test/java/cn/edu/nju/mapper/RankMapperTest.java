@@ -22,7 +22,7 @@ public class RankMapperTest {
     public void addRank(){
         RankVO rankVO=new RankVO();
         rankVO.setInstitude("cccc");
-        rankVO.setRank(12);
+        rankVO.setRank(12.0);
         mapper.insert(rankVO);
     }
 
@@ -35,7 +35,7 @@ public class RankMapperTest {
     @Test
     public void update(){
         RankVO rankVO=new RankVO();
-        rankVO.setRank(1);
+        rankVO.setRank(1.0);
         rankVO.setInstitude("Harvard University");
         mapper.updateByInstitude(rankVO);
     }

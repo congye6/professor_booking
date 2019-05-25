@@ -7,7 +7,7 @@ public class RankVO implements Serializable {
 
     private String institude;
 
-    private Integer rank;
+    private Double rank;
 
     private static final long serialVersionUID = 1L;
 
@@ -27,11 +27,11 @@ public class RankVO implements Serializable {
         this.institude = institude == null ? null : institude.trim();
     }
 
-    public Integer getRank() {
+    public Double getRank() {
         return rank;
     }
 
-    public void setRank(Integer rank) {
+    public void setRank(Double rank) {
         this.rank = rank;
     }
 }

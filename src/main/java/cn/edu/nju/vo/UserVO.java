@@ -48,7 +48,7 @@ public class UserVO implements Serializable {
     /**
      * 大学排名，自动根据学校名称生成
      */
-    private Integer institudeRank;
+    private Double institudeRank;
 
     private static final long serialVersionUID = 1L;
 
@@ -60,11 +60,11 @@ public class UserVO implements Serializable {
         this.id = id;
     }
 
-    public Integer getInstitudeRank() {
+    public Double getInstitudeRank() {
         return institudeRank;
     }
 
-    public void setInstitudeRank(Integer institudeRank) {
+    public void setInstitudeRank(Double institudeRank) {
         this.institudeRank = institudeRank;
     }
 

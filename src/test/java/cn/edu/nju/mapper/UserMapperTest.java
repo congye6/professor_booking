@@ -33,7 +33,7 @@ public class UserMapperTest {
         userVO.setResearchInterest("22");
         userVO.setFirstName("ccc");
         userVO.setFamilyName("ccccc");
-        userVO.setInstitudeRank(1);
+        userVO.setInstitudeRank(1.0);
         userMapper.insertSelective(userVO);
     }
 
@@ -43,7 +43,7 @@ public class UserMapperTest {
         userVO.setId(2410);
 
         userVO.setFamilyName("111");
-        userVO.setInstitudeRank(2);
+        userVO.setInstitudeRank(2.0);
         userVO.setFirstName("111111");
         userVO.setResearchInterest("ssssssssss");
         userMapper.updateSelective(userVO);

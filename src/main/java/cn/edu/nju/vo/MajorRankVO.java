@@ -9,7 +9,10 @@ public class MajorRankVO implements Serializable {
 
     private String major;
 
-    private Integer rank;
+    /**
+     * rank类型改成double
+     */
+    private Double rank;
 
     private static final long serialVersionUID = 1L;
 
@@ -37,11 +40,11 @@ public class MajorRankVO implements Serializable {
         this.major = major == null ? null : major.trim();
     }
 
-    public Integer getRank() {
+    public Double getRank() {
         return rank;
     }
 
-    public void setRank(Integer rank) {
+    public void setRank(Double rank) {
         this.rank = rank;
     }
 }
