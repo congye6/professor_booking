@@ -1,45 +1,45 @@
 package cn.edu.nju.service;
 
-import cn.edu.nju.vo.RankVO;
+import cn.edu.nju.vo.InstitudeVO;
 import cn.edu.nju.vo.ResponseVO;
 
 /**
  * x学校排名管理
  * Created by cong on 2019-01-01.
  */
-public interface RankService {
+public interface InstitudeService {
 
     /**
      * 根据学校查询排名
      * @param institude
      * @return
      */
-    public ResponseVO getRank(String institude);
+    public ResponseVO getInstitude(String institude);
 
     /**
      * 获取所有排名
      * @return
      */
-    public ResponseVO getAllRank();
+    public ResponseVO getAllInstitude();
 
     /**
      * 添加排名
-     * @param rankVO
+     * @param institudeVO
      * @return
      */
-    public ResponseVO insertRank(RankVO rankVO);
+    public ResponseVO insertInstitude(InstitudeVO institudeVO);
 
     /**
      * 更新排名
-     * @param rankVO
+     * @param institudeVO
      * @return
      */
-    public ResponseVO updateRank(RankVO rankVO);
+    public ResponseVO updateInstitude(InstitudeVO institudeVO);
 
     /**
      * 删除排名
      * @param name
      * @return
      */
-    public ResponseVO deleteRank(String name);
+    public ResponseVO deleteInstitude(String name);
 }

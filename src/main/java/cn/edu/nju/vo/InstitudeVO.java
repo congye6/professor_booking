@@ -2,12 +2,28 @@ package cn.edu.nju.vo;
 
 import java.io.Serializable;
 
-public class RankVO implements Serializable {
+/**
+ * 大学信息
+ */
+public class InstitudeVO implements Serializable {
     private Integer id;
 
+    /**
+     * 学校名称
+     */
     private String institude;
 
+    /**
+     * 排名
+     */
     private Double rank;
+
+    /**
+     * 所属国家
+     */
+    private String country;
+
+    private String icon;
 
     private static final long serialVersionUID = 1L;
 
@@ -33,5 +49,21 @@ public class RankVO implements Serializable {
 
     public void setRank(Double rank) {
         this.rank = rank;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

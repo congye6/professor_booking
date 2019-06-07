@@ -1,9 +1,9 @@
 package cn.edu.nju.service;
 
-import cn.edu.nju.mapper.RankMapper;
+import cn.edu.nju.mapper.InstitudeMapper;
 import cn.edu.nju.mapper.UserMapper;
 import cn.edu.nju.util.NameUtil;
-import cn.edu.nju.vo.RankVO;
+import cn.edu.nju.vo.InstitudeVO;
 import cn.edu.nju.vo.ResponseVO;
 import cn.edu.nju.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
 
     @Autowired
-    private RankMapper rankMapper;
+    private InstitudeMapper institudeMapper;
 
     @Override
     public ResponseVO getUser(int id) {
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public ResponseVO updateUser(UserVO userVO) {
         if(!StringUtils.isEmpty(userVO.getSchool())){//更新学校前检查排名
-            RankVO rank=rankMapper.selectByInstitude(userVO.getSchool());
+            InstitudeVO rank= institudeMapper.selectByInstitude(userVO.getSchool());
             if(rank==null)
                 return ResponseVO.buildFailure("学校："+userVO.getSchool()+" 不存在,请先维护改学校排名");
             userVO.setInstitudeRank(rank.getRank());
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ResponseVO addUser(UserVO userVO) {
-        RankVO rank=rankMapper.selectByInstitude(userVO.getSchool());
+        InstitudeVO rank= institudeMapper.selectByInstitude(userVO.getSchool());
         if(rank==null)
             return ResponseVO.buildFailure("学校："+userVO.getSchool()+" 不存在,请先维护该学校排名");
         userVO.setInstitudeRank(rank.getRank());

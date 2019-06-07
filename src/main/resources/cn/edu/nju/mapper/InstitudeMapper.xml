@@ -1,46 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.edu.nju.mapper.RankMapper">
-  <resultMap id="BaseResultMap" type="cn.edu.nju.vo.RankVO">
+<mapper namespace="cn.edu.nju.mapper.InstitudeMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.nju.vo.InstitudeVO">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="institude" jdbcType="VARCHAR" property="institude" />
-    <result column="rank" jdbcType="INTEGER" property="rank" />
+    <result column="rank"  property="rank" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, institude, rank
+    id, institude, rank, `icon`, `country`
   </sql>
 
   <select id="selectAll" resultMap="BaseResultMap">
-    SELECT * FROM institude_rank limit 1000
+    SELECT * FROM institude limit 1000
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from institude_rank
+    from institude
     where id = #{id,jdbcType=INTEGER}
   </select>
 
   <select id="selectByInstitude" parameterType="java.lang.String" resultMap="BaseResultMap">
-    SELECT * FROM institude_rank where institude=#{name}
+    SELECT * FROM institude where institude=#{name}
   </select>
 
   <delete id="deleteByInstitude" parameterType="java.lang.String">
-    delete from institude_rank where institude=#{name}
+    delete from institude where institude=#{name}
   </delete>
 
-  <insert id="insert" parameterType="cn.edu.nju.vo.RankVO">
-    insert into institude_rank (institude, rank)
-    values (#{institude,jdbcType=VARCHAR}, #{rank,jdbcType=INTEGER})
+  <insert id="insert" parameterType="cn.edu.nju.vo.InstitudeVO">
+    insert into institude (institude, rank, `icon` ,`country`)
+    values (#{institude,jdbcType=VARCHAR}, #{rank}, #{icon}, #{country})
   </insert>
-  <update id="updateByInstitude" parameterType="cn.edu.nju.vo.RankVO">
-    update institude_rank
+  <update id="updateByInstitude" parameterType="cn.edu.nju.vo.InstitudeVO">
+    update institude
     <set>
       <if test="rank != null">
-        rank = #{rank,jdbcType=INTEGER},
+        rank = #{rank},
+      </if>
+      <if test="icon != null">
+        `icon` = #{icon},
+      </if>
+      <if test="country != null">
+        country = #{country},
       </if>
     </set>
-    where institude = #{institude,jdbcType=INTEGER}
+    where institude = #{institude}
   </update>
 
 </mapper>

@@ -1,7 +1,6 @@
 package cn.edu.nju.service;
 
 import cn.edu.nju.vo.MajorRankVO;
-import cn.edu.nju.vo.RankVO;
 import cn.edu.nju.vo.ResponseVO;
 
 /**

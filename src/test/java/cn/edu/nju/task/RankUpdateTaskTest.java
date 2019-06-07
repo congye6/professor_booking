@@ -15,7 +15,7 @@ public class RankUpdateTaskTest {
 
     @Test
     public void updateInstitude(){
-        task.updateInstitude("excel/rank.xlsx");
+        task.updateInstitude("excel/institude.xlsx");
     }
 
     @Test

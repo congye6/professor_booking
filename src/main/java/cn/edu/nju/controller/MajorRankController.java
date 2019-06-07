@@ -2,7 +2,6 @@ package cn.edu.nju.controller;
 
 import cn.edu.nju.service.MajorRankService;
 import cn.edu.nju.vo.MajorRankVO;
-import cn.edu.nju.vo.RankVO;
 import cn.edu.nju.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

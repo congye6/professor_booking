@@ -1,6 +1,6 @@
 package cn.edu.nju.mapper;
 
-import cn.edu.nju.vo.RankVO;
+import cn.edu.nju.vo.InstitudeVO;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,17 +13,17 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RankMapperTest {
+public class InstitudeMapperTest {
 
     @Autowired
-    private RankMapper mapper;
+    private InstitudeMapper mapper;
 
     @Test
     public void addRank(){
-        RankVO rankVO=new RankVO();
-        rankVO.setInstitude("cccc");
-        rankVO.setRank(12.0);
-        mapper.insert(rankVO);
+        InstitudeVO institudeVO =new InstitudeVO();
+        institudeVO.setInstitude("cccc");
+        institudeVO.setRank(12.0);
+        mapper.insert(institudeVO);
     }
 
     @Test
@@ -34,10 +34,10 @@ public class RankMapperTest {
 
     @Test
     public void update(){
-        RankVO rankVO=new RankVO();
-        rankVO.setRank(1.0);
-        rankVO.setInstitude("Harvard University");
-        mapper.updateByInstitude(rankVO);
+        InstitudeVO institudeVO =new InstitudeVO();
+        institudeVO.setRank(1.0);
+        institudeVO.setInstitude("Harvard University");
+        mapper.updateByInstitude(institudeVO);
     }
 
 }

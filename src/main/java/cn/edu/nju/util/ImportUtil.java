@@ -1,10 +1,10 @@
 package cn.edu.nju.util;
 
 import cn.edu.nju.mapper.MajorRankMapper;
-import cn.edu.nju.mapper.RankMapper;
+import cn.edu.nju.mapper.InstitudeMapper;
 import cn.edu.nju.mapper.UserMapper;
 import cn.edu.nju.vo.MajorRankVO;
-import cn.edu.nju.vo.RankVO;
+import cn.edu.nju.vo.InstitudeVO;
 import cn.edu.nju.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -54,23 +54,10 @@ public class ImportUtil {
     private UserMapper userMapper;
 
     @Autowired
-    private RankMapper rankMapper;
+    private InstitudeMapper institudeMapper;
 
     @Autowired
     private MajorRankMapper majorRankMapper;
-
-
-    @Transactional
-    public void importRank(String filePath){
-        List<RankVO> list=excelUtil.readRankToJson(filePath, RankVO.class);
-        for(RankVO rankVO:list){
-            try{
-                rankMapper.insert(rankVO);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-    }
 
     @Transactional
     public void importMajorRank(String filePath){
@@ -87,7 +74,7 @@ public class ImportUtil {
     @Transactional
     public void importData(String filePath) {
         String schoolName = getSchoolName(filePath);
-        RankVO rank=rankMapper.selectByInstitude(schoolName);
+        InstitudeVO rank= institudeMapper.selectByInstitude(schoolName);
         if(rank==null){
             System.out.println("************************");
             System.out.println("************************");

@@ -33,11 +33,6 @@ public class ImportTest {
     }
 
     @Test
-    public void importRank(){
-        importUtil.importRank("excel/rank.xlsx");
-    }
-
-    @Test
     public void importMajorRank(){
         importUtil.importMajorRank("excel/rank.xlsx");
     }

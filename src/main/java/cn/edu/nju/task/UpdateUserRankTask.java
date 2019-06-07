@@ -1,8 +1,8 @@
 package cn.edu.nju.task;
 
-import cn.edu.nju.mapper.RankMapper;
+import cn.edu.nju.mapper.InstitudeMapper;
 import cn.edu.nju.mapper.UserMapper;
-import cn.edu.nju.vo.RankVO;
+import cn.edu.nju.vo.InstitudeVO;
 import cn.edu.nju.vo.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ public class UpdateUserRankTask {
     private static final int PAGE_SIZE = 1000;
 
     @Autowired
-    private RankMapper rankMapper;
+    private InstitudeMapper institudeMapper;
 
     @Autowired
     private UserMapper userMapper;
@@ -36,8 +36,8 @@ public class UpdateUserRankTask {
             for (UserVO user : users) {
                 UserVO updatedUser = new UserVO();
                 updatedUser.setId(user.getId());
-                RankVO rankVO = rankMapper.selectByInstitude(user.getSchool());
-                updatedUser.setInstitudeRank(rankVO.getRank());
+                InstitudeVO institudeVO = institudeMapper.selectByInstitude(user.getSchool());
+                updatedUser.setInstitudeRank(institudeVO.getRank());
                 userMapper.updateSelective(updatedUser);
             }
             begin += PAGE_SIZE;
