@@ -47,4 +47,32 @@ public interface UserMapper {
     List<UserVO> selectUserByInfo(@Param("name") String expert, @Param("nation") String nation,
                                   @Param("position") String position, @Param("major") String major,
                                   @Param("startPos") int startPos, @Param("num") int num);
+
+    /**
+     * 通过专家姓名、国家、职位、学校查找
+     * @param expert
+     * @param nation
+     * @param position
+     * @param major
+     * @param startPos
+     * @param num
+     * @return
+     */
+    List<UserVO> selectUserByUniversityRank(@Param("name") String expert, @Param("nation") String nation,
+                                            @Param("position") String position, @Param("major") String major,
+                                            @Param("startPos") int startPos, @Param("num") int num);
+
+    /**
+     * 通过专家姓名、国家、职位、学校查找
+     * @param expert
+     * @param nation
+     * @param position
+     * @param major
+     * @param startPos
+     * @param num
+     * @return
+     */
+    List<UserVO> selectUserByMajorRank(@Param("name") String expert, @Param("nation") String nation,
+                                            @Param("position") String position, @Param("major") String major,
+                                            @Param("startPos") int startPos, @Param("num") int num);
 }

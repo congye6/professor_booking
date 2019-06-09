@@ -17,6 +17,10 @@ import java.util.stream.Collectors;
 @Service
 public class ServiceServiceImpl implements ServiceService {
 
+    public static final String ORDER_BY_UNIVERSITY = "orderByUniversity";
+
+    public static final String ORDER_BY_MAJOR = "orderByMajor";
+
     private UserMapper userMapper;
 
     private ServiceMapper serviceMapper;
@@ -39,7 +43,7 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public ResponseVO expertSearch(String expert, String nation, String position,
-                                   String major,Integer startPos, Integer num) {
+                                   String major,Integer startPos, Integer num, String orderBy) {
         if(null == startPos){
             startPos = 0;
         }
@@ -48,7 +52,15 @@ public class ServiceServiceImpl implements ServiceService {
             num = 50;
         }
 
-        List<UserVO> searchExpertList = userMapper.selectUserByInfo(expert, nation, position, major, startPos, num);
+        List<UserVO> searchExpertList;
+        if(ORDER_BY_MAJOR.equals(orderBy)){
+            searchExpertList = userMapper.selectUserByMajorRank(expert, nation, position, major, startPos, num);
+        }else if(ORDER_BY_UNIVERSITY.equals(orderBy)){
+            searchExpertList = userMapper.selectUserByUniversityRank(expert, nation, position, major, startPos, num);
+        }else {
+            searchExpertList = userMapper.selectUserByInfo(expert, nation, position, major, startPos, num);
+        }
+
         return ResponseVO.buildSuccess(searchExpertList);
     }
 

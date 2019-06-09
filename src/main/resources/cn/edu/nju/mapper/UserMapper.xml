@@ -60,6 +60,55 @@
             ]]>
   </select>
 
+  <select id="selectUserByUniversityRank" resultMap="BaseResultMap">
+    SELECT `user`.* from `user`
+    LEFT JOIN `institude_rank`
+    ON `user`.school = `institude_rank`.institude
+    <where>
+      <if test="name != '' ">
+        name LIKE concat('%', #{name}, '%') OR
+        school LIKE concat('%', #{name}, '%') OR
+        research_interest LIKE concat('%', #{name}, '%') OR
+        major LIKE concat('%', #{name}, '%')
+      </if>
+      <if test="nation != '' ">
+        AND country = #{nation}
+      </if>
+      <if test="major != '' ">
+        AND major LIKE concat('%',#{major},'%')
+      </if>
+      <if test="position != '' ">
+        AND position LIKE concat('%',#{position},'%')
+      </if>
+    </where>
+    ORDER BY `institude_rank`.rank ASC
+  </select>
+
+  <select id="selectUserByMajorRank" resultMap="BaseResultMap">
+    SELECT `user`.* from `user`
+    LEFT JOIN `major_rank`
+    ON `user`.school = `major_rank`.institude
+    AND `user`.major = `major_rank`.major
+    <where>
+      <if test="name != '' ">
+        name LIKE concat('%', #{name}, '%') OR
+        school LIKE concat('%', #{name}, '%') OR
+        research_interest LIKE concat('%', #{name}, '%') OR
+        major LIKE concat('%', #{name}, '%')
+      </if>
+      <if test="nation != '' ">
+        AND country = #{nation}
+      </if>
+      <if test="major != '' ">
+        AND major LIKE concat('%',#{major},'%')
+      </if>
+      <if test="position != '' ">
+        AND position LIKE concat('%',#{position},'%')
+      </if>
+    </where>
+    ORDER BY `major_rank`.rank ASC
+  </select>
+
   <delete id="delete" parameterType="java.lang.Integer">
     delete from user
     where id = #{id}

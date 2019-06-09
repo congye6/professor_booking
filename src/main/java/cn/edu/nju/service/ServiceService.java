@@ -21,7 +21,7 @@ public interface ServiceService {
      * @return
      */
     ResponseVO expertSearch(String expert, String nation, String position,
-                            String major, Integer startPos, Integer num);
+                            String major, Integer startPos, Integer num, String orderBy);
 
     /**
      * 搜索服务信息

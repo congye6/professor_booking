@@ -36,8 +36,9 @@ public class ServiceController {
     @RequestMapping(value = "/search/expert", method = RequestMethod.GET)
     public ResponseVO searchExpert(@RequestParam("expert")String expert, @RequestParam("nation")String nation,
                                    @RequestParam("position")String position, @RequestParam("major")String major,
-                                   @RequestParam("startPos")Integer startPos, @RequestParam("number")Integer number){
-        return serviceService.expertSearch(expert, nation, position, major, startPos, number);
+                                   @RequestParam("startPos")Integer startPos, @RequestParam("number")Integer number,
+                                   @RequestParam("orderBy")String orderBy){
+        return serviceService.expertSearch(expert, nation, position, major, startPos, number, orderBy);
     }
 
     @RequestMapping(value = "/search/service", method = RequestMethod.GET)
