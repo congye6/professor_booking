@@ -27,7 +27,7 @@ public class MajorRankServiceImpl implements MajorRankService{
 
     @Override
     public ResponseVO insertRank(MajorRankVO rankVO) {
-        Integer rank=majorRankMapper.selectRank(rankVO.getInstitude(),rankVO.getMajor());
+        Double rank=majorRankMapper.selectRank(rankVO.getInstitude(),rankVO.getMajor());
         if(rank!=null)
             return ResponseVO.buildFailure("该专业排名已存在");
         majorRankMapper.insert(rankVO);

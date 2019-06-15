@@ -50,6 +50,11 @@ public class UserVO implements Serializable {
      */
     private Double institudeRank;
 
+    /**
+     * 专业排名，新增
+     */
+    private Double majorRank;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -58,6 +63,14 @@ public class UserVO implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Double getMajorRank() {
+        return majorRank;
+    }
+
+    public void setMajorRank(Double majorRank) {
+        this.majorRank = majorRank;
     }
 
     public Double getInstitudeRank() {

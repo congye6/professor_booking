@@ -19,8 +19,8 @@
     SELECT * FROM major_rank WHERE institude=#{institude}
   </select>
 
-  <select id="selectRank" resultType="java.lang.Integer">
-    SELECT * FROM major_rank WHERE institude=#{institude} and major=#{major}
+  <select id="selectRank" resultType="java.lang.Double">
+    SELECT `rank` FROM major_rank WHERE institude=#{institude} and major=#{major}
   </select>
 
   <insert id="insert" parameterType="cn.edu.nju.vo.MajorRankVO">
