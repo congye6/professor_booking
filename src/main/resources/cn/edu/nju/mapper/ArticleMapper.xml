@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nju.mapper.ArticleMapper">
+    <insert id="insert" parameterType="cn.edu.nju.vo.ArticleVO">
+        insert into professor_booking.article(title, `date`, link, cover, `count`)
+        values (#{title}, #{date}, #{link}, #{cover}, #{count})
+    </insert>
+
+
+</mapper>

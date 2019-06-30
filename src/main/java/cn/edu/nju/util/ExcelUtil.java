@@ -9,7 +9,9 @@ import org.springframework.util.StringUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -123,6 +125,7 @@ public class ExcelUtil {
                     cell = row.getCell(j);
 
                     String cellValue = getStringVal(cell);
+                    System.out.println(cellValue);
                     rowList.add(cellValue);
 //
                 }
@@ -196,6 +199,15 @@ public class ExcelUtil {
             case Cell.CELL_TYPE_FORMULA:
                 return cell.getCellFormula();
             case Cell.CELL_TYPE_NUMERIC:
+                short format = cell.getCellStyle().getDataFormat();
+                SimpleDateFormat sdf = null;
+                if (format == 14 || format == 31 || format == 57 || format == 58
+                        || (176<=format && format<=178) || (182<=format && format<=196)
+                        || (210<=format && format<=213) || (208==format ) ) { // 日期
+                    sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = org.apache.poi.ss.usermodel.DateUtil.getJavaDate(cell.getNumericCellValue());
+                    return sdf.format(date);
+                }
                 cell.setCellType(Cell.CELL_TYPE_STRING);
                 return cell.getStringCellValue();
             case Cell.CELL_TYPE_STRING:
