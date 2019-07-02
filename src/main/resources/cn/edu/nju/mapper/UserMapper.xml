@@ -14,6 +14,7 @@
     <result column="first_name" property="firstName"/>
     <result column="family_name" property="familyName"/>
     <result column="institude_rank" property="institudeRank"/>
+    <result column="major_rank" property="majorRank"/>
   </resultMap>
 
   <select id="selectUser" resultMap="BaseResultMap">
@@ -165,6 +166,9 @@
       <if test="institudeRank != null">
         institude_rank,
       </if>
+      <if test="majorRank != null">
+        major_rank,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -208,6 +212,9 @@
       </if>
       <if test="institudeRank != null">
         #{institudeRank},
+      </if>
+      <if test="majorRank != null">
+        #{majorRank},
       </if>
     </trim>
   </insert>
@@ -255,6 +262,9 @@
       </if>
       <if test="institudeRank != null">
         institude_rank=#{institudeRank},
+      </if>
+      <if test="majorRank != null">
+        major_rank=#{majorRank},
       </if>
     </set>
     where id = #{id}

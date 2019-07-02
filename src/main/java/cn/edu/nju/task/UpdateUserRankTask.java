@@ -38,6 +38,7 @@ public class UpdateUserRankTask {
                 updatedUser.setId(user.getId());
                 InstitudeVO institudeVO = institudeMapper.selectByInstitude(user.getSchool());
                 updatedUser.setInstitudeRank(institudeVO.getRank());
+                updatedUser.setCountry(institudeVO.getCountry());
                 userMapper.updateSelective(updatedUser);
             }
             begin += PAGE_SIZE;

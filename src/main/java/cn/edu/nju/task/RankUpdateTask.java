@@ -31,7 +31,7 @@ public class RankUpdateTask {
         for(InstitudeVO institudeVO :list){
             try{
                 System.out.println(JSONObject.toJSONString(institudeVO));
-                institudeMapper.insert(institudeVO);
+                institudeMapper.updateByInstitude(institudeVO);
             }catch (Exception e){
                 e.printStackTrace();
             }
