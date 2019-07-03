@@ -6,5 +6,9 @@
         values (#{title}, #{date}, #{link}, #{cover}, #{count})
     </insert>
 
+    <select id="selectAll" resultType="cn.edu.nju.vo.ArticleVO">
+        select * from professor_booking.article limit 10000
+    </select>
+
 
 </mapper>
