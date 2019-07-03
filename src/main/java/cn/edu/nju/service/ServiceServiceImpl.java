@@ -2,11 +2,12 @@ package cn.edu.nju.service;
 
 import cn.edu.nju.mapper.*;
 import cn.edu.nju.vo.*;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -61,7 +62,36 @@ public class ServiceServiceImpl implements ServiceService {
             searchExpertList = userMapper.selectUserByInfo(expert, nation, position, major, startPos, num);
         }
 
-        return ResponseVO.buildSuccess(searchExpertList);
+        Set<Integer> containIdxSet = new HashSet<>();
+        UserVO userVO;
+        String school;
+        for(int i=0; i<searchExpertList.size(); i++){
+            userVO = searchExpertList.get(i);
+            school = userVO.getSchool();
+            if(!StringUtils.isEmpty(school) && school.contains(expert)){
+                containIdxSet.add(i);
+            }
+        }
+
+        List<UserVO> containList = new ArrayList<>();
+        List<UserVO> notContainList = new ArrayList<>();
+        for(int i=0 ;i<searchExpertList.size(); i++){
+            if(containIdxSet.contains(i)){
+                containList.add(searchExpertList.get(i));
+            }else {
+                notContainList.add(searchExpertList.get(i));
+            }
+        }
+
+        List<UserVO> res = new ArrayList<>();
+        for(UserVO containUser: containList){
+            res.add(containUser);
+        }
+        for(UserVO notContainUser: notContainList){
+            res.add(notContainUser);
+        }
+
+        return ResponseVO.buildSuccess(res);
     }
 
     @Override
