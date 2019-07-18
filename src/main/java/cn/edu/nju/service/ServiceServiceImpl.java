@@ -55,11 +55,11 @@ public class ServiceServiceImpl implements ServiceService {
 
         List<UserVO> searchExpertList;
         if(ORDER_BY_MAJOR.equals(orderBy)){
-            searchExpertList = userMapper.selectUserByMajorRank(expert, nation, position, major, startPos, num);
+            searchExpertList = userMapper.selectUserByMajorRank(expert, nation, position, major);
         }else if(ORDER_BY_UNIVERSITY.equals(orderBy)){
-            searchExpertList = userMapper.selectUserByUniversityRank(expert, nation, position, major, startPos, num);
+            searchExpertList = userMapper.selectUserByUniversityRank(expert, nation, position, major);
         }else {
-            searchExpertList = userMapper.selectUserByInfo(expert, nation, position, major, startPos, num);
+            searchExpertList = userMapper.selectUserByInfo(expert, nation, position, major);
         }
 
         Set<Integer> containIdxSet = new HashSet<>();
@@ -83,12 +83,17 @@ public class ServiceServiceImpl implements ServiceService {
             }
         }
 
-        List<UserVO> res = new ArrayList<>();
+        List<UserVO> sortRes = new ArrayList<>();
         for(UserVO containUser: containList){
-            res.add(containUser);
+            sortRes.add(containUser);
         }
         for(UserVO notContainUser: notContainList){
-            res.add(notContainUser);
+            sortRes.add(notContainUser);
+        }
+
+        List<UserVO> res = new ArrayList<>();
+        for(int i = startPos; i < startPos + num; i++){
+            res.add(sortRes.get(i));
         }
 
         return ResponseVO.buildSuccess(res);

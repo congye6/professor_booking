@@ -32,7 +32,7 @@ public class ExportUtilTest {
         for (String school:SCHOOLS){
             String fileName = "excel/output/"+school+".xls";
             try {
-                List<UserVO> users=userMapper.selectUserByInfo(school,"","","",0,20000);
+                List<UserVO> users=userMapper.selectUserByInfo(school,"","","");
                 ExcelExportUtil.exportUser(fileName,users);
             } catch (IOException e) {
                 e.printStackTrace();

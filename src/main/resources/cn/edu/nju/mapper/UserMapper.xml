@@ -56,9 +56,6 @@
         AND position LIKE concat('%',#{position},'%')
       </if>
     </where>
-    <![CDATA[
-                LIMIT #{startPos},#{num}
-            ]]>
   </select>
 
   <select id="selectUserByUniversityRank" resultMap="BaseResultMap">
@@ -83,9 +80,6 @@
       </if>
     </where>
     ORDER BY `institude_rank`.rank ASC
-    <![CDATA[
-                LIMIT #{startPos},#{num}
-            ]]>
   </select>
 
   <select id="selectUserByMajorRank" resultMap="BaseResultMap">
@@ -111,9 +105,6 @@
       </if>
     </where>
     ORDER BY `major_rank`.rank ASC
-    <![CDATA[
-                LIMIT #{startPos},#{num}
-            ]]>
   </select>
 
   <delete id="delete" parameterType="java.lang.Integer">
