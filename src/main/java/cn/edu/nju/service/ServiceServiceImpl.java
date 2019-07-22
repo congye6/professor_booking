@@ -92,7 +92,7 @@ public class ServiceServiceImpl implements ServiceService {
         }
 
         List<UserVO> res = new ArrayList<>();
-        for(int i = startPos; i < startPos + num; i++){
+        for(int i = startPos; i < Math.min(startPos + num, sortRes.size()); i++){
             res.add(sortRes.get(i));
         }
 
