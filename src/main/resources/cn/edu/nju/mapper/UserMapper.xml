@@ -64,10 +64,10 @@
     ON `user`.school = `institude_rank`.institude
     <where>
       <if test="name != '' ">
-        name LIKE concat('%', #{name}, '%') OR
+        (name LIKE concat('%', #{name}, '%') OR
         school LIKE concat('%', #{name}, '%') OR
         research_interest LIKE concat('%', #{name}, '%') OR
-        major LIKE concat('%', #{name}, '%')
+        major LIKE concat('%', #{name}, '%') )
       </if>
       <if test="nation != '' ">
         AND country = #{nation}
@@ -89,10 +89,10 @@
     AND `user`.major = `major_rank`.major
     <where>
       <if test="name != '' ">
-        name LIKE concat('%', #{name}, '%') OR
+        (name LIKE concat('%', #{name}, '%') OR
         school LIKE concat('%', #{name}, '%') OR
         research_interest LIKE concat('%', #{name}, '%') OR
-        `user`.major LIKE concat('%', #{name}, '%')
+        `user`.major LIKE concat('%', #{name}, '%') )
       </if>
       <if test="nation != '' ">
         AND country = #{nation}
