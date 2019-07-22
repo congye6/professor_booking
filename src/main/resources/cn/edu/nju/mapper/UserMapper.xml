@@ -92,7 +92,7 @@
         name LIKE concat('%', #{name}, '%') OR
         school LIKE concat('%', #{name}, '%') OR
         research_interest LIKE concat('%', #{name}, '%') OR
-        major LIKE concat('%', #{name}, '%')
+        `user`.major LIKE concat('%', #{name}, '%')
       </if>
       <if test="nation != '' ">
         AND country = #{nation}
