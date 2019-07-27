@@ -28,14 +28,14 @@ public class InstitudeMapperTest {
 
     @Test
     public void selectAll(){
-        System.out.println(JSONObject.toJSONString(mapper.selectAll()));
+//        System.out.println(JSONObject.toJSONString(mapper.selectAll()));
         System.out.println(JSONObject.toJSONString(mapper.selectByInstitude("Harvard University")));
     }
 
     @Test
     public void update(){
         InstitudeVO institudeVO =new InstitudeVO();
-        institudeVO.setRank(1.0);
+        institudeVO.setSort(0);
         institudeVO.setInstitude("Harvard University");
         mapper.updateByInstitude(institudeVO);
     }

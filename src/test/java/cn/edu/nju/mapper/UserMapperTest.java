@@ -40,12 +40,13 @@ public class UserMapperTest {
     @Test
     public void update(){
         UserVO userVO=new UserVO();
-        userVO.setId(2410);
+        userVO.setId(53246);
 
-        userVO.setFamilyName("111");
-        userVO.setInstitudeRank(2.0);
-        userVO.setFirstName("111111");
-        userVO.setResearchInterest("ssssssssss");
+//        userVO.setFamilyName("111");
+//        userVO.setInstitudeRank(2.0);
+//        userVO.setFirstName("111111");
+//        userVO.setResearchInterest("ssssssssss");
+        userVO.setSort(1);
         userMapper.updateSelective(userVO);
     }
 
@@ -56,7 +57,7 @@ public class UserMapperTest {
 
     @Test
     public void select(){
-        System.out.println(JSONObject.toJSONString(userMapper.selectUserById(1555)));
+        System.out.println(JSONObject.toJSONString(userMapper.selectUserById(53246)));
 
     }
 

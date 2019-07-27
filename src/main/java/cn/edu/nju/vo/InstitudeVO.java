@@ -25,6 +25,11 @@ public class InstitudeVO implements Serializable {
 
     private String icon;
 
+    /**
+     * 排序权重,值越大越靠前,默认为0
+     */
+    private Integer sort;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -65,5 +70,13 @@ public class InstitudeVO implements Serializable {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 }

@@ -55,6 +55,11 @@ public class UserVO implements Serializable {
      */
     private Double majorRank;
 
+    /**
+     * 排序权重,值越大越靠前,默认为0
+     */
+    private Integer sort;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -183,5 +188,13 @@ public class UserVO implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 }
