@@ -19,4 +19,6 @@ public interface InstitudeMapper {
     int updateByInstitude(InstitudeVO record);
 
     void deleteByInstitude(String name);
+
+    List<InstitudeVO> selectSortedInstitude(int count);
 }

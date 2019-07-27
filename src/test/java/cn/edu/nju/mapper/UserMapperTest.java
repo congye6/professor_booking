@@ -72,6 +72,9 @@ public class UserMapperTest {
         System.out.println(userMapper.selectPosition());
     }
 
-
+    @Test
+    public void selectSortedUser(){
+        System.out.println(JSONObject.toJSONString(userMapper.selectSortedUser(10)));
+    }
 
 }

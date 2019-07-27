@@ -17,6 +17,8 @@ public interface UserMapper {
 
     List<UserVO> selectUser(@Param("start") int start,@Param("pageSize") int pageSize);
 
+    List<UserVO> selectSortedUser(int count);
+
     /**
      * 按照用户Id查找用户
      * @param id

@@ -25,6 +25,10 @@
     SELECT * FROM institude where institude=#{name}
   </select>
 
+  <select id="selectSortedInstitude" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from institude order by `sort` desc limit #{count}
+  </select>
+
   <delete id="deleteByInstitude" parameterType="java.lang.String">
     delete from institude where institude=#{name}
   </delete>

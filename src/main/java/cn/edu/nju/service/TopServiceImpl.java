@@ -23,24 +23,12 @@ public class TopServiceImpl implements TopService{
 
     @Override
     public ResponseVO getTopProfessors() {
-        List<Integer> topProfessorIds = getTopProfessorIds();
-        List<UserVO> professors = new ArrayList<>();
-        for (Integer topProfessorId : topProfessorIds){
-            UserVO user = userMapper.selectUserById(topProfessorId);
-            professors.add(user);
-        }
-        return ResponseVO.buildSuccess(professors);
+        return ResponseVO.buildSuccess(userMapper.selectSortedUser(10));
     }
 
     @Override
     public ResponseVO getTopInstitude() {
-        List<String> topInstitudeNames = getTopInstitudeNames();
-        List<InstitudeVO> institudes = new ArrayList<>();
-        for(String topInstitudeName : topInstitudeNames){
-            InstitudeVO topInstitude = institudeMapper.selectByInstitude(topInstitudeName);
-            institudes.add(topInstitude);
-        }
-        return ResponseVO.buildSuccess(institudes);
+        return ResponseVO.buildSuccess(institudeMapper.selectSortedInstitude(10));
     }
 
     /**
