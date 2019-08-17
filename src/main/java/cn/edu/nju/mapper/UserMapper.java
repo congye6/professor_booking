@@ -17,6 +17,8 @@ public interface UserMapper {
 
     List<UserVO> selectUser(@Param("start") int start,@Param("pageSize") int pageSize);
 
+    List<UserVO> selectRandomUsers(int num);
+
     List<UserVO> selectSortedUser(int count);
 
     /**

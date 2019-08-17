@@ -17,6 +17,12 @@
     <result column="major_rank" property="majorRank"/>
   </resultMap>
 
+  <select id="selectRandomUsers" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT * FROM user as t1 WHERE t1.id>=
+      ((SELECT MIN(id) FROM user)+(RAND()*((SELECT MAX(id) FROM user)-(SELECT MIN(id) FROM user))))
+      LIMIT #{num}
+  </select>
+
   <select id="selectUser" resultMap="BaseResultMap">
     SELECT * FROM `user` ORDER by id limit #{start},#{pageSize}
   </select>
