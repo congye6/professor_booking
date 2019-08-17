@@ -10,6 +10,12 @@
     id, institude, rank, `icon`, `country`, `sort`
   </sql>
 
+  <select id="selectRandomInstitude" resultMap="BaseResultMap" resultType="java.lang.Integer">
+    SELECT * FROM institude as t1 WHERE t1.id>=
+      ((SELECT MIN(id) FROM institude)+(RAND()*((SELECT MAX(id) FROM institude)-(SELECT MIN(id) FROM institude))))
+      LIMIT #{num}
+  </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
     SELECT * FROM institude limit 1000
   </select>
