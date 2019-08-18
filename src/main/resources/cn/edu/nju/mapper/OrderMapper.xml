@@ -7,6 +7,8 @@
         <result column="student_id" jdbcType="INTEGER" property="userId" />
         <result column="service_id" jdbcType="INTEGER" property="serviceId" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="student_status" jdbcType="INTEGER" property="studentStatus" />
+        <result column="teacher_status" jdbcType="INTEGER" property="teacherStatus" />
 
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="phone" jdbcType="VARCHAR" property="phone" />
@@ -38,6 +40,13 @@
         from `order` o, `service` ser,  `student` stu, `user` u
         WHERE o.student_id = #{userId} AND o.service_id = ser.id AND o.student_id = stu.id
         AND ser.professor_id = u.id
+    </select>
+
+    <select id="getOrderListByUserIdAndServiceId" resultMap="BaseResultMap">
+        SELECT o.*, ser.*, stu.*, u.icon_url, u.name professor_name, u.major, u.school
+        from `order` o, `service` ser,  `student` stu, `user` u
+        WHERE o.student_id = #{userId} AND o.service_id = #{serviceId} AND
+        o.service_id = ser.id AND o.student_id = stu.id AND ser.professor_id = u.id
     </select>
 
     <select id="getAllOrder" resultMap="BaseResultMap">

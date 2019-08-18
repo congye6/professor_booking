@@ -1,5 +1,6 @@
 package cn.edu.nju.service;
 
+import cn.edu.nju.constant.OrderStatusConstant;
 import cn.edu.nju.mapper.OrderMapper;
 import cn.edu.nju.vo.OrderModifyVO;
 import cn.edu.nju.vo.OrderVO;
@@ -27,6 +28,17 @@ public class OrderServiceImpl implements OrderService{
         if(userId == null || serviceId == null){
             return ResponseVO.buildFailure("预约信息不完整");
         }
+
+        // 如果该用户已预约过同一个服务
+        // 且订单状态未完成，则不允许预约
+        List<OrderVO> orderVOList = orderMapper.getOrderListByUserIdAndServiceId(userId, serviceId);
+        for(OrderVO vo: orderVOList){
+            if(vo.getStudentStatus() == OrderStatusConstant.NOT_FINISH ||
+                    vo.getTeacherStatus() == OrderStatusConstant.NOT_FINISH){
+                return ResponseVO.buildFailure("订单状态未完成，不能预约");
+            }
+        }
+
         orderMapper.saveOrder(userId, serviceId);
         return ResponseVO.buildSuccess(true);
     }

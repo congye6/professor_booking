@@ -13,6 +13,8 @@ public class OrderVO {
     private Integer userId;
     private Integer serviceId;
     private Timestamp createTime;
+    private int studentStatus;
+    private int teacherStatus;
 
     private String name;
     private String phone;
@@ -31,6 +33,7 @@ public class OrderVO {
     private String professorMajor;
     private String professorSchool;
     private String iconUrl;
+
 
     public Integer getId() {
         return id;
@@ -184,6 +187,22 @@ public class OrderVO {
         this.professorSchool = professorSchool;
     }
 
+    public int getStudentStatus() {
+        return studentStatus;
+    }
+
+    public void setStudentStatus(int studentStatus) {
+        this.studentStatus = studentStatus;
+    }
+
+    public int getTeacherStatus() {
+        return teacherStatus;
+    }
+
+    public void setTeacherStatus(int teacherStatus) {
+        this.teacherStatus = teacherStatus;
+    }
+
     @Override
     public String toString() {
         return "OrderVO{" +
@@ -191,6 +210,8 @@ public class OrderVO {
                 ", userId=" + userId +
                 ", serviceId=" + serviceId +
                 ", createTime=" + createTime +
+                ", studentStatus=" + studentStatus +
+                ", teacherStatus=" + teacherStatus +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +

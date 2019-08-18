@@ -24,6 +24,14 @@ public interface OrderMapper {
     void saveOrder(@Param("studentId")int studentId, @Param("serviceId")int serviceId);
 
     /**
+     * 根据用户和服务获取预约信息
+     * @param userId
+     * @param serviceId
+     * @return
+     */
+    List<OrderVO> getOrderListByUserIdAndServiceId(@Param("userId")int userId, @Param("serviceId")int serviceId);
+
+    /**
      * 获取我的预约列表
      * @param userId
      * @return
