@@ -67,4 +67,16 @@ public class OrderServiceImpl implements OrderService{
             return ResponseVO.buildFailure("未修改成功");
         }
     }
+
+    @Override
+    public ResponseVO modifyOrderStudentStatus(String orderId, int orderStatus) {
+        int cnt = orderMapper.updateOrderStudentStatus(orderId, orderStatus);
+        return cnt == 1 ? ResponseVO.buildSuccess("修改成功"): ResponseVO.buildFailure("修改失败");
+    }
+
+    @Override
+    public ResponseVO modifyOrderTeacherStatus(String orderId, int orderStatus) {
+        int cnt = orderMapper.updateOrderTeacherStatus(orderId, orderStatus);
+        return cnt == 1 ? ResponseVO.buildSuccess("修改成功"): ResponseVO.buildFailure("修改失败");
+    }
 }

@@ -44,4 +44,20 @@ public interface OrderService {
      * @return
      */
     ResponseVO modifyOrder(OrderModifyVO orderVO);
+
+    /**
+     * 将预约表中学生状态字段设置
+     * @param orderId 订单Id
+     * @param orderStatus 订单状态
+     * @return
+     */
+    ResponseVO modifyOrderStudentStatus(String orderId, int orderStatus);
+
+    /**
+     * 将预约表中教授状态字段设置
+     * @param orderId 订单Id
+     * @param orderStatus 订单状态
+     * @return
+     */
+    ResponseVO modifyOrderTeacherStatus(String orderId, int orderStatus);
 }

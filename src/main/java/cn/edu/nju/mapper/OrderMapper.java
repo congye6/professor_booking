@@ -55,4 +55,20 @@ public interface OrderMapper {
      * @return
      */
     int updateOrder(OrderModifyVO orderVO);
+
+    /**
+     * 更新订单学生状态
+     * @param orderId 订单Id
+     * @param orderStatus 订单状态
+     * @return
+     */
+    int updateOrderStudentStatus(@Param("orderId") String orderId, @Param("orderStatus") int orderStatus);
+
+    /**
+     * 更新订单教授状态
+     * @param orderId 订单Id
+     * @param orderStatus 订单状态
+     * @return
+     */
+    int updateOrderTeacherStatus(@Param("orderId") String orderId, @Param("orderStatus") int orderStatus);
 }

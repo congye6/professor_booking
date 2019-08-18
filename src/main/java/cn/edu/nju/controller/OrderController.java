@@ -1,5 +1,6 @@
 package cn.edu.nju.controller;
 
+import cn.edu.nju.constant.OrderStatusConstant;
 import cn.edu.nju.service.OrderService;
 import cn.edu.nju.vo.OrderModifyVO;
 import cn.edu.nju.vo.ResponseVO;
@@ -44,6 +45,16 @@ public class OrderController {
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public ResponseVO getAllReserveList(){
         return orderService.getAllOrder();
+    }
+
+    @RequestMapping(value = "/student/finish", method = RequestMethod.GET)
+    public ResponseVO modifyOrderStatusByStudent(@RequestParam("orderId")String orderId){
+        return orderService.modifyOrderStudentStatus(orderId, OrderStatusConstant.FINISHED);
+    }
+
+    @RequestMapping(value = "/teacher/finish", method = RequestMethod.GET)
+    public ResponseVO modifyOrderStatusByTeacher(@RequestParam("orderId")String orderId){
+        return orderService.modifyOrderTeacherStatus(orderId, OrderStatusConstant.FINISHED);
     }
 
 }

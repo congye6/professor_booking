@@ -66,4 +66,24 @@
         where id = #{id}
     </update>
 
+    <update id="updateOrderStudentStatus" >
+        update `order`
+        <set>
+            <if test="orderStatus != null">
+                student_status = #{orderStatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{orderId}
+    </update>
+
+    <update id="updateOrderTeacherStatus" >
+        update `order`
+        <set>
+            <if test="orderStatus != null">
+                teacher_status = #{orderStatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{orderId}
+    </update>
+
 </mapper>
