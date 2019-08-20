@@ -45,10 +45,11 @@ public interface OrderMapper {
     List<OrderVO> getAllOrder();
 
     /**
-     * 获取预约某服务的所有用户
+     * 获取服务的所有订单
+     * @param serviceId
      * @return
      */
-    List<Integer> getOrderUsers(int serviceId);
+    List<OrderVO> getOrderByService(int serviceId);
 
     /**
      * 删除订单id

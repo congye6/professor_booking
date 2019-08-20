@@ -54,8 +54,8 @@
         order.student_id = student.id AND service.professor_id = user.id
     </select>
 
-    <select id="getOrderUsers" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-        SELECT student_id FROM `order` where service_id=#{serviceId}
+    <select id="getOrderByService" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM `order` where service_id=#{serviceId}
     </select>
 
     <delete id="deleteOrderById">

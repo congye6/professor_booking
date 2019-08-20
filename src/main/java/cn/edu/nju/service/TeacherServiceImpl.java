@@ -13,7 +13,7 @@ import java.util.List;
  * Created by cong on 2019-01-03.
  */
 @Service
-public class TeacherServiceImpl implements TeacherService{
+public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
     private TeacherMapper teacherMapper;
@@ -32,10 +32,10 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public ResponseVO login(String wechatId, String wechatIconUrl) {
-        TeacherVO teacherVO=teacherMapper.selectByWechatId(wechatId);
-        if(teacherVO!=null)
+        TeacherVO teacherVO = teacherMapper.selectByWechatId(wechatId);
+        if (teacherVO != null)
             return ResponseVO.buildSuccess("用户已添加");
-        teacherVO=new TeacherVO();
+        teacherVO = new TeacherVO();
         teacherVO.setWechatId(wechatId);
         teacherVO.setWechatIconUrl(wechatIconUrl);
         teacherMapper.insertSelective(teacherVO);
@@ -44,8 +44,8 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public TeacherDetailVO getTeacher(String wechatId) {
-        TeacherVO teacherVO=teacherMapper.selectByWechatId(wechatId);
-        if(teacherVO==null)
+        TeacherVO teacherVO = teacherMapper.selectByWechatId(wechatId);
+        if (teacherVO == null)
             return null;
 
         return getDetail(teacherVO);
@@ -53,9 +53,9 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public ResponseVO getTeachers(int page, int pageSize) {
-        List<TeacherVO> teacherList=teacherMapper.select(pageSize,page*pageSize);
-        List<TeacherDetailVO> detailList=new ArrayList<>();
-        for(TeacherVO teacher:teacherList){
+        List<TeacherVO> teacherList = teacherMapper.select(pageSize, page * pageSize);
+        List<TeacherDetailVO> detailList = new ArrayList<>();
+        for (TeacherVO teacher : teacherList) {
             detailList.add(getDetail(teacher));
         }
         return ResponseVO.buildSuccess(detailList);
@@ -68,16 +68,17 @@ public class TeacherServiceImpl implements TeacherService{
 
     /**
      * 查询教师的爬取的信息
+     *
      * @param teacherVO
      * @return
      */
-    private TeacherDetailVO getDetail(TeacherVO teacherVO){
-        TeacherDetailVO detailVO=new TeacherDetailVO();
-        BeanUtils.copyProperties(teacherVO,detailVO);
-        UserVO userVO=userMapper.selectUserById(teacherVO.getInfoId());
-        if(userVO!=null){
-            BeanUtils.copyProperties(userVO,detailVO);
-        }else{
+    private TeacherDetailVO getDetail(TeacherVO teacherVO) {
+        TeacherDetailVO detailVO = new TeacherDetailVO();
+        BeanUtils.copyProperties(teacherVO, detailVO);
+        UserVO userVO = userMapper.selectUserById(teacherVO.getInfoId());
+        if (userVO != null) {
+            BeanUtils.copyProperties(userVO, detailVO);
+        } else {
             detailVO.setId(-1);
         }
         return detailVO;
@@ -91,17 +92,18 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Override
     public ResponseVO getOrders(String wechatId) {
-        TeacherVO teacher=teacherMapper.selectByWechatId(wechatId);
-        if(teacher==null||teacher.getInfoId()==-1)
-            return ResponseVO.buildFailure("教师用户："+wechatId+" 不存在");
-        List<ServiceVO> services=serviceMapper.getServiceListByExpertId(teacher.getInfoId());//教师发布的所有服务
-        List<TeacherOrderVO> orders=new ArrayList<>();
-        for(ServiceVO service:services){
-            List<Integer> orderUsers=orderMapper.getOrderUsers(service.getId());//查询预约服务的所有用户
-            for(Integer userId:orderUsers){
-                StudentVO studentVO=studentMapper.selectByPrimaryKey(userId);
-                if(studentVO!=null){
-                    TeacherOrderVO order=new TeacherOrderVO(service,studentVO);
+        TeacherVO teacher = teacherMapper.selectByWechatId(wechatId);
+        if (teacher == null || teacher.getInfoId() == -1)
+            return ResponseVO.buildFailure("教师用户：" + wechatId + " 不存在");
+        List<ServiceVO> services = serviceMapper.getServiceListByExpertId(teacher.getInfoId());//教师发布的所有服务
+        List<TeacherOrderVO> orders = new ArrayList<>();
+        for (ServiceVO service : services) {
+            List<OrderVO> serviceOrders = orderMapper.getOrderByService(service.getId());//查询预约服务的所有订单
+            for (OrderVO serviceOrder : serviceOrders) {
+                StudentVO studentVO = studentMapper.selectByPrimaryKey(serviceOrder.getUserId());
+                if (studentVO != null) {
+                    TeacherOrderVO order = new TeacherOrderVO(service, studentVO);
+                    order.setOrderId(serviceOrder.getId());
                     orders.add(order);
                 }
             }

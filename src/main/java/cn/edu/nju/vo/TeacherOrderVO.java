@@ -16,6 +16,11 @@ public class TeacherOrderVO {
      */
     private StudentVO student;
 
+    /**
+     * 订单号
+     */
+    private Integer orderId;
+
     public TeacherOrderVO() {
     }
 
@@ -38,5 +43,13 @@ public class TeacherOrderVO {
 
     public void setStudent(StudentVO student) {
         this.student = student;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }
