@@ -6,4 +6,6 @@ public interface ArticleService {
 
     public ResponseVO getAll();
 
+    public ResponseVO getTop();
+
 }

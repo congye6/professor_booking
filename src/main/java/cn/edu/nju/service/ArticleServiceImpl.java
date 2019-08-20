@@ -15,4 +15,10 @@ public class ArticleServiceImpl implements ArticleService{
     public ResponseVO getAll() {
         return ResponseVO.buildSuccess(articleMapper.selectAll());
     }
+
+    @Override
+    public ResponseVO getTop() {
+        return ResponseVO.buildSuccess(articleMapper.selectTop());
+    }
+
 }

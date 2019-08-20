@@ -20,5 +20,10 @@ public class ArticleController {
         return articleService.getAll();
     }
 
+    @RequestMapping(value = "/articles/top",method = RequestMethod.GET)
+    public ResponseVO getTop(){
+        return articleService.getTop();
+    }
+
 
 }

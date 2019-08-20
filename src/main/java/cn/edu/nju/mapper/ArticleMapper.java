@@ -12,4 +12,5 @@ public interface ArticleMapper {
 
     public List<ArticleVO> selectAll();
 
+    public List<ArticleVO> selectTop();
 }

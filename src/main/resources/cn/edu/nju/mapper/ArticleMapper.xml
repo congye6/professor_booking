@@ -10,5 +10,8 @@
         select * from professor_booking.article limit 10000
     </select>
 
+    <select id="selectTop" resultType="cn.edu.nju.vo.ArticleVO">
+        select * from professor_booking.article5 limit 5
+    </select>
 
 </mapper>
