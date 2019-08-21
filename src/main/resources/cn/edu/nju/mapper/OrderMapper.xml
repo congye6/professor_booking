@@ -56,6 +56,7 @@
 
     <select id="getOrderByService" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         SELECT * FROM `order` where service_id=#{serviceId}
+        and teacher_status = 0 and student_status = 0
     </select>
 
     <delete id="deleteOrderById">
