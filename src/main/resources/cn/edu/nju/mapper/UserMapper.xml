@@ -66,6 +66,7 @@
         AND position LIKE concat('%',#{position},'%')
       </if>
     </where>
+    limit #{startPos}, #{num}
   </select>
 
   <select id="selectUserByUniversityRank" resultMap="BaseResultMap">

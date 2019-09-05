@@ -1,12 +1,8 @@
 package cn.edu.nju.task;
 
-import cn.edu.nju.mapper.InstitudeMapper;
 import cn.edu.nju.mapper.UserMapper;
 import cn.edu.nju.util.ExcelUtil;
-import cn.edu.nju.vo.ArticleVO;
-import cn.edu.nju.vo.InstitudeVO;
 import cn.edu.nju.vo.UserVO;
-import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +43,7 @@ public class UpdateIconTask {
                 iconMaps.put(user.getName(),user.getIconUrl());
             }
 
-            List<UserVO> usersInDb=userMapper.selectUserByInfo(school,"","","");
+            List<UserVO> usersInDb=userMapper.selectUserByInfo(school,"","","", 0, 100);
             for (UserVO user:usersInDb){
                 String iconUrl = iconMaps.get(user.getName());
                 if(StringUtils.isEmpty(iconUrl)){

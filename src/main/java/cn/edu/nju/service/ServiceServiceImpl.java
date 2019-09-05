@@ -59,7 +59,7 @@ public class ServiceServiceImpl implements ServiceService {
         }else if(ORDER_BY_UNIVERSITY.equals(orderBy)){
             searchExpertList = userMapper.selectUserByUniversityRank(expert, nation, position, major);
         }else {
-            searchExpertList = userMapper.selectUserByInfo(expert, nation, position, major);
+            searchExpertList = userMapper.selectUserByInfo(expert, nation, position, major, startPos, num);
         }
 
         Set<Integer> containIdxSet = new HashSet<>();
