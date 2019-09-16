@@ -57,4 +57,14 @@ public class OrderController {
         return orderService.modifyOrderTeacherStatus(orderId, OrderStatusConstant.FINISHED);
     }
 
+    @RequestMapping(value = "/teacher/delete", method = RequestMethod.GET)
+    public ResponseVO setOrderStatusDeleted(@RequestParam("orderId")String orderId){
+        return orderService.modifyOrderTeacherStatus(orderId, OrderStatusConstant.DELETED);
+    }
+
+    @RequestMapping(value = "/teacher/getFinished", method = RequestMethod.GET)
+    public ResponseVO getAllFinishedOrder(@RequestParam("professorId")String professorId){
+        return orderService.getOrderByTeacherStatus(professorId, OrderStatusConstant.FINISHED);
+    }
+
 }

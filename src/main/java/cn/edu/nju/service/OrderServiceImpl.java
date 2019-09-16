@@ -60,6 +60,12 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public ResponseVO getOrderByTeacherStatus(String professorId, int orderStatus) {
+        List<OrderVO> orderVOList = orderMapper.getOrderByTeacherStatus(professorId, orderStatus);
+        return ResponseVO.buildSuccess(orderVOList);
+    }
+
+    @Override
     public ResponseVO deleteOrder(Integer orderId) {
         orderMapper.deleteOrderById(orderId);
         return ResponseVO.buildSuccess();

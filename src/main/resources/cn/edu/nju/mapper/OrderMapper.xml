@@ -54,6 +54,13 @@
         order.student_id = student.id AND service.professor_id = user.id
     </select>
 
+    <select id="getOrderByTeacherStatus" resultMap="BaseResultMap">
+        SELECT * from `order`, `service`, `student`, `user`
+        WHERE  order.service_id = service.id AND order.student_id = student.id AND
+        service.professor_id = user.id AND `service`.professor_id = #{professorId} AND
+        `order`.teacher_status = #{orderStatus}
+    </select>
+
     <select id="getOrderByService" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         SELECT * FROM `order` where service_id=#{serviceId}
         and teacher_status = 0 and student_status = 0

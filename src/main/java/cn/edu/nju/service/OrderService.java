@@ -32,6 +32,14 @@ public interface OrderService {
     ResponseVO getAllOrder();
 
     /**
+     * 根据教授状态获取所有预约
+     * @param professorId 教授id
+     * @param orderStatus 教授状态
+     * @return
+     */
+    ResponseVO getOrderByTeacherStatus(String professorId, int orderStatus);
+
+    /**
      * 删除订单id
      * @param orderId
      * @return

@@ -17,4 +17,9 @@ public class OrderStatusConstant {
      */
     public static final int FINISHED   = 1;
 
+    /**
+     * 订单状态：已删除
+     */
+    public static final int DELETED    = 2;
+
 }

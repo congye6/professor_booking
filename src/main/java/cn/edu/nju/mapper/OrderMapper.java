@@ -45,6 +45,15 @@ public interface OrderMapper {
     List<OrderVO> getAllOrder();
 
     /**
+     * 根据教授状态获取某个教授的所有预约
+     * @param professorId
+     * @param orderStatus
+     * @return
+     */
+    List<OrderVO> getOrderByTeacherStatus(@Param("professorId")String professorId, @Param("orderStatus")int orderStatus);
+
+
+    /**
      * 获取服务的所有订单
      * @param serviceId
      * @return
