@@ -53,47 +53,61 @@ public class ServiceServiceImpl implements ServiceService {
             num = 50;
         }
 
-        List<UserVO> searchExpertList;
-        if(ORDER_BY_MAJOR.equals(orderBy)){
-            searchExpertList = userMapper.selectUserByMajorRank(expert, nation, position, major);
-        }else if(ORDER_BY_UNIVERSITY.equals(orderBy)){
-            searchExpertList = userMapper.selectUserByUniversityRank(expert, nation, position, major);
-        }else {
-            searchExpertList = userMapper.selectUserByInfo(expert, nation, position, major, startPos, num);
+        if(StringUtils.isEmpty(orderBy)){
+            orderBy = ORDER_BY_UNIVERSITY;
         }
 
-        Set<Integer> containIdxSet = new HashSet<>();
-        UserVO userVO;
-        String school;
-        for(int i=0; i<searchExpertList.size(); i++){
-            userVO = searchExpertList.get(i);
-            school = userVO.getSchool();
-            if(!StringUtils.isEmpty(school) && school.contains(expert)){
-                containIdxSet.add(i);
-            }
+        if(StringUtils.isEmpty(expert) && StringUtils.isEmpty(nation) &&
+                StringUtils.isEmpty(position) && StringUtils.isEmpty(major)){
+            List<UserVO> limitList = userMapper.selectUserByUniversityRankLimit(startPos, num);
+            return ResponseVO.buildSuccess(limitList);
         }
 
-        List<UserVO> containList = new ArrayList<>();
-        List<UserVO> notContainList = new ArrayList<>();
-        for(int i=0 ;i<searchExpertList.size(); i++){
-            if(containIdxSet.contains(i)){
-                containList.add(searchExpertList.get(i));
-            }else {
-                notContainList.add(searchExpertList.get(i));
-            }
-        }
+        List<UserVO> searchExpertList = ORDER_BY_MAJOR.equals(orderBy) ?
+                userMapper.selectUserByMajorRank(expert, nation, position, major) :
+                userMapper.selectUserByUniversityRank(expert, nation, position, major);
 
-        List<UserVO> sortRes = new ArrayList<>();
-        for(UserVO containUser: containList){
-            sortRes.add(containUser);
-        }
-        for(UserVO notContainUser: notContainList){
-            sortRes.add(notContainUser);
-        }
-
+        // 如果没有搜索条件，代表是前端简单的分页请求
+        // 否则需要当搜索条件为学校名时，把目标学校放在搜索结果的前面
         List<UserVO> res = new ArrayList<>();
-        for(int i = startPos; i < Math.min(startPos + num, sortRes.size()); i++){
-            res.add(sortRes.get(i));
+        List<UserVO> targetList = searchExpertList;
+        if(!StringUtils.isEmpty(expert)){
+            // 判断expert字段是否是学校名
+            // 根据searchExpertList搜索结果中学校字段去匹配判断
+            Set<Integer> containIdxSet = new HashSet<>();
+            UserVO userVO;
+            String school;
+            for(int i=0; i<searchExpertList.size(); i++){
+                userVO = searchExpertList.get(i);
+                school = userVO.getSchool();
+                if(!StringUtils.isEmpty(school) && school.contains(expert)){
+                    containIdxSet.add(i);
+                }
+            }
+
+            // 当搜索条件expert字段为学校名
+            // 将搜索结果中学校字段包含expert的放在前面，不包含的放在后面
+            if(containIdxSet.size() != 0){
+                List<UserVO> containList = new ArrayList<>();
+                List<UserVO> notContainList = new ArrayList<>();
+                for(int i=0 ;i<searchExpertList.size(); i++){
+                    if(containIdxSet.contains(i)){
+                        containList.add(searchExpertList.get(i));
+                    }else {
+                        notContainList.add(searchExpertList.get(i));
+                    }
+                }
+
+                targetList.clear();
+                targetList.addAll(containList);
+                targetList.addAll(notContainList);
+            }
+
+        }
+
+        // 内存中分页
+        for (int i = startPos; i < Math.min(startPos + num, targetList.size()); i++){
+            res.add(targetList.get(i));
         }
 
         return ResponseVO.buildSuccess(res);

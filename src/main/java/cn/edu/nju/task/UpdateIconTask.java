@@ -43,7 +43,7 @@ public class UpdateIconTask {
                 iconMaps.put(user.getName(),user.getIconUrl());
             }
 
-            List<UserVO> usersInDb=userMapper.selectUserByInfo(school,"","","", 0, 100);
+            List<UserVO> usersInDb=userMapper.selectUserByInfo(school,"","","");
             for (UserVO user:usersInDb){
                 String iconUrl = iconMaps.get(user.getName());
                 if(StringUtils.isEmpty(iconUrl)){

@@ -66,7 +66,6 @@
         AND position LIKE concat('%',#{position},'%')
       </if>
     </where>
-    limit #{startPos}, #{num}
   </select>
 
   <select id="selectUserByUniversityRank" resultMap="BaseResultMap">
@@ -91,6 +90,14 @@
       </if>
     </where>
     ORDER BY `institude_rank`.rank ASC
+  </select>
+
+  <select id="selectUserByUniversityRankLimit" resultMap="BaseResultMap">
+    SELECT `user`.* from `user`
+    LEFT JOIN `institude_rank`
+    ON `user`.school = `institude_rank`.institude
+    ORDER BY `institude_rank`.rank ASC
+    limit #{startPos}, #{num}
   </select>
 
   <select id="selectUserByMajorRank" resultMap="BaseResultMap">
