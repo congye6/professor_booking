@@ -25,6 +25,9 @@ public class RankUpdateTask {
     @Autowired
     private MajorRankMapper majorRankMapper;
 
+    /**
+     * 更新学校信息所有字段
+     */
     @Transactional
     public void updateInstitude(String filePath){
         List<InstitudeVO> list=excelUtil.readXlsToJson(filePath, InstitudeVO.class);

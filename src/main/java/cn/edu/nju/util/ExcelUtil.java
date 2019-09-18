@@ -125,7 +125,6 @@ public class ExcelUtil {
                     cell = row.getCell(j);
 
                     String cellValue = getStringVal(cell);
-                    System.out.println(cellValue);
                     rowList.add(cellValue);
 //
                 }

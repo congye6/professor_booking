@@ -21,6 +21,4 @@ public interface InstitudeMapper {
     void deleteByInstitude(String name);
 
     List<InstitudeVO> selectSortedInstitude(int count);
-
-    List<InstitudeVO> selectRandomInstitude(int num);
 }

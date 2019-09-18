@@ -38,6 +38,8 @@ public interface UserMapper {
 
     List<String> selectPosition();
 
+    List<String> selectInstitude();
+
     /**
      * 通过专家姓名、国家、职位、学校查找
      * @param expert

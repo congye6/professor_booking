@@ -68,25 +68,35 @@ public class TopServiceImpl implements TopService {
             return ResponseVO.buildSuccess(topInstitudes);
         }
 
-        List<InstitudeVO> randomInstitudes = institudeMapper.selectRandomInstitude(10);
-        Set<Integer> institudeIds = new HashSet<>(); // 用于去重
+        List<String> randomInstitudes = getRandomInstitude();
+        Set<String> institudeNames = new HashSet<>(); // 用于去重
         for (int i = 0; i < topInstitudes.size(); i++) {
             if (topInstitudes.get(i).getSort() != 0) {
-                institudeIds.add(topInstitudes.get(i).getId());
+                institudeNames.add(topInstitudes.get(i).getInstitude());
                 continue;
             }
 
-            InstitudeVO replacedInstitude = null;
+            String replacedInstitude = null;
             while (replacedInstitude == null) {
                 replacedInstitude = randomInstitudes.get(randomInstitudes.size() - 1);
                 randomInstitudes.remove(randomInstitudes.size() - 1);
-                if (institudeIds.contains(replacedInstitude.getId())) { //重复,取下一个
+                if (institudeNames.contains(replacedInstitude)) { //重复,取下一个
                     replacedInstitude = null;
                 }
             }
-            topInstitudes.set(i, replacedInstitude); // 未排序的，替换随机学校
+            topInstitudes.set(i, institudeMapper.selectByInstitude(replacedInstitude)); // 未排序的，替换随机学校
         }
         return ResponseVO.buildSuccess(topInstitudes);
+    }
+
+    private List<String> getRandomInstitude(){
+        List<String> randomInstitudes = userMapper.selectInstitude();
+        List<String> result=new ArrayList<>();
+        for(int i=0;i<15;i++){
+            int random=(int)(Math.random()*randomInstitudes.size());
+            result.add(randomInstitudes.get(random));
+        }
+        return result;
     }
 
     /**
